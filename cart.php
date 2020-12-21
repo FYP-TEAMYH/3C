@@ -17,7 +17,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store</b></a>
+          <a class="navbar-brand logo_h" href="index.php"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store</b></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -26,22 +26,22 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="category.html">Category</a></li>
-              <li class="nav-item"><a class="nav-link" href="compare.html">Compare</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
+              <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                 </ul>
               </li>
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.html"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
-              <li class="nav-item"><a class="button button-header" href="checkout.html">Buy Now</a></li>
+              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
         </div>
@@ -58,7 +58,7 @@
 					<h1>Shopping Cart</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
               <li class="breadcrumb-item active" aria-current="page">Shopping Cart</li>
             </ol>
           </nav>
@@ -214,8 +214,8 @@
                               </td>
                               <td>
                                   <div class="checkout_btn_inner">
-                                      <a class= "gray_btn" href="category.html">Continue Shopping</a>
-                                      <a class="primary-btn ml-2" href="checkout.html">Proceed to checkout</a>
+                                      <a class= "gray_btn" href="category.php">Continue Shopping</a>
+                                      <a class="primary-btn ml-2" href="checkout.php">Proceed to checkout</a>
                                   </div>
                               </td>
                           </tr>
@@ -251,9 +251,9 @@
 							<h4 class="footer_title">Quick Links</h4>
 							<ul class="list">
 								<ul class="list">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="category.html">Shop</a></li>		
-								<li><a href="compare.html">Compare</a></li>			
+								<li><a href="index.php">Home</a></li>
+								<li><a href="category.php">Shop</a></li>		
+								<li><a href="compare.php">compare</a></li>				
 							</ul>
 							</ul>
 						</div>

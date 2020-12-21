@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="vendors/nice-select/nice-select.css">
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
@@ -27,21 +28,21 @@
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="category.html">Category</a></li>
-              <li class="nav-item active"><a class="nav-link" href="compare.html">Compare</a></li>
+              <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
+              <li class="nav-item active"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                 </ul>
               </li>
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.html"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
-              <li class="nav-item"><a class="button button-header" href="checkout.html">Buy Now</a></li>
+              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
         </div>
@@ -49,84 +50,65 @@
     </div>
   </header>
 	<!--================ End Header Menu Area =================-->
-  
-  <section>
+	
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container h-100">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Comparison</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Compare</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
 
-				
-				<div class="col-sm-9">
-					<div class="features_items">
-						<h2 class="title" style="margin: 50px 0px 0px 600px"><b>Comparison </b></h2>
-						<h2 class="title text-center" style="margin-left:300px"></h2>
-					<br>
-					<style>
-					table, th, td {
-					  border: 1px solid black;
-					  border-collapse: collapse;
-					}
-					th, td {
-					  padding: 15px;
-					}
-					</style>
-					</head>
-					<body>
+	<section class="checkout_area section-margin--small">
+    <div class="container">
 
-					<table style="width:100%;border:1px solid black;margin-left:150px;">
-					<tr>
-						<th></th>
-						<th><img src="img/iphone11.png" height="180px" width="180px" alt=""></th>
-						<th><img src="img/iphone12.png" height="200px" width="150px" alt=""></th>
-					  <tr>
-						<th>Firstname</th>
+        
+        <div class="billing_details" >
+            <div class="row">
+                <div class="col-lg-8">
+                    <h3>Please choose the phone to compare</h3>
+                    <form class="row contact_form" action="#" method="post">
+                        
+                        <div class="col-md-12 form-group p_star">
+                            <select class="country_select">
+                                <option value="1">Iphone 12 Pro Max</option>
+                                <option value="2">Samsung Galaxy Note 10</option>
+                            </select>
+                        </div>
+						<div class="col-md-12 form-group p_star">
+                            <select class="country_select">
+                                <option value="1">Iphone 12 Pro Max</option>
+                                <option value="2">Samsung Galaxy Note 10</option>
+                            </select>
+                        </div>
 						
-						<th>IPHONE 11</th> 
-						<th>IPHONE 12</th>
-					  </tr>
-					  <tr>
-						<td>Performance</td>
-						<td>Apple A13 Bionic</td>
-						<td>Apple A14 Bionic</td>
-					  </tr>
-					  <tr>
-						<td>Storage</td>
-						<td>64GB</td>
-						<td>64GB</td>
-					  </tr>
-					  <tr>
-						<td>Camera</td>
-						<td>12MP+12MP</td>
-						<td>12MP+12MP</td>
-					  </tr>
-					   <tr>
-						<td>BATTERY</td>
-						<td>3110mAh</td>
-						<td>2815mAh</td>
-					  </tr>
-					   <tr>
-						<td>Display</td>
-						<td>6.1 inches</td>
-						<td>6.1 inches</td>
-					  </tr>
-					   <tr>
-						<td>Ram</td>
-						<td>4GB</td>
-						<td>4GB</td>
-					  </tr>
-				
-					</table>
-					<br><br><br><br>
-											
-											
-											
-										</div>
-									</div>
-								</div>
-							</div>
-						</section>
-  
-  
+						<div class=" form-group">
+								<br>
+								<a href="compareresult.php" button type="submit" value="submit" class="button button-login w-100" >Start to Compare</a>
+						</div>
+                    </form>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+  </section>
+		<br><br><br><br><br>
 
 
-  <!--================ Start footer Area  =================-->	
+  
+
+   <!--================ Start footer Area  =================-->	
 	<footer class="footer">
 		<div class="footer-area">
 			<div class="container">
@@ -148,9 +130,9 @@
 							<h4 class="footer_title">Quick Links</h4>
 							<ul class="list">
 								<ul class="list">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="category.html">Shop</a></li>		
-								<li><a href="compare.html">Compare</a></li>			
+								<li><a href="index.php">Home</a></li>
+								<li><a href="category.php">Shop</a></li>		
+								<li><a href="compare.php">compare</a></li>				
 							</ul>
 							</ul>
 						</div>

@@ -26,7 +26,7 @@
     <div>
       <nav class="navbar navbar-expand-xl">
         <div class="container h-100">
-          <a class="navbar-brand" href="adminproducts.html">
+          <a class="navbar-brand" href="admindashboard.php">
             <h1 class="tm-site-title mb-0">Administrator Page</h1>
           </a>
           <button
@@ -45,23 +45,23 @@
             <ul class="navbar-nav mx-auto h-100">
               
 			  <li class="nav-item">
-                <a class="nav-link" href="admindashboard.html">
+                <a class="nav-link" href="admindashboard.php">
                   <i class="fas fa-home"></i> Dashboard
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="adminproducts.html">
+                <a class="nav-link" href="adminproducts.php">
                   <i class="fas fa-shopping-cart"></i> Products
                 </a>
               </li>
               <li class="nav-item">
-                <a class="nav-link" href="adminmember.html">
+                <a class="nav-link" href="adminmember.php">
                   <i class="far fa-user"></i> Accounts
                 </a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link active" href="adminorder.html">
+                <a class="nav-link active" href="adminorder.php">
                   <i class="far fa-file-alt"></i> Order
                 </a>
               </li>
@@ -69,7 +69,7 @@
             </ul>
 			<ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link d-block" href="adminindex.html">
+                            <a class="nav-link d-block" href="adminindex.php">
                                  <b>Logout</b>
                             </a>
                         </li>

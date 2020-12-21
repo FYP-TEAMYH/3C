@@ -17,7 +17,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="index.html"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store</b></a>
+          <a class="navbar-brand logo_h" href="index.php"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store</b></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -26,22 +26,22 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-              <li class="nav-item active"><a class="nav-link" href="category.html">Category</a></li>
-              <li class="nav-item"><a class="nav-link" href="compare.html">Compare</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item active"><a class="nav-link" href="category.php">Category</a></li>
+              <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.html">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.html">Register</a></li>
+                  <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                 </ul>
               </li>
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.html"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
-              <li class="nav-item"><a class="button button-header" href="checkout.html">Buy Now</a></li>
+              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
         </div>
@@ -115,7 +115,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/mouse3.jpg" height="250" width="250" alt="Razer DeathAdder Essential">
+                    <a href="single-product.php"><img src="img/mouse3.jpg" height="250" width="250" alt="Razer DeathAdder Essential">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -124,7 +124,7 @@
                   </div>
                   <div class="card-body">
                     <p>Mouse</p>
-                    <h4 class="card-product__title"><a href="single-product.html">Razer DeathAdder Essential</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">Razer DeathAdder Essential</a></h4>
                     <p class="card-product__price">RM280.00</p>
                   </div>
                 </div>
@@ -132,7 +132,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/iphone12.png" height="250" width="250" alt="Racing Video Chair">
+                    <a href="single-product.php"><img src="img/iphone12.png" height="250" width="250" alt="Racing Video Chair">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -141,7 +141,7 @@
                   </div>
                   <div class="card-body">
                     <p>Smart Phone</p>
-                    <h4 class="card-product__title"><a href="single-product.html">Iphone 12 Pro Max</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">Iphone 12 Pro Max</a></h4>
                     <p class="card-product__price">RM3899.00</p>
                   </div>
                 </div>
@@ -149,7 +149,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/keyboard.jpg" height="250" width="250" alt="E-BLUE Gaming Keyboard">
+                    <a href="single-product.php"><img src="img/keyboard.jpg" height="250" width="250" alt="E-BLUE Gaming Keyboard">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -158,7 +158,7 @@
                   </div>
                   <div class="card-body">
                     <p>Keyboard</p>
-                    <h4 class="card-product__title"><a href="single-product.html">E-BLUE Gaming Keyboard</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">E-BLUE Gaming Keyboard</a></h4>
                     <p class="card-product__price">RM 200.00</p>
                   </div>
                 </div>
@@ -166,7 +166,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/earphone.jpg" height="250" width="250" alt="Razer Hammerhead Bt Wireless Gaming Earphones">
+                    <a href="single-product.php"><img src="img/earphone.jpg" height="250" width="250" alt="Razer Hammerhead Bt Wireless Gaming Earphones">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -175,7 +175,7 @@
                   </div>
                   <div class="card-body">
                     <p>Earphones</p>
-                    <h4 class="card-product__title"><a href="single-product.html">Razer Hammerhead Bt Wireless Gaming Earphones</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">Razer Hammerhead Bt Wireless Gaming Earphones</a></h4>
                     <p class="card-product__price">RM150.00</p>
                   </div>
                 </div>
@@ -183,7 +183,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/macbook.jpg" height="250" width="250" alt="Macbook Air" >
+                    <a href="single-product.php"><img src="img/macbook.jpg" height="250" width="250" alt="Macbook Air" >
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -192,7 +192,7 @@
                   </div>
                   <div class="card-body">
                     <p>Laptop</p>
-                    <h4 class="card-product__title"><a href="single-product.html">Macbook Air</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">Macbook Air</a></h4>
                     <p class="card-product__price">RM2299.00</p>
                   </div>
                 </div>
@@ -200,7 +200,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/airpods.jpg" height="250" width="250" alt="Airpods Pro">
+                    <a href="single-product.php"><img src="img/airpods.jpg" height="250" width="250" alt="Airpods Pro">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -209,7 +209,7 @@
                   </div>
                   <div class="card-body">
                     <p>Earphones</p>
-                    <h4 class="card-product__title"><a href="single-product.html">Airpods Pro</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">Airpods Pro</a></h4>
                     <p class="card-product__price">RM699.00</p>
                   </div>
                 </div>
@@ -217,7 +217,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/mouse4.jpg" height="250" width="250" alt="SteelSeries Rival 710">
+                    <a href="single-product.php"><img src="img/mouse4.jpg" height="250" width="250" alt="SteelSeries Rival 710">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -226,7 +226,7 @@
                   </div>
                   <div class="card-body">
                     <p>Mouse</p>
-                    <h4 class="card-product__title"><a href="single-product.html">SteelSeries Rival 710</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">SteelSeries Rival 710</a></h4>
                     <p class="card-product__price">RM350.00</p>
                   </div> 
                 </div>
@@ -234,7 +234,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/keyboard2.jpg" height="250" width="250" alt="SteelSeries Apex Pro">
+                    <a href="single-product.php"><img src="img/keyboard2.jpg" height="250" width="250" alt="SteelSeries Apex Pro">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -243,7 +243,7 @@
                   </div>
                   <div class="card-body">
                     <p>Keyboard</p>
-                    <h4 class="card-product__title"><a href="single-product.html">SteelSeries Apex Pro</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">SteelSeries Apex Pro</a></h4>
                     <p class="card-product__price">RM800.00</p>
                   </div>
                 </div>
@@ -251,7 +251,7 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.html"><img src="img/mouse1.png" height="250" width="250" alt="Magic Mouse">
+                    <a href="single-product.php"><img src="img/mouse1.png" height="250" width="250" alt="Magic Mouse">
                     <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -260,7 +260,7 @@
                   </div>
                   <div class="card-body">
                     <p>Mouse</p>
-                    <h4 class="card-product__title"><a href="single-product.html">Magic Mouse</a></h4>
+                    <h4 class="card-product__title"><a href="single-product.php">Magic Mouse</a></h4>
                     <p class="card-product__price">RM319.00</p>
                   </div>
                 </div>
@@ -285,23 +285,23 @@
         <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div class="single-search-product-wrapper">
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
+              <a href="category.php"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
               <div class="desc">
-                  <a href="category.html" class="title">Airpods Pro</a>
+                  <a href="category.php" class="title">Airpods Pro</a>
                   <div class="price">RM699.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
+              <a href="category.php"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
               <div class="desc">
-                <a href="category.html" class="title">Airpods Pro</a>
+                <a href="category.php" class="title">Airpods Pro</a>
                 <div class="price">RM699.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
+              <a href="category.php"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
               <div class="desc">
-                <a href="category.html" class="title">Airpods Pro</a>
+                <a href="category.php" class="title">Airpods Pro</a>
                 <div class="price">RM699.00</div>
               </div>
             </div>
@@ -311,23 +311,23 @@
         <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div class="single-search-product-wrapper">
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/mouse1.png" alt="Magic Mouse"></a>
+              <a href="category.php"><img src="img/mouse1.png" alt="Magic Mouse"></a>
               <div class="desc">
-                  <a href="category.html" class="title">Magic Mouse</a>
+                  <a href="category.php" class="title">Magic Mouse</a>
                   <div class="price">RM319.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/mouse1.png" alt="Magic Mouse"></a>
+              <a href="category.php"><img src="img/mouse1.png" alt="Magic Mouse"></a>
               <div class="desc">
-                <a href="category.html" class="title">Magic Mouse</a>
+                <a href="category.php" class="title">Magic Mouse</a>
                 <div class="price">RM319.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/mouse1.png" alt="Magic Mouse"></a>
+              <a href="category.php"><img src="img/mouse1.png" alt="Magic Mouse"></a>
               <div class="desc">
-                <a href="category.html" class="title">Magic Mouse</a>
+                <a href="category.php" class="title">Magic Mouse</a>
                 <div class="price">RM319.00</div>
               </div>
             </div>
@@ -337,23 +337,23 @@
         <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div class="single-search-product-wrapper">
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/iphone12.png" alt="Iphone 12 Pro Max"></a>
+              <a href="category.php"><img src="img/iphone12.png" alt="Iphone 12 Pro Max"></a>
               <div class="desc">
-                  <a href="category.html" class="title">Iphone 12 Pro Max</a>
+                  <a href="category.php" class="title">Iphone 12 Pro Max</a>
                   <div class="price">RM3899.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/iphone12.png" alt="Iphone 12 Pro Max"></a>
+              <a href="category.php"><img src="img/iphone12.png" alt="Iphone 12 Pro Max"></a>
               <div class="desc">
-                <a href="category.html" class="title">Iphone 12 Pro Max</a>
+                <a href="category.php" class="title">Iphone 12 Pro Max</a>
                 <div class="price">RM3899.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/iphone12.png" alt="GameSir T4 PC Game Controller"></a>
+              <a href="category.php"><img src="img/iphone12.png" alt="GameSir T4 PC Game Controller"></a>
               <div class="desc">
-                <a href="category.html" class="title">Iphone 12 Pro Max</a>
+                <a href="category.php" class="title">Iphone 12 Pro Max</a>
                 <div class="price">RM3899.00</div>
               </div>
             </div>
@@ -363,23 +363,23 @@
         <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
           <div class="single-search-product-wrapper">
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/macbook.jpg" alt="Macbook Air"></a>
+              <a href="category.php"><img src="img/macbook.jpg" alt="Macbook Air"></a>
               <div class="desc">
-                  <a href="category.html" class="title">Macbook Air</a>
+                  <a href="category.php" class="title">Macbook Air</a>
                   <div class="price">RM2299.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/macbook.jpg" alt="Macbook Air"></a>
+              <a href="category.php"><img src="img/macbook.jpg" alt="Macbook Air"></a>
               <div class="desc">
-                <a href="category.html" class="title">Macbook Air</a>
+                <a href="category.php" class="title">Macbook Air</a>
                 <div class="price">RM2299.00</div>
               </div>
             </div>
             <div class="single-search-product d-flex">
-              <a href="category.html"><img src="img/macbook.jpg" alt="Macbook Air"></a>
+              <a href="category.php"><img src="img/macbook.jpg" alt="Macbook Air"></a>
               <div class="desc">
-                <a href="category.html" class="title">Macbook Air</a>
+                <a href="category.php" class="title">Macbook Air</a>
                 <div class="price">RM2299.00</div>
               </div>
             </div>
@@ -437,10 +437,11 @@
 						<div class="single-footer-widget tp_widgets">
 							<h4 class="footer_title">Quick Links</h4>
 							<ul class="list">
+              <ul class="list">
 								<ul class="list">
-								<li><a href="index.html">Home</a></li>
-								<li><a href="category.html">Shop</a></li>		
-								<li><a href="compare.html">compare</a></li>			
+								<li><a href="index.php">Home</a></li>
+								<li><a href="category.php">Shop</a></li>		
+								<li><a href="compare.php">compare</a></li>				
 							</ul>
 							</ul>
 						</div>
