@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 	<!--================ Start Header Menu Area =================-->
 	<header class="header_area">
     <div class="main_menu">
@@ -49,7 +50,7 @@
     </div>
   </header>
 	<!--================ End Header Menu Area =================-->
-  
+
   <section>
 
 				
@@ -69,50 +70,66 @@
 					</style>
 					</head>
 					<body>
+					
+					<div class="gallery"> 
+        
+					
+        
+    </div> 
 
-					<table style="width:100%;border:1px solid black;margin-left:150px;">
-					<tr>
-						<th></th>
-						<th><img src="img/iphone11.png" height="180px" width="180px" alt=""></th>
-						<th><img src="img/iphone12.png" height="200px" width="150px" alt=""></th>
-					  <tr>
-						<th>Firstname</th>
-						
-						<th>IPHONE 11</th> 
-						<th>IPHONE 12</th>
-					  </tr>
-					  <tr>
-						<td>Performance</td>
-						<td>Apple A13 Bionic</td>
-						<td>Apple A14 Bionic</td>
-					  </tr>
-					  <tr>
-						<td>Storage</td>
-						<td>64GB</td>
-						<td>64GB</td>
-					  </tr>
-					  <tr>
-						<td>Camera</td>
-						<td>12MP+12MP</td>
-						<td>12MP+12MP</td>
-					  </tr>
-					   <tr>
-						<td>BATTERY</td>
-						<td>3110mAh</td>
-						<td>2815mAh</td>
-					  </tr>
-					   <tr>
-						<td>Display</td>
-						<td>6.1 inches</td>
-						<td>6.1 inches</td>
-					  </tr>
-					   <tr>
-						<td>Ram</td>
-						<td>4GB</td>
-						<td>4GB</td>
-					  </tr>
-				
-					</table>
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM compare");
+while($row = mysqli_fetch_array($result))
+{
+	
+
+	
+
+ 
+	echo "<table style='width:100%;border:1px solid black;margin-left:150px;'>
+	
+	
+	<tr>
+	   <th>Name</th>";
+echo "<th>" . $row['name'] . "</th>";
+echo "<th>" . $row['name'] . "</th>;
+ </tr>
+<tr>
+<th>Performance</th>";
+echo"<td>" . $row['performance'] . "</td>";
+echo"<td>" . $row['performance'] . "</td>;
+</tr>
+<tr>
+<th>Storage</th>";
+echo"<td>" . $row['storage'] . "</td>";
+echo"<td>" . $row['storage'] . "</td>;
+</tr>
+<tr>
+<th>Camera</th>";
+echo"<td>" . $row['camera'] . "</td>";
+echo"<td>" . $row['camera'] . "</td>;
+</tr>
+<th>Battery</th>";
+echo"<td>" . $row['battery'] . "</td>";
+echo"<td>" . $row['battery'] . "</td>;
+</tr>
+<th>Display</th>";
+echo"<td>" . $row['display'] . "</td>";
+echo"<td>" . $row['display'] . "</td>;
+</tr>
+<th>Ram</th>";
+echo"<td>" . $row['ram'] . "</td>";
+echo"<td>" . $row['ram'] . "</td>;
+</tr>
+</table>";
+
+ 
+
+mysqli_close($con);
+}
+
+?>
 					<br><br><br><br>
 											
 											

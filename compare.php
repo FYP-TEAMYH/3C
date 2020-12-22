@@ -79,15 +79,15 @@
                     <h3>Please choose the phone to compare</h3>
                     <form class="row contact_form" action="#" method="post">
                         
-                        <div class="col-md-12 form-group p_star">
+                        <div class="col-md-12 form-group">
                             <select class="country_select">
-                                <option value="1">Iphone 12 Pro Max</option>
+                                <option value="1">Iphone 11</option>
                                 <option value="2">Samsung Galaxy Note 10</option>
                             </select>
                         </div>
-						<div class="col-md-12 form-group p_star">
+						<div class="col-md-12 form-group">
                             <select class="country_select">
-                                <option value="1">Iphone 12 Pro Max</option>
+                                <option value="1">Iphone 11</option>
                                 <option value="2">Samsung Galaxy Note 10</option>
                             </select>
                         </div>
