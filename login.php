@@ -28,13 +28,19 @@ if (isset($_POST['username'])){
 		$result = mysqli_query($con,$query) or die(mysql_error());
 		$rows = mysqli_num_rows($result);
 		if($rows==1){
+			session_start();
 			$_SESSION['username'] = $username;
 					// Redirect user to index.php
 			header("Location: index.php");
 				}else{
-		echo "<div class='form'>
-		<h3>Username/password is incorrect.</h3>
-		<br/>Click here to <a href='login.php'>Login</a></div>";
+		echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+		<div class='confirmation-card' style='text-align: center'>
+		<div class='container'>
+		<br><br><br>
+		<h3>Username/password is incorrect.</h3></div>
+
+		<br><br><br>Click here to <a href='login.php'>Login</a>
+		<br><br><br></div></div>";
 		}
     }else{
 ?>

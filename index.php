@@ -1,7 +1,4 @@
-<?php
-//include auth.php file on all secure pages
-include("auth.php");
-?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +19,7 @@ include("auth.php");
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
           <a class="navbar-brand logo_h" href="index.php"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store</b></a>
-          <p>Welcome <?php echo $_SESSION['username']; ?>!</p>  
+      
 	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -38,7 +35,7 @@ include("auth.php");
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                   <li class="nav-item"><a class="nav-link" href="index.php">Log Out</a></li>
                 </ul>

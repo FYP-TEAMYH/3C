@@ -32,9 +32,13 @@
 				VALUES ('$username', '$email' , '".md5($password)."')";
 				$result = mysqli_query($con,$query);
 				if($result){
-					echo "<div class='form'>
+					echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+					<div class='confirmation-card' style='text-align: center'>
+					<div class='container'>
+					<br><br><br>
 					<h3>You are registered successfully.</h3>
-					<br/>Click here to <a href='login.php'>Login</a></div>";
+					<br/>Click here to <a href='login.php'>Login</a>
+					<br><br><br><br></div></div></div>";
 				}
 		
 			}else{
