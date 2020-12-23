@@ -79,7 +79,7 @@
 
 <?php
 require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM compare");
+$result = mysqli_query($con,"SELECT * FROM result1");
 while($row = mysqli_fetch_array($result))
 {
 	
@@ -92,34 +92,99 @@ while($row = mysqli_fetch_array($result))
 	
 	<tr>
 	   <th>Name</th>";
-echo "<th>" . $row['name'] . "</th>";
+echo "<th>" . $row['name'] . "</th>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result2");
+while($row = mysqli_fetch_array($result))
 echo "<th>" . $row['name'] . "</th>;
  </tr>
 <tr>
-<th>Performance</th>";
-echo"<td>" . $row['performance'] . "</td>";
+<th>Performance</th>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result1");
+while($row = mysqli_fetch_array($result))
+echo"<td>" . $row['performance'] . "</td>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result2");
+while($row = mysqli_fetch_array($result))
 echo"<td>" . $row['performance'] . "</td>;
 </tr>
 <tr>
-<th>Storage</th>";
-echo"<td>" . $row['storage'] . "</td>";
+<th>Storage</th>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result1");
+while($row = mysqli_fetch_array($result))
+echo"<td>" . $row['storage'] . "</td>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result2");
+while($row = mysqli_fetch_array($result))
 echo"<td>" . $row['storage'] . "</td>;
 </tr>
 <tr>
-<th>Camera</th>";
-echo"<td>" . $row['camera'] . "</td>";
+<th>Camera</th>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result1");
+while($row = mysqli_fetch_array($result))
+echo"<td>" . $row['camera'] . "</td>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result2");
+while($row = mysqli_fetch_array($result))
 echo"<td>" . $row['camera'] . "</td>;
 </tr>
-<th>Battery</th>";
-echo"<td>" . $row['battery'] . "</td>";
+<th>Battery</th>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result1");
+while($row = mysqli_fetch_array($result))
+echo"<td>" . $row['battery'] . "</td>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result2");
+while($row = mysqli_fetch_array($result))
 echo"<td>" . $row['battery'] . "</td>;
 </tr>
-<th>Display</th>";
-echo"<td>" . $row['display'] . "</td>";
+<th>Display</th>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result1");
+while($row = mysqli_fetch_array($result))
+echo"<td>" . $row['display'] . "</td>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result2");
+while($row = mysqli_fetch_array($result))
 echo"<td>" . $row['display'] . "</td>;
 </tr>
-<th>Ram</th>";
-echo"<td>" . $row['ram'] . "</td>";
+<th>Ram</th>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result1");
+while($row = mysqli_fetch_array($result))
+echo"<td>" . $row['ram'] . "</td>";?>
+
+<?php
+require('db_connect.php');
+$result = mysqli_query($con,"SELECT * FROM result2");
+while($row = mysqli_fetch_array($result))
 echo"<td>" . $row['ram'] . "</td>;
 </tr>
 </table>";

@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
 	<link rel="stylesheet" href="vendors/nice-select/nice-select.css">
 	<link rel="stylesheet" href="css/style.css">
+	
 </head>
 <body>
 	<!--================ Start Header Menu Area =================-->
@@ -80,21 +81,36 @@
                     <form class="row contact_form" action="#" method="post">
                         
                         <div class="col-md-12 form-group">
-                            <select class="country_select">
-                                <option value="1">Iphone 11</option>
-                                <option value="2">Samsung Galaxy Note 10</option>
+                            <select class="country_select" id="select1">
+							<?php
+							require('db_connect.php');
+							$result = mysqli_query($con,"SELECT * FROM compare");
+							while($row = mysqli_fetch_array($result))
+							{
+								echo"<option value='" . $row['id'] ."'>" . $row['name']."</option>";
+							}
+							?>	
+                             
+
                             </select>
+						
                         </div>
 						<div class="col-md-12 form-group">
-                            <select class="country_select">
-                                <option value="1">Iphone 11</option>
-                                <option value="2">Samsung Galaxy Note 10</option>
+                            <select class="country_select" id="select2">
+							<?php
+							require('db_connect.php');
+							$result = mysqli_query($con,"SELECT * FROM compare");
+							while($row = mysqli_fetch_array($result))
+							{
+								echo"<option value='" . $row['id'] ."'>" . $row['name']."</option>";
+							}
+							?>	
                             </select>
                         </div>
 						
 						<div class=" form-group">
 								<br>
-								<a href="compareresult.php" button type="submit" value="submit" class="button button-login w-100" >Start to Compare</a>
+								<a href="compareresult.php" input type="submit" value="submit" id="submit" class="button button-login w-100" >Start to Compare</a>
 						</div>
                     </form>
                 </div>
@@ -104,6 +120,7 @@
     </div>
   </section>
 		<br><br><br><br><br>
+		
 
 
   
