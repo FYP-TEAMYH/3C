@@ -11,6 +11,7 @@
 	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
 	<link rel="stylesheet" href="vendors/nice-select/nice-select.css">
 	<link rel="stylesheet" href="css/style.css">
+	
 </head>
 <body>
 	<!--================ Start Header Menu Area =================-->
@@ -81,14 +82,28 @@
                         
                         <div class="col-md-12 form-group">
                             <select class="country_select">
-                                <option value="1">Iphone 11</option>
-                                <option value="2">Samsung Galaxy Note 10</option>
+							<?php
+							require('db_connect.php');
+							$result = mysqli_query($con,"SELECT name FROM compare");
+							while($row = mysqli_fetch_array($result))
+							{
+								echo"<option value='" . $row['name'] ."'>" . $row['name']."</option>";
+							}
+							?>	
+                                
                             </select>
+							<input type="text" id="txtvalue"/>
                         </div>
 						<div class="col-md-12 form-group">
                             <select class="country_select">
-                                <option value="1">Iphone 11</option>
-                                <option value="2">Samsung Galaxy Note 10</option>
+							<?php
+							require('db_connect.php');
+							$result = mysqli_query($con,"SELECT name FROM compare");
+							while($row = mysqli_fetch_array($result))
+							{
+								echo"<option value='" . $row['name'] ."'>" . $row['name']."</option>";
+							}
+							?>	
                             </select>
                         </div>
 						
