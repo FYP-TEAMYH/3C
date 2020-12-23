@@ -14,7 +14,6 @@
 <body>
 <?php
 require('db_connect.php');
-session_start();
 if (isset($_POST['username'])){
         // removes backslashes
  		$username = stripslashes($_REQUEST['username']);
