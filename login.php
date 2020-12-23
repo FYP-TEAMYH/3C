@@ -119,10 +119,10 @@ if (isset($_POST['username'])){
 						<h3>Log in to enter</h3>
 						<form class="row login_form" action="#" id="contactForm" method="post" name="login">
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'">
+								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required />
 							</div>
 							<div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
+							<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required />
 							</div>
 							<div class="col-md-12 form-group">
 								<div class="creat_account">
@@ -132,7 +132,14 @@ if (isset($_POST['username'])){
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
-								<a href="#">Forgot Password?</a>
+								<?php
+									if(isset($_GET["newpwd"])){
+										if($_GET["newpwd"]=="passwordupdated"){
+											echo '<p class="signipsuccess">Your password has been reset!</p>';
+										}
+									}
+								?>
+								<a href="reset-password-email.php">Forgot Password?</a>
 							
 								
 							</div>
