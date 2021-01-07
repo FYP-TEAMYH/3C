@@ -131,9 +131,7 @@ if (isset($_POST['username'])){
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
-								<a href="#">Forgot Password?</a>
-							
-								
+								<a href="">Forgot Password?</a>		
 							</div>
 						</form>
 					</div>
