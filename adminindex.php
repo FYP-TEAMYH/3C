@@ -21,7 +21,7 @@
 <body>
 <?php	
 	require('db_connect.php');
-	session_start();
+	
 	if (isset($_POST['loginbtn'])){               
 		$username = stripslashes($_REQUEST['username']);
 		$username = mysqli_real_escape_string($con,$username);
@@ -30,10 +30,12 @@
 		$password = mysqli_real_escape_string($con,$password);
 
 
-		$query = "SELECT * FROM adminlogin WHERE username='$username' AND password='$password'";
+		$query = "SELECT * FROM `adminlogin` WHERE User='$username' 
+		AND Pass='$password'";
 		$result = mysqli_query($con,$query) or die(mysql_error());
 		$rows = mysqli_num_rows($result);
 		if($rows==1){
+			session_start();
 			$_SESSION['username'] = $username;                
 			header("Location: admindashboard.php");
 		}

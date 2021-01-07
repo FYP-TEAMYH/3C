@@ -1,5 +1,5 @@
 <?php
-require('db_connect.php');
+
 if(isset($_POST["reset-request-submit"])){
 
     $selector = bin2hex(random_bytes(8));
@@ -9,7 +9,7 @@ if(isset($_POST["reset-request-submit"])){
     
     $expires = date("U") + 1800;
 
-    
+    require('db_connect.php');
 
     $userEmail = $_POST["email"];
 
