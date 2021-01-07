@@ -72,129 +72,73 @@
 					<body>
 					
 					<div class="gallery"> 
-        
+					
 					
         
     </div> 
-
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result1");
-while($row = mysqli_fetch_array($result))
-{
-	
-
-	
-
- 
-	echo "<table style='width:100%;border:1px solid black;margin-left:150px;'>
+	<table style='width:100%;border:1px solid black;margin:50px 0px 0px 180px;'>
 	
 	
-	<tr>
-	   <th>Name</th>";
-echo "<th>" . $row['name'] . "</th>";?>
+						<tr>
+							<th class="align-center">Name</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["name"];} ?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["name"]; }?></td>
+						</tr>
+						<tr>
+							<th class="align-center">Performance</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["performance"]; }?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["performance"]; }?></td>
+						</tr>
+						<tr>
+							<th class="align-center">Storage</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["storage"]; }?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["storage"]; }?></td>
+						</tr>
+						<tr>
+							<th class="align-center">Camera</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["camera"]; }?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["camera"]; }?></td>
+						</tr>
+						<tr>
+							<th class="align-center">Battery</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["battery"]; }?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["battery"]; }?></td>
+						</tr>
+						<tr>
+							<th class="align-center">Display</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["display"]; }?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["display"]; }?></td>
+						</tr>
+						<tr>
+							<th class="align-center">Ram</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){  echo $row["ram"]; }?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["ram"]; }?></td>
+						</tr>
+							
+							
+						</table>
+						
 
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result2");
-while($row = mysqli_fetch_array($result))
-echo "<th>" . $row['name'] . "</th>;
- </tr>
-<tr>
-<th>Performance</th>";?>
 
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result1");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['performance'] . "</td>";?>
 
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result2");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['performance'] . "</td>;
-</tr>
-<tr>
-<th>Storage</th>";?>
 
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result1");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['storage'] . "</td>";?>
 
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result2");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['storage'] . "</td>;
-</tr>
-<tr>
-<th>Camera</th>";?>
 
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result1");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['camera'] . "</td>";?>
 
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result2");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['camera'] . "</td>;
-</tr>
-<th>Battery</th>";?>
-
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result1");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['battery'] . "</td>";?>
-
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result2");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['battery'] . "</td>;
-</tr>
-<th>Display</th>";?>
-
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result1");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['display'] . "</td>";?>
-
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result2");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['display'] . "</td>;
-</tr>
-<th>Ram</th>";?>
-
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result1");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['ram'] . "</td>";?>
-
-<?php
-require('db_connect.php');
-$result = mysqli_query($con,"SELECT * FROM result2");
-while($row = mysqli_fetch_array($result))
-echo"<td>" . $row['ram'] . "</td>;
-</tr>
-</table>";
-
- 
-
-mysqli_close($con);
-}
-
-?>
 					<br><br><br><br>
 											
 											
