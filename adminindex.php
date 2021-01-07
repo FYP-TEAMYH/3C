@@ -41,6 +41,7 @@
 		}
 		else{
 <<<<<<< HEAD
+<<<<<<< HEAD
 		echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
 		<div class='confirmation-card' style='text-align: center'>
 		<div class='container'>
@@ -51,6 +52,8 @@
 		<br><br><br></div></div>";
 		}
 =======
+=======
+>>>>>>> e6ceee54216880811e486d6e4bd35a3d2a8ff173
 			echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
 			<div class='confirmation-card' style='text-align: center'>
 			<div class='container'>
@@ -60,6 +63,9 @@
 			<br><br><br>Click here to <a href='adminindex.php'>Login</a>
 			<br><br><br></div></div>";
 			}
+<<<<<<< HEAD
+>>>>>>> e6ceee54216880811e486d6e4bd35a3d2a8ff173
+=======
 >>>>>>> e6ceee54216880811e486d6e4bd35a3d2a8ff173
 	}
 	else{
