@@ -78,7 +78,17 @@
     </div> 
 	<table style='width:100%;border:1px solid black;margin:50px 0px 0px 180px;'>
 	
-	
+						<tr>
+							<th></th>
+							<td>
+							<?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["photo"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
+							</td>
+							<td>
+							<?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["photo"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
+							</td>
+						</tr>
 						<tr>
 							<th class="align-center">Name</th>
 							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
