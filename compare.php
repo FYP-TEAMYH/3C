@@ -78,15 +78,17 @@
             <div class="row">
                 <div class="col-lg-8">
                     <h3>Please choose the phone to compare</h3>
-                    <form class="row contact_form" action="#" method="post">
+                    <form class="row contact_form" action="compareresult.php" method="post">
                         
                         <div class="col-md-12 form-group">
-                            <select class="country_select" id="select1">
+						<form action="compareresult.php">
+                            <select class="country_select" name="select1" id="select1">
 							<?php
 							require('db_connect.php');
 							$result = mysqli_query($con,"SELECT * FROM compare");
 							while($row = mysqli_fetch_array($result))
 							{
+								
 								echo"<option value='" . $row['id'] ."'>" . $row['name']."</option>";
 							}
 							?>	
@@ -96,7 +98,7 @@
 						
                         </div>
 						<div class="col-md-12 form-group">
-                            <select class="country_select" id="select2">
+                            <select class="country_select" name="select2" id="select2">
 							<?php
 							require('db_connect.php');
 							$result = mysqli_query($con,"SELECT * FROM compare");
@@ -110,7 +112,7 @@
 						
 						<div class=" form-group">
 								<br>
-								<a href="compareresult.php" input type="submit" value="submit" id="submit" class="button button-login w-100" >Start to Compare</a>
+								<input type="submit" value="Start to Compare" id="submit" class="button button-login w-100" >
 						</div>
                     </form>
                 </div>
