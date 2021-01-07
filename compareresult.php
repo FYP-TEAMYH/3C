@@ -56,7 +56,7 @@
 				
 				<div class="col-sm-9">
 					<div class="features_items">
-						<h2 class="title" style="margin: 50px 0px 0px 600px"><b>Comparison </b></h2>
+						<h2 class="title" style="margin: 50px 0px 0px 700px"><b>Comparison </b></h2>
 						<h2 class="title text-center" style="margin-left:300px"></h2>
 					<br>
 					<style>
@@ -80,11 +80,11 @@
 	
 						<tr>
 							<th></th>
-							<td>
+							<td style='text-align: center'>
 							<?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
 							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["photo"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
 							</td>
-							<td>
+							<td style='text-align: center'>
 							<?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
 							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["photo"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
 							</td>
