@@ -152,10 +152,9 @@
 									<input type="checkbox" id="f-option2" name="selector">
 									<label for="f-option2">Keep me logged in</label>
 								</div>
-							</div>
-							<div class="col-md-12 form-group">
+							</div>	
 								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100"></button>
-							</div>
+							
 						</form>
 					</div>
 				</div>
