@@ -71,25 +71,8 @@
   <section class="section-margin--small mb-5">
     <div class="container">
       <div class="row">
-        <div class="col-xl-3 col-lg-4 col-md-5">
-          <div class="sidebar-categories">
-            <div class="head">Browse Categories</div>
-            <ul class="main-categories">
-              <li class="common-filter">
-                <form action="#">
-                  <ul>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="mouse" name="brand"><label for="mouse">Mouse<span> (100)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Keyboard" name="brand"><label for="Keyboard">Keyboard<span> (100)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Monitor" name="brand"><label for="Monitor">Laptop<span> (100)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Gaming Chair" name="brand"><label for="Gaming Chair">Smart Phone<span> (100)</span></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Earphones" name="brand"><label for="Earphones">Earphones<span> (100)</span></label></li>
-                  </ul>
-                </form>
-              </li>
-            </ul>
-          </div>
-        </div>
-        <div class="col-xl-9 col-lg-8 col-md-7">
+        
+        <div class="col-xl-9 col-lg-8 col-md-7" style="margin-left:140px">
           <!-- Start Filter Bar -->
           <div class="filter-bar d-flex flex-wrap align-items-center">
             <div class="sorting">
@@ -97,6 +80,16 @@
                 <option value="1">Default sorting</option>
                 <option value="1">Sort By Price</option>
                 <option value="1">Best Seller</option>
+              </select>
+            </div>
+
+            <div class="sorting">
+              <select>
+                <option value="1">Keyboard</option>
+                <option value="1">Mouse</option>
+                <option value="1">Laptop</option>
+                <option value="1">Smartphone</option>
+                <option value="1">Earphone</option>
               </select>
             </div>
           
