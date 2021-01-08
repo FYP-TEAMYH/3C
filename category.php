@@ -114,7 +114,7 @@
           <section class="lattest-product-area pb-40 category-list">
           <?php
           $inc=3;
-          $query=mysqli_query($con,"select * from keyboard ");
+          $query=mysqli_query($con,"select * from product ");
           while($row=mysqli_fetch_array($query)){
 			
             $inc = ($inc == 3) ? 1 : $inc+1; 
@@ -125,7 +125,8 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                  <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="160" width="250" class="thumbnail">
+                  
+                  <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="125px" width="150px" class="thumbnail">
                   <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -137,6 +138,7 @@
                         <h4 class="card-product__title"><?php echo $row['name']; ?></h4>
                          <p class="card-product__price">RM<?php echo $row['price']; ?></p>
                 </div>
+                
               </div>
             </div>
                                     
