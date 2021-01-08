@@ -1,3 +1,4 @@
+<?php include('db_connect.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -111,161 +112,45 @@
           <!-- End Filter Bar -->
           <!-- Start Best Seller -->
           <section class="lattest-product-area pb-40 category-list">
-            <div class="row">
+          <?php
+          $inc=3;
+          $query=mysqli_query($con,"select * from keyboard ");
+          while($row=mysqli_fetch_array($query)){
+			
+            $inc = ($inc == 3) ? 1 : $inc+1; 
+            if($inc == 1) echo "<div class='row'>";
+            
+            ?>
+
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/mouse3.jpg" height="250" width="250" alt="Razer DeathAdder Essential">
-                    <ul class="card-product__imgOverlay">
+                  <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="160" width="250" class="thumbnail">
+                  <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
                       <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Mouse</p>
-                    <h4 class="card-product__title"><a href="single-product.php">Razer DeathAdder Essential</a></h4>
-                    <p class="card-product__price">RM280.00</p>
-                  </div>
+                  </ul>
                 </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/iphone12.png" height="250" width="250" alt="Racing Video Chair">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Smart Phone</p>
-                    <h4 class="card-product__title"><a href="single-product.php">Iphone 12 Pro Max</a></h4>
-                    <p class="card-product__price">RM3899.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/keyboard.jpg" height="250" width="250" alt="E-BLUE Gaming Keyboard">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Keyboard</p>
-                    <h4 class="card-product__title"><a href="single-product.php">E-BLUE Gaming Keyboard</a></h4>
-                    <p class="card-product__price">RM 200.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/earphone.jpg" height="250" width="250" alt="Razer Hammerhead Bt Wireless Gaming Earphones">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Earphones</p>
-                    <h4 class="card-product__title"><a href="single-product.php">Razer Hammerhead Bt Wireless Gaming Earphones</a></h4>
-                    <p class="card-product__price">RM150.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/macbook.jpg" height="250" width="250" alt="Macbook Air" >
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Laptop</p>
-                    <h4 class="card-product__title"><a href="single-product.php">Macbook Air</a></h4>
-                    <p class="card-product__price">RM2299.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/airpods.jpg" height="250" width="250" alt="Airpods Pro">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Earphones</p>
-                    <h4 class="card-product__title"><a href="single-product.php">Airpods Pro</a></h4>
-                    <p class="card-product__price">RM699.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/mouse4.jpg" height="250" width="250" alt="SteelSeries Rival 710">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Mouse</p>
-                    <h4 class="card-product__title"><a href="single-product.php">SteelSeries Rival 710</a></h4>
-                    <p class="card-product__price">RM350.00</p>
-                  </div> 
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/keyboard2.jpg" height="250" width="250" alt="SteelSeries Apex Pro">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Keyboard</p>
-                    <h4 class="card-product__title"><a href="single-product.php">SteelSeries Apex Pro</a></h4>
-                    <p class="card-product__price">RM800.00</p>
-                  </div>
-                </div>
-              </div>
-              <div class="col-md-6 col-lg-4">
-                <div class="card text-center card-product">
-                  <div class="card-product__img">
-                    <a href="single-product.php"><img src="img/mouse1.png" height="250" width="250" alt="Magic Mouse">
-                    <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
-                    </ul>
-                  </div>
-                  <div class="card-body">
-                    <p>Mouse</p>
-                    <h4 class="card-product__title"><a href="single-product.php">Magic Mouse</a></h4>
-                    <p class="card-product__price">RM319.00</p>
-                  </div>
+                <div class="card-body">
+                       
+                        <h4 class="card-product__title"><?php echo $row['name']; ?></h4>
+                         <p class="card-product__price">RM<?php echo $row['price']; ?></p>
                 </div>
               </div>
             </div>
+                                    
+                            
+                            <?php
+
+                                if($inc == 3) echo "</div><div style='height: 30px;'></div>";
+                                }
+                                if($inc == 1) echo "<div class='col-md-6 col-lg-4></div><div class='col-md-6 col-lg-4'></div><div class='col-md-6 col-lg-4'></div></div>"; 
+                                if($inc == 2) echo "<div class='col-md-6 col-lg-4'></div><div class='col-md-6 col-lg-4'></div></div>"; 
+                            ?>
+                            <div class="col-md-6 col-lg-4">
+                <div class="card text-center card-product">
+
           </section>
           <!-- End Best Seller -->
         </div>
