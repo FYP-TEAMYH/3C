@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 08, 2021 at 03:55 AM
+-- Generation Time: Jan 08, 2021 at 08:34 AM
 -- Server version: 10.1.29-MariaDB
 -- PHP Version: 7.1.12
 
@@ -76,31 +76,59 @@ INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `batter
 -- --------------------------------------------------------
 
 --
--- Table structure for table `keyboard`
+-- Table structure for table `product`
 --
 
-CREATE TABLE `keyboard` (
+CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
   `photo` varchar(255) NOT NULL,
-  `price` varchar(255) NOT NULL
+  `price` varchar(255) NOT NULL,
+  `category` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `keyboard`
+-- Dumping data for table `product`
 --
 
-INSERT INTO `keyboard` (`id`, `name`, `photo`, `price`) VALUES
-(1, 'Razer BlackWidow Mechanical Gaming Keyboard', 'img/keyboard/keyboard1.jpg', '399.00'),
-(2, 'Logitech G213 Prodigy Gaming Keyboard', 'img/keyboard/keyboard5.jpg', '199.00'),
-(3, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 'img/keyboard/keyboard2.jpg', '299.00'),
-(4, 'Razer Cynosa Chroma Gaming Keyboard', 'img/keyboard/keyboard3.jpg', '199.00'),
-(5, 'Corsair K55 RGB Gaming Keyboard', 'img/keyboard/keyboard6.jpg', '219.00'),
-(6, 'Corsair K68 RGB Mechanical Gaming Keyboard', 'img/keyboard/keyboard7.jpg', '369.00'),
-(7, '\r\nRazer Huntsman Tournament Edition TKL Tenkeyless Gaming Keyboard', 'img/keyboard/keyboard8.jpg', '549.00'),
-(8, 'GK61 Mechanical Gaming Keyboard', 'img/keyboard/keyboard9.jpg', '349.00'),
-(9, 'Razer Huntsman Mini 60% Gaming Keyboard', 'img/keyboard/keyboard10.jpg', '499.00'),
-(10, 'Razer Huntsman Elite Gaming Keyboard', 'img/keyboard/keyboard11.jpg', '649.00');
+INSERT INTO `product` (`id`, `name`, `photo`, `price`, `category`) VALUES
+(1, 'Razer BlackWidow Mechanical Gaming Keyboard', 'img/keyboard/keyboard1.jpg', '399.00', 'keyboard'),
+(2, 'Logitech G213 Prodigy Gaming Keyboard', 'img/keyboard/keyboard5.jpg', '199.00', 'keyboard'),
+(3, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 'img/keyboard/keyboard2.jpg', '299.00', 'keyboard'),
+(4, 'Razer Cynosa Chroma Gaming Keyboard', 'img/keyboard/keyboard3.jpg', '199.00', 'keyboard'),
+(5, 'Corsair K55 RGB Gaming Keyboard', 'img/keyboard/keyboard6.jpg', '219.00', 'keyboard'),
+(6, 'Corsair K68 RGB Mechanical Gaming Keyboard', 'img/keyboard/keyboard7.jpg', '369.00', 'keyboard'),
+(7, 'Razer Huntsman Tournament Edition TKL Tenkeyless Gaming Keyboard', 'img/keyboard/keyboard8.jpg', '549.00', 'keyboard'),
+(8, 'SteelSeries Apex 5 Hybrid Mechanical Gaming Keyboard', 'img/keyboard/keyboard12.jpg', '379.00', 'keyboard'),
+(9, 'Razer Huntsman Mini 60% Gaming Keyboard', 'img/keyboard/keyboard10.jpg', '499.00', 'keyboard'),
+(10, 'Razer Huntsman Elite Gaming Keyboard', 'img/keyboard/keyboard11.jpg', '649.00', 'keyboard'),
+(11, 'Razer DeathAdder Essential Gaming Mouse', 'img/mouse/mouse3.png', '119.00', 'mouse'),
+(12, 'HyperX Pulsefire Raid – Gaming Mouse', 'img/mouse/mouse1.png', '239.00', 'mouse'),
+(13, 'Razer Basilisk X HyperSpeed Wireless Gaming Mouse', 'img/mouse/mouse2.png', '199.00', 'mouse'),
+(14, 'Razer Basilisk v2 Wired Gaming Mouse', 'img/mouse/mouse4.png', '299.00', 'mouse'),
+(15, 'Logitech G203 LIGHTSYNC Wired Gaming Mouse - Black', 'img/mouse/mouse5.jpg', '129.00', 'mouse'),
+(16, 'MSI GL65 Leopard 10SFK-062 15.6', 'img/laptop/laptop1.jpg', '5699.00', 'laptop'),
+(17, 'ASUS ROG Strix G17 (2020) Gaming Laptop, 17.3 ', 'img/laptop/laptop2.jpg', '6599.00', 'laptop'),
+(18, 'ROG Zephyrus G15 (2020) Ultra Slim Gaming Laptop, 15.6', 'img/laptop/laptop3.jpg', '5399.00', 'laptop'),
+(19, 'Acer Predator Triton 500 PT515-52-73L3 Gaming Laptop', 'img/laptop/laptop4.jpg', '6699.00', 'laptop'),
+(20, 'OMEN 15 Gaming Laptop', 'img/laptop/laptop5.jpg', '6699.00', 'laptop'),
+(21, 'ASUS TUF Gaming A17 Gaming Laptop, 17.3', 'img/laptop/laptop6.jpg', '4199.00', 'laptop'),
+(22, 'Asus Zenfone 7_Pro ZS671KS', 'img/2020FlagshipPhoneSpec/AsusZenfone7_Pro_ZS671KS.jpg', '3999.00', 'smartphone'),
+(23, 'Iphone 12 Mini', 'img/2020FlagshipPhoneSpec/iPhone12mini-Blue.jpg', '3399.00', 'smartphone'),
+(24, 'Iphone 12', 'img/2020FlagshipPhoneSpec/iPhone12-Blue.jpg', '4099.00', 'smartphone'),
+(25, 'Iphone 12 Pro', 'img/2020FlagshipPhoneSpec/iphone-12-pro-blue.webp', '4899.00', 'smartphone'),
+(26, 'Iphone 12 Pro Max', 'img/2020FlagshipPhoneSpec/iphone-12-pro-max-blue.webp', '5799.00', 'smartphone'),
+(27, 'OnePlus 8 Pro', 'img/2020FlagshipPhoneSpec/OnePlus8_Pro.jpg', '3389.00', 'smartphone'),
+(28, 'Oppo Find X2 Pro', 'img/2020FlagshipPhoneSpec/OppoFindX2_Pro.jpg', '4599.00', 'smartphone'),
+(29, 'Samsung Galaxy Note20 Ultra5G', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_Note20Ultra_5G.jpg', '4224.00', 'smartphone'),
+(30, 'Samsung Galaxy Z Fold2 5G', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_ZFold2_5G.jpg', '7999.00', 'smartphone'),
+(31, 'Xiaomi Mi 10 Pro 5G', 'img/2020FlagshipPhoneSpec/XiaomiMi10Pro_5G.jpg', '2299.00', 'smartphone'),
+(32, 'Razer Kraken X USB Ultralight Gaming Headset', 'img/earphone/earphone1.png', '249.00', 'earphone'),
+(33, 'Razer Hammerhead Bluetooth Earbuds for iOS & Android', 'img/earphone/earphone2.png', '399.00', 'earphone'),
+(34, 'Logitech G633 Artemis Spectrum', 'img/earphone/earphone3.png', '419.00', 'earphone'),
+(35, 'Logitech G433 7.1 Wired Gaming Headset with DTS Headphone', 'img/earphone/earphone4.png', '399.00', 'earphone'),
+(36, 'Sony Noise Cancelling Headphones WHCH710N', 'img/earphone/earphone5.png', '699.00', 'earphone'),
+(37, '\r\nSony MDRZX110/BLK ZX Series Stereo Headphones (Black)', 'img/earphone/earphone6.png', '249.00', 'earphone');
 
 -- --------------------------------------------------------
 
@@ -155,9 +183,9 @@ ALTER TABLE `compare`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `keyboard`
+-- Indexes for table `product`
 --
-ALTER TABLE `keyboard`
+ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -189,10 +217,10 @@ ALTER TABLE `compare`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `keyboard`
+-- AUTO_INCREMENT for table `product`
 --
-ALTER TABLE `keyboard`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+ALTER TABLE `product`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT for table `pwdreset`
