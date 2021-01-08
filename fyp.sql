@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- 主机： 127.0.0.1
--- 生成日期： 2021-01-07 07:40:18
--- 服务器版本： 10.4.11-MariaDB
--- PHP 版本： 7.2.31
+-- Host: 127.0.0.1
+-- Generation Time: Jan 08, 2021 at 03:55 AM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,13 +19,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `fyp`
+-- Database: `fyp`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `adminlogin`
+-- Table structure for table `adminlogin`
 --
 
 CREATE TABLE `adminlogin` (
@@ -34,7 +35,7 @@ CREATE TABLE `adminlogin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `adminlogin`
+-- Dumping data for table `adminlogin`
 --
 
 INSERT INTO `adminlogin` (`ID`, `User`, `Pass`) VALUES
@@ -43,7 +44,7 @@ INSERT INTO `adminlogin` (`ID`, `User`, `Pass`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `compare`
+-- Table structure for table `compare`
 --
 
 CREATE TABLE `compare` (
@@ -59,7 +60,7 @@ CREATE TABLE `compare` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `compare`
+-- Dumping data for table `compare`
 --
 
 INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `battery`, `display`, `ram`, `photo`) VALUES
@@ -75,7 +76,50 @@ INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `batter
 -- --------------------------------------------------------
 
 --
--- 表的结构 `register`
+-- Table structure for table `keyboard`
+--
+
+CREATE TABLE `keyboard` (
+  `id` int(11) NOT NULL,
+  `name` varchar(255) NOT NULL,
+  `photo` varchar(255) NOT NULL,
+  `price` varchar(255) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `keyboard`
+--
+
+INSERT INTO `keyboard` (`id`, `name`, `photo`, `price`) VALUES
+(1, 'Razer BlackWidow Mechanical Gaming Keyboard', 'img/keyboard/keyboard1.jpg', '399.00'),
+(2, 'Logitech G213 Prodigy Gaming Keyboard', 'img/keyboard/keyboard5.jpg', '199.00'),
+(3, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 'img/keyboard/keyboard2.jpg', '299.00'),
+(4, 'Razer Cynosa Chroma Gaming Keyboard', 'img/keyboard/keyboard3.jpg', '199.00'),
+(5, 'Corsair K55 RGB Gaming Keyboard', 'img/keyboard/keyboard6.jpg', '219.00'),
+(6, 'Corsair K68 RGB Mechanical Gaming Keyboard', 'img/keyboard/keyboard7.jpg', '369.00'),
+(7, '\r\nRazer Huntsman Tournament Edition TKL Tenkeyless Gaming Keyboard', 'img/keyboard/keyboard8.jpg', '549.00'),
+(8, 'GK61 Mechanical Gaming Keyboard', 'img/keyboard/keyboard9.jpg', '349.00'),
+(9, 'Razer Huntsman Mini 60% Gaming Keyboard', 'img/keyboard/keyboard10.jpg', '499.00'),
+(10, 'Razer Huntsman Elite Gaming Keyboard', 'img/keyboard/keyboard11.jpg', '649.00');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pwdreset`
+--
+
+CREATE TABLE `pwdreset` (
+  `pwdResetID` int(11) NOT NULL,
+  `pwdResetEmail` text NOT NULL,
+  `pwdResetSelector` text NOT NULL,
+  `pwdResetToken` longtext NOT NULL,
+  `pwdResetExpires` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `register`
 --
 
 CREATE TABLE `register` (
@@ -86,7 +130,7 @@ CREATE TABLE `register` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `register`
+-- Dumping data for table `register`
 --
 
 INSERT INTO `register` (`id`, `username`, `email`, `password`) VALUES
@@ -95,45 +139,69 @@ INSERT INTO `register` (`id`, `username`, `email`, `password`) VALUES
 (7, 'aa', '1181203426@student.mmu.edu.my', '827ccb0eea8a706c4c34a16891f84e7b');
 
 --
--- 转储表的索引
+-- Indexes for dumped tables
 --
 
 --
--- 表的索引 `adminlogin`
+-- Indexes for table `adminlogin`
 --
 ALTER TABLE `adminlogin`
   ADD PRIMARY KEY (`ID`);
 
 --
--- 表的索引 `compare`
+-- Indexes for table `compare`
 --
 ALTER TABLE `compare`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `register`
+-- Indexes for table `keyboard`
+--
+ALTER TABLE `keyboard`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pwdreset`
+--
+ALTER TABLE `pwdreset`
+  ADD PRIMARY KEY (`pwdResetID`);
+
+--
+-- Indexes for table `register`
 --
 ALTER TABLE `register`
   ADD PRIMARY KEY (`id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `adminlogin`
+-- AUTO_INCREMENT for table `adminlogin`
 --
 ALTER TABLE `adminlogin`
   MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
--- 使用表AUTO_INCREMENT `compare`
+-- AUTO_INCREMENT for table `compare`
 --
 ALTER TABLE `compare`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- 使用表AUTO_INCREMENT `register`
+-- AUTO_INCREMENT for table `keyboard`
+--
+ALTER TABLE `keyboard`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+
+--
+-- AUTO_INCREMENT for table `pwdreset`
+--
+ALTER TABLE `pwdreset`
+  MODIFY `pwdResetID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
