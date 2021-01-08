@@ -28,6 +28,7 @@ if (isset($_POST['username'])){
 		$rows = mysqli_num_rows($result);
 		if($rows==1){
 			session_start();
+			$_SESSION['logged_in'] = true;
 			$_SESSION['username'] = $username;
 					// Redirect user to index.php
 			header("Location: index.php");
