@@ -101,8 +101,12 @@
                               </td>
                               <td>
                                   <div class="product_count">
-                                  <p>1</P>
-                                      
+                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                          class="input-text qty">
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                                   </div>
                               </td>
                               <td>
@@ -125,8 +129,12 @@
                               </td>
                               <td>
                                   <div class="product_count">
-                                  <p>1</P>
-                                      
+                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                          class="input-text qty">
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                                   </div>
                               </td>
                               <td>
@@ -149,8 +157,12 @@
                               </td>
                               <td>
                                   <div class="product_count">
-                                      <p>1</P>
-                                      
+                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
+                                          class="input-text qty">
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
+                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
+                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
+                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
                                   </div>
                               </td>
                               <td>
