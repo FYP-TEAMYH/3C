@@ -32,13 +32,26 @@
               <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
               <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
+               
+                  <?php
+                  require('db_connect.php');
+                  session_start();
+                  if(isset($_SESSION["username"])){?>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Account</a>
+                <ul class="dropdown-menu">
+                 <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
+                  </ul>
+                  <?php }else if(!isset($_SESSION["username"]))
+                  {?>
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
                   <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
-                  <li class="nav-item"><a class="nav-link" href="index.php">Log Out</a></li>
                 </ul>
+                <?php }?>
               </li>
             </ul>
 
@@ -62,7 +75,7 @@
         <div class="row no-gutters align-items-center pt-60px">
           <div class="col-5 d-none d-sm-block">
             <div class="hero-banner__img">
-              <img src="img/iphone1.jpeg"  height="700px" width="1100px" alt="Main Page "  style="margin: 0px 0px 150px 10px">
+              <img src="img/iphone1.jpg"  height="700px" width="1100px" alt="Main Page "  style="margin: 0px 0px 150px 10px">
             </div>
           </div>
           

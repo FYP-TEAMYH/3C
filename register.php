@@ -153,9 +153,9 @@
 									<label for="f-option2">Keep me logged in</label>
 								</div>
 							</div>
-							<div class="col-md-12 form-group">
+							
 								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100"></button>
-							</div>
+							
 						</form>
 					</div>
 				</div>
