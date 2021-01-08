@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
 <?php
 require('db_connect.php');
 if (isset($_POST['username'])){
@@ -28,7 +29,6 @@ if (isset($_POST['username'])){
 		$rows = mysqli_num_rows($result);
 		if($rows==1){
 			session_start();
-			$_SESSION['logged_in'] = true;
 			$_SESSION['username'] = $username;
 					// Redirect user to index.php
 			header("Location: index.php");
@@ -130,10 +130,10 @@ if (isset($_POST['username'])){
 									<label for="f-option2">Keep me logged in</label>
 								</div>
 							</div>
-							<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
 							<div class="col-md-12 form-group">
+								<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
+								<a href="#">Forgot Password?</a>		
 								
-								<a href="">Forgot Password?</a>		
 							</div>
 						</form>
 					</div>
