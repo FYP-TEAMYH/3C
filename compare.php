@@ -110,10 +110,10 @@
                             </select>
                         </div>
 						
-						
+						<div class=" form-group">
 								<br>
 								<input type="submit" value="Start to Compare" id="submit" class="button button-login w-100" >
-						
+						</div>
                     </form>
                 </div>
                 

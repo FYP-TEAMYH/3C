@@ -76,19 +76,13 @@
             <div class="head">Browse Categories</div>
             <ul class="main-categories">
               <li class="common-filter">
-                <form action="category.php" name="filter" id="filter" method="post" >
+                <form action="#">
                   <ul>
-                  
-                  <li class="filter-list"><input class="pixel-radio" type="radio" id="all" name="1"><label for="All">All Products</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="mouse" name="mouse"><label for="Mouse">Mouse</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Keyboard" name="keyboard"><label for="Keyboard">Keyboard</a></label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Monitor" name="monitor"><label for="Monitor">Laptop</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Gaming Chair" name="smartphone"><label for="smartphone">Smart Phone</label></li>
-                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Earphones" name="earphones"><label for="Earphones">Earphones</label></li>
-                    
-                    <br><input type="submit" name="browse" value="Browse" id="browse"  class="button button-login w-80" >
-                    
-                    
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="mouse" name="brand"><label for="mouse">Mouse<span> (100)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Keyboard" name="brand"><label for="Keyboard">Keyboard<span> (100)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Monitor" name="brand"><label for="Monitor">Laptop<span> (100)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Gaming Chair" name="brand"><label for="Gaming Chair">Smart Phone<span> (100)</span></label></li>
+                    <li class="filter-list"><input class="pixel-radio" type="radio" id="Earphones" name="brand"><label for="Earphones">Earphones<span> (100)</span></label></li>
                   </ul>
                 </form>
               </li>
@@ -117,12 +111,10 @@
           </div>
           <!-- End Filter Bar -->
           <!-- Start Best Seller -->
-          
           <section class="lattest-product-area pb-40 category-list">
           <?php
           $inc=3;
-          
-          $query=mysqli_query($con,"select * from product");
+          $query=mysqli_query($con,"select * from product ");
           while($row=mysqli_fetch_array($query)){
 			
             $inc = ($inc == 3) ? 1 : $inc+1; 
@@ -133,7 +125,8 @@
               <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
                   <div class="card-product__img">
-                  <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="160" width="250" class="thumbnail">
+                  
+                  <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="125px" width="150px" class="thumbnail">
                   <ul class="card-product__imgOverlay">
                       <li><button><i class="ti-search"></i></button></li>
                       <li><button><i class="ti-shopping-cart"></i></button></li>
@@ -145,19 +138,17 @@
                         <h4 class="card-product__title"><?php echo $row['name']; ?></h4>
                          <p class="card-product__price">RM<?php echo $row['price']; ?></p>
                 </div>
+                
               </div>
             </div>
                                     
                             
                             <?php
-            
+
                                 if($inc == 3) echo "</div><div style='height: 30px;'></div>";
                                 }
-                               
-                                
                                 if($inc == 1) echo "<div class='col-md-6 col-lg-4></div><div class='col-md-6 col-lg-4'></div><div class='col-md-6 col-lg-4'></div></div>"; 
-                                if($inc == 2) echo "<div class='col-md-6 col-lg-4'></div><div class='col-md-6 col-lg-4'></div></div>";
-                                
+                                if($inc == 2) echo "<div class='col-md-6 col-lg-4'></div><div class='col-md-6 col-lg-4'></div></div>"; 
                             ?>
                             <div class="col-md-6 col-lg-4">
                 <div class="card text-center card-product">
@@ -167,7 +158,6 @@
         </div>
       </div>
     </div>
-   
   </section>
 	<!-- ================ category section end ================= -->		  
 

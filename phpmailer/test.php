@@ -4,7 +4,7 @@
 									use PHPMailer\PHPMailer\SMTP;
 									use PHPMailer\PHPMailer\Exception;
 
-									require_once "autoload.php";
+									require_once "vendor/autoload.php";
 
 									$mail = new PHPMailer(true);
 									$mail->isSMTP();            

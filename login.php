@@ -130,8 +130,8 @@ if (isset($_POST['username'])){
 									<label for="f-option2">Keep me logged in</label>
 								</div>
 							</div>
-							<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
-							<div class="col-md-12 form-group">	
+							<div class="col-md-12 form-group">
+								<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
 								<a href="">Forgot Password?</a>		
 							</div>
 						</form>
