@@ -75,7 +75,7 @@
         <div class="row no-gutters align-items-center pt-60px">
           <div class="col-5 d-none d-sm-block">
             <div class="hero-banner__img">
-              <img src="img/iphone1.jpeg"  height="700px" width="1100px" alt="Main Page "  style="margin: 0px 0px 150px 10px">
+              <img src="img/iphone1.jpg"  height="700px" width="1100px" alt="Main Page "  style="margin: 0px 0px 150px 10px">
             </div>
           </div>
           
