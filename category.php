@@ -134,9 +134,10 @@
                   
                   <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="125px" width="150px" class="thumbnail">
                   <ul class="card-product__imgOverlay">
-                      <li><form method="post" action="single-product.php?name=<?php echo $row["name"] ?>&id=<?php echo $row["id"]; ?>">
+                      <li>
                       <button>
-                      <i class="ti-search" ></i></button></form></li>
+                      <a href="single-product.php?id=<?php echo $row["id"]; ?>"> 
+                      <i class="ti-search" href=""></i></a></button></li>
                       <li><form method="post" action="addtocart.php?id=<?php echo $row["id"]; ?>">
                       <button>
                       <i class="ti-shopping-cart"></i></button></form></li>

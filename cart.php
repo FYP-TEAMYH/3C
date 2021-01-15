@@ -137,7 +137,10 @@
                               </td>
                               <td> 
                               <form method="post" action="deletecart.php?id=<?php echo $row["id"]; ?>">
-                              <input type="submit" value="Remove" id="submit" class="button button-login " style=margin-left:20px >
+                              <input type="submit" style="margin-top:10px" value="Remove" id="submit" class="button button-login w-100" style=margin-left:20px >
+                              </form>
+                              <form method="post" action="single-product.php?id=<?php echo $row["id"]; ?>">
+                              <input type="submit" style="margin-top:10px" value="Edit" id="submit" class="button button-login w-100" style=margin-left:20px >
                               </form>
                               </td>
                               

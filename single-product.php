@@ -51,7 +51,23 @@
   </header>
 	<!--================ End Header Menu Area =================-->
 	
-	
+	<?php require('db_connect.php');
+					
+					$id=$_GET['id'];
+					 
+					$sql = "SELECT * FROM product where id='$id'";
+					$result = mysqli_query($con,$sql);
+					$count = mysqli_num_rows($result);
+					while($row = mysqli_fetch_assoc($result))
+					{
+							$id = $row["id"];
+							$price = $row["price"];
+							$name = $row["name"];
+							$photo = $row["photo"];
+							$category = $row["category"];
+					}
+					
+				?>
 
   <!--================Single Product Area =================-->
 	<div class="product_image_area">
@@ -60,37 +76,18 @@
 				<div class="col-lg-6">
 					<div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/airpods.jpg" alt="GameSir T4 PC Game Controller">
+							<img class="img-fluid" src="<?php echo $photo?>" alt="GameSir T4 PC Game Controller">
 						</div>
-						<!-- <div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-						</div> -->
+						
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-					<? require('db_connect.php');
 					
-					$id=$_GET['id']
-					$sql = "SELECT * FROM product where id = $id";
-					$result = mysqli_query($conn,$sql);
-					$count = mysqli_num_rows($result);
-					while($row = mysqli_fetch_assoc($result))
-					{
-							$id = $row["id"];
-							$price = $row["price"];
-						
-					
-					
-				?>
-						<h3><?php echo $_GET['name']; ?></h3>
-						<h2><?php echo  $row["price"]; ?></h2>
-						<?php echo  $id ?>
+						<h3><?php echo $name; ?></h3>
+						<h2>RM<?php echo  $price; ?></h2>
 						<ul class="list">
-							<li><a class="active" href="#"><span>Category</span> : Household</a></li>
+							<li><span>Category</span> &nbsp &nbsp &nbsp : <a class="active" href="#"> <?php echo  $category; ?></a></li>
 							
 						</ul>
 						<p>Universal fit that’s comfortable all day<br>
@@ -101,13 +98,14 @@
 							The charging case delivers more than 24 hours of battery life1</p>
 						<div class="product_count">
               <label for="qty">Quantity:</label>
-
-							<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<a class="button primary-btn" href="#">Add to Cart</a>               
+							<form action='addtocart.php'>
+							<input type="hidden" name='id' value= <?php echo $id?>>
+							<input type="number"  name='quantity' value="1" class="form-control">
+							
+							            
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+						<input type="submit" value="ADD TO CART"class="button button-login w-10" ></form>  
 						</div>
 					</div>
 				</div>
