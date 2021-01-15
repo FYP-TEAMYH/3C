@@ -12,6 +12,7 @@
 	<link rel="stylesheet" href="css/style.css">
 </head>
 <body>
+
   <!--================ Start Header Menu Area =================-->
 	<header class="header_area">
     <div class="main_menu">
@@ -30,17 +31,31 @@
               <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
               <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
+              <?php
+                  require('db_connect.php');
+                  session_start();
+                  
+                  if(isset($_SESSION["username"])){?>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Account</a>
+                <ul class="dropdown-menu">
+                 <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
+                  </ul>
+                  <?php }else if(!isset($_SESSION["username"]))
+                  {?>
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                 </ul>
+                <?php }?>
               </li>
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i></button></a> </li>
               <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
@@ -85,115 +100,70 @@
                           </tr>
                       </thead>
                       <tbody>
+                      <?php 
+                      require('db_connect.php');
+                      
+                      $total = 0;
+                      if(isset($_SESSION["cart"]))
+                      {
+                      foreach($_SESSION["cart"] as $id => $value)
+                      {
+                         $sql = "SELECT * FROM product where id = $id";
+                         $result = mysqli_query($con, $sql);
+                        $row = mysqli_fetch_assoc($result);
+                        $total = $total + ($row['price'] *  $value['quantity']); 
+                        
+                     
+                      ?>
                           <tr>
                               <td>
                                   <div class="media">
                                       <div class="d-flex">
-                                          <img src="img/airpods.jpg" width="120px" height="100px" alt="Airpods Pro">
+                                          <img src="<?php echo $row['photo'] ?>" width="120px" height="100px" alt="Airpods Pro">
                                       </div>
                                       <div class="media-body">
-                                          <p>Airpods Pro</p>
+                                          <p><?php echo $row['name'] ?></p>
                                       </div>
                                   </div>
                               </td>
                               <td>
-                                  <h5>RM699.00</h5>
+                                  <h5><?php echo $row['price'] ?></h5>
                               </td>
                               <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      
-                                  </div>
+                                <?php echo $value['quantity'] ?>
                               </td>
                               <td>
-                                  <h5>RM699.00</h5>
+                                  <h5><?php echo $row['price'] *  $value['quantity'] ?>.00 </h5>
                               </td>
+                              <td> 
+                              <form method="post" action="deletecart.php?id=<?php echo $row["id"]; ?>">
+                              <input type="submit" value="Remove" id="submit" class="button button-login " style=margin-left:20px >
+                              </form>
+                              </td>
+                              
                           </tr>
+                          <?php 
+                        
+                        } ?>
+                         
+                          
                           <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="img/macbook.jpg" width="120px" height="100px" alt="Macbook Air">
-                                      </div>
-                                      <div class="media-body">
-                                          <p>Macbook Air</p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>RM2299.00</h5>
-                              </td>
-                              <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>RM2299.00</h5>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="img/keyboard2.jpg" width="120px" height="100px" alt="SteelSeries Apex Pro">
-                                      </div>
-                                      <div class="media-body">
-                                          <p>SteelSeries Apex Pro</p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>RM800.00</h5>
-                              </td>
-                              <td>
-                                  <div class="product_count">
-                                      <input type="text" name="qty" id="sst" maxlength="12" value="1" title="Quantity:"
-                                          class="input-text qty">
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst )) result.value++;return false;"
-                                          class="increase items-count" type="button"><i class="lnr lnr-chevron-up"></i></button>
-                                      <button onclick="var result = document.getElementById('sst'); var sst = result.value; if( !isNaN( sst ) &amp;&amp; sst > 0 ) result.value--;return false;"
-                                          class="reduced items-count" type="button"><i class="lnr lnr-chevron-down"></i></button>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5>RM800.00</h5>
-                              </td>
-                          </tr>
-                          <tr class="bottom_button">
-                              <td>
-                                  <a class="button" href="#">Update Cart</a>
-                              </td>
+                          <td>
+                          </td>
                               <td>
 
                               </td>
                               <td>
 
                               </td>
-                              <td>
-                                  <div class="cupon_text d-flex align-items-center">
-                                      <input type="text" placeholder="Coupon Code">
-                                      <a class="primary-btn" href="#">Apply</a>
-                                      <a class="button" href="#">Have a Coupon?</a>
-                                  </div>
-                              </td>
-                          </tr>
-                          <tr>
-                              <td>
-
-                              </td>
-                              <td>
-
-                              </td>
+              
                               <td>
                                   <h5>Subtotal</h5>
                               </td>
                               <td>
-                                  <h5>RM3798.00</h5>
+                                  <h5>RM <?php echo $total ?>.00</h5>
                               </td>
+                            
                           </tr>
                           
                           <tr class="out_button_area">
@@ -204,7 +174,10 @@
 
                               </td>
                               <td>
-
+                          
+                              </td>
+                              <td>
+                          
                               </td>
                               <td>
                                   <div class="checkout_btn_inner">
@@ -215,6 +188,8 @@
                           </tr>
                       </tbody>
                   </table>
+                  
+                  <br><br>
               </div>
           </div>
       </div>
@@ -287,7 +262,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!--================ End footer Area  =================-->
-
+  <?php } ?>
 
 
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>

@@ -31,12 +31,25 @@
               <li class="nav-item active"><a class="nav-link" href="category.php">Category</a></li>
               <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
+        <?php
+                  require('db_connect.php');
+                  session_start();
+                  if(isset($_SESSION["username"])){?>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Account</a>
+                <ul class="dropdown-menu">
+                 <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
+                  </ul>
+                  <?php }else if(!isset($_SESSION["username"]))
+                  {?>
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                 </ul>
+                <?php }?>
               </li>
             </ul>
 
@@ -121,9 +134,12 @@
                   
                   <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="125px" width="150px" class="thumbnail">
                   <ul class="card-product__imgOverlay">
-                      <li><button><i class="ti-search"></i></button></li>
-                      <li><button><i class="ti-shopping-cart"></i></button></li>
-                      <li><button><i class="ti-heart"></i></button></li>
+                      <li><form method="post" action="single-product.php?name=<?php echo $row["name"] ?>&id=<?php echo $row["id"]; ?>">
+                      <button>
+                      <i class="ti-search" ></i></button></form></li>
+                      <li><form method="post" action="addtocart.php?id=<?php echo $row["id"]; ?>">
+                      <button>
+                      <i class="ti-shopping-cart"></i></button></form></li>
                   </ul>
                 </div>
                 <div class="card-body">

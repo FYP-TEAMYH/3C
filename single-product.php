@@ -53,7 +53,6 @@
 	
 	
 
-
   <!--================Single Product Area =================-->
 	<div class="product_image_area">
 		<div class="container">
@@ -73,11 +72,26 @@
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>Airpods Pro with Charging Case</h3>
-						<h2>RM699.00</h2>
+					<? require('db_connect.php');
+					
+					$id=$_GET['id']
+					$sql = "SELECT * FROM product where id = $id";
+					$result = mysqli_query($conn,$sql);
+					$count = mysqli_num_rows($result);
+					while($row = mysqli_fetch_assoc($result))
+					{
+							$id = $row["id"];
+							$price = $row["price"];
+						
+					
+					
+				?>
+						<h3><?php echo $_GET['name']; ?></h3>
+						<h2><?php echo  $row["price"]; ?></h2>
+						<?php echo  $id ?>
 						<ul class="list">
 							<li><a class="active" href="#"><span>Category</span> : Household</a></li>
-							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
+							
 						</ul>
 						<p>Universal fit that’s comfortable all day<br>
 							Automatically on, automatically connected<br>
@@ -100,6 +114,7 @@
 			</div>
 		</div>
 	</div>
+	
 	<!--================End Single Product Area =================-->
 
 	<!--================Product Description Area =================-->
@@ -353,7 +368,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 	<!--================ End footer Area  =================-->
 
-
+	
 
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
