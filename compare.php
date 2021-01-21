@@ -29,9 +29,9 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item "><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
-              <li class="nav-item active"><a class="nav-link" href="compare.php">Compare</a></li>
+              <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
                
                   <?php
@@ -42,15 +42,16 @@
                   aria-expanded="false">Account</a>
                 <ul class="dropdown-menu">
                  <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
-
-				 <?php
+                 <?php 
+                 $query=mysqli_query($con,"select * from register ");
+                 if($row=mysqli_fetch_array($query)){  
+                   $username=$_SESSION["username"];
+                   ?>
+                 
                   
-                  $sel_query="SELECT * FROM register;";
-                  $result = mysqli_query($con,$sel_query);
-                  if($row = mysqli_fetch_assoc($result)) { ?>
-                 <li class="nav-item"><a class="nav-link" href="editprofile.php?id=<?php echo $row["id"]; ?>">Update Profile</a></li>
-                 <?php } ?>
-
+                 <li class="nav-item"><a class="nav-link" href="editprofile.php">Update Profile</a></li>
+                 
+                  <?php } ?>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                   </ul>
                   <?php }else if(!isset($_SESSION["username"]))
