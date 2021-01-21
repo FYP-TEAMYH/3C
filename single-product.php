@@ -65,6 +65,11 @@
 							$name = $row["name"];
 							$photo = $row["photo"];
 							$category = $row["category"];
+							$desc = $row["description"];
+							$desc2 = $row["description2"];
+							$brandname = $row["brand name"];
+							$color= $row["Color Family"];
+							$check = $row["Quality checking"];
 					}
 					
 				?>
@@ -87,15 +92,10 @@
 						<h3><?php echo $name; ?></h3>
 						<h2>RM<?php echo  $price; ?></h2>
 						<ul class="list">
-							<li><span>Category</span> &nbsp &nbsp &nbsp : <a class="active" href="#"> <?php echo  $category; ?></a></li>
+							<li><span>category</span> &nbsp :  &nbsp<a class="active" href="#"> <?php echo  $category; ?></a></li>
 							
 						</ul>
-						<p>Universal fit that’s comfortable all day<br>
-							Automatically on, automatically connected<br>
-							Easy setup for all your Apple devices2<br>
-							Control your music and calls from your AirPods<br>
-							Seamless switching between devices2<br>
-							The charging case delivers more than 24 hours of battery life1</p>
+						<p><?php echo $desc; ?></p>
 						<div class="product_count">
               <label for="qty">Quantity:</label>
 							<form action='addtocart.php'>
@@ -130,21 +130,7 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<p>With optimal talk time and breakthrough technology, and complete with Charging Case, 
-					AirPods deliver an unparalleled wireless headphone experience. They’re ready to use with all your 
-					devices.2 Put them in your ears and they connect immediately, immersing you in rich, high-fidelity sound. Just like magic.<br>
-
-						Key feature bullets<br>
-						• Universal fit that’s comfortable all day<br>
-						• Automatically on, automatically connected<br>
-						• Easy setup for all your Apple devices2<br>
-						• Control your music and calls from your AirPods<br>
-						• Seamless switching between devices2<br>
-						• The charging case delivers more than 24 hours of battery life1<br>
-
-						Legal<br>
-						1Battery life varies by use and configuration. See apple.com/batteries for details.<br>
-						2Requires an iCloud account and macOS 10.14.4, iOS 12.2, iPadOS, watchOS 5.2 or tvOS 13.2, or later.</p>
+					<p><?php echo $desc2; ?></p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
@@ -155,7 +141,7 @@
 										<h5>Brand Name</h5>
 									</td>
 									<td>
-										<h5>Apple</h5>
+										<h5><?php echo $brandname ?></h5>
 									</td>
 								</tr>
 								<tr>
@@ -163,7 +149,7 @@
 										<h5>Color Family</h5>
 									</td>
 									<td>
-										<h5>White</h5>
+										<h5><?php echo $color ?></h5>
 									</td>
 								</tr>
 									
@@ -172,7 +158,7 @@
 										<h5>Quality checking</h5>
 									</td>
 									<td>
-										<h5>yes</h5>
+										<h5><?php echo $check ?></h5>
 									</td>
 								</tr>
 							</tbody>
