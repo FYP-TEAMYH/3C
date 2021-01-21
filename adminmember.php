@@ -21,7 +21,13 @@
 	https://templatemo.com/tm-524-product-admin
 	-->
   </head>
-
+  <?php
+  include 'db_connect.php';
+  session_start();
+  $name=$_SESSION['username'];
+  $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
+  $row=mysqli_fetch_array($query);
+  ?>
   <body id="reportsPage">
     <div class="" id="home">
      <!--================ Start Header Menu Area =================-->
@@ -86,23 +92,13 @@
           <div class="col-12 tm-block-col">
             <div class="tm-bg-primary-dark tm-block tm-block-h-auto">
               <h2 class="tm-block-title">Our Member</h2>
-              <select class="custom-select">
-                <option value="0">Select A Member</option>
-                <option value="1">Alan Yap</option>
-                <option value="2">Amanda</option>
-                <option value="3">Chris Koo</option>
-                <option value="4">Lim Ming Hong</option>
-				<option value="4">Alex Moo</option>
-				<option value="4">Sabrina</option>
-				<option value="4">Chris</option>
-				<option value="4">James Hoo</option>
-				<option value="4">Jeslyn Hee</option>
-				<option value="4">Goh Yu Zhi</option>
-              </select>
+              <h5>
+            <?php echo $name; ?></h5>
             </div>
           </div>
         </div>
         <!-- row -->
+        
         <div class="row tm-content-row">
           <div class="tm-block-col tm-col-avatar">
             <div class="tm-bg-primary-dark tm-block tm-block-avatar">
@@ -125,68 +121,45 @@
           <div class="tm-block-col tm-col-account-settings">
             <div class="tm-bg-primary-dark tm-block tm-block-settings">
               <h2 class="tm-block-title">Account Settings</h2>
-              <form action="" class="tm-signup-form row">
-                <div class="form-group col-lg-6">
-                  <label for="name">Account Name</label>
-                  <input
-                    id="name"
-                    name="name"
-                    type="text"
-                    class="form-control validate"
-                  />
-                </div>
+              <form method="post" action="#" >
+                
                 <div class="form-group col-lg-6">
                   <label for="email">Account Email</label>
-                  <input
-                    id="email"
-                    name="email"
-                    type="email"
-                    class="form-control validate"
-                  />
+                  <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />
+        
                 </div>
                 <div class="form-group col-lg-6">
                   <label for="password">Password</label>
-                  <input
-                    id="password"
-                    name="password"
-                    type="password"
-                    class="form-control validate"
-                  />
+                  <input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required />
+		
                 </div>
                 <div class="form-group col-lg-6">
                   <label for="password2">Re-enter Password</label>
-                  <input
-                    id="password2"
-                    name="password2"
-                    type="password"
-                    class="form-control validate"
-                  />
+                  <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required />
+		
                 </div>
-                <div class="form-group col-lg-6">
-                  <label for="phone">Phone</label>
-                  <input
-                    id="phone"
-                    name="phone"
-                    type="tel"
-                    class="form-control validate"
-                  />
-                </div>
+                <script>
+				                    var password=document.getElementById("password"),confirmPassword=document.getElementById("confirmPassword");
+				                    function validatePassword()
+				                    {
+				                        if(password.value!=confirmPassword.value){
+				                            confirmPassword.setCustomValidity("Passwords Don't Match!");
+				                        }
+				                        else{
+				                            confirmPassword.setCustomValidity("");
+				                        }
+				                    }
+				                    password.onchange=validatePassword;
+				                    confirmPassword.onkeyup=validatePassword;
+			          </script>
+                
                 <div class="form-group col-lg-6">
                   <label class="tm-hide-sm">&nbsp;</label>
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block text-uppercase"
-                  >
-                    Update Profile
+                  <input type="submit" name="submit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
+                   
                   </button>
                 </div>
-                <div class="col-12">
-                  <button
-                    type="submit"
-                    class="btn btn-primary btn-block text-uppercase"
-                  >
-                    Delete Account
-                  </button>
+                
                 </div>
               </form>
             </div>
@@ -207,3 +180,22 @@
     <!-- https://getbootstrap.com/ -->
   </body>
 </html>
+
+<?php
+      if(isset($_POST['submit'])){
+        $username = $_POST['username'];
+        $email = $_POST['email'];
+        $password = $_POST['password'];
+        
+      $query = "UPDATE admin SET
+                      email = '$email', password = '".md5($password)."'
+                      WHERE username = '$name'";
+                    $result = mysqli_query($con, $query);
+                    ?>
+                     <script type="text/javascript">
+            alert("Update Successfull.");
+            window.location = "admindashboard.php";
+        </script>
+        <?php
+             }              
+?>

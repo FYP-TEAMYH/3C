@@ -41,6 +41,16 @@
                   aria-expanded="false">Account</a>
                 <ul class="dropdown-menu">
                  <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
+                 <?php 
+                 $query=mysqli_query($con,"select * from register ");
+                 if($row=mysqli_fetch_array($query)){  
+                   $username=$_SESSION["username"];
+                   ?>
+                 
+                  
+                 <li class="nav-item"><a class="nav-link" href="editprofile.php">Update Profile</a></li>
+                 
+                  <?php } ?>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                   </ul>
                   <?php }else if(!isset($_SESSION["username"]))

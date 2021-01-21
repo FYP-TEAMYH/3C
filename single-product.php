@@ -51,8 +51,28 @@
   </header>
 	<!--================ End Header Menu Area =================-->
 	
-	
-
+	<?php require('db_connect.php');
+					
+					$id=$_GET['id'];
+					 
+					$sql = "SELECT * FROM product where id='$id'";
+					$result = mysqli_query($con,$sql);
+					$count = mysqli_num_rows($result);
+					while($row = mysqli_fetch_assoc($result))
+					{
+							$id = $row["id"];
+							$price = $row["price"];
+							$name = $row["name"];
+							$photo = $row["photo"];
+							$category = $row["category"];
+							$desc = $row["description"];
+							$desc2 = $row["description2"];
+							$brandname = $row["brand name"];
+							$color= $row["Color Family"];
+							$check = $row["Quality checking"];
+					}
+					
+				?>
 
   <!--================Single Product Area =================-->
 	<div class="product_image_area">
@@ -61,45 +81,38 @@
 				<div class="col-lg-6">
 					<div class="owl-carousel owl-theme s_Product_carousel">
 						<div class="single-prd-item">
-							<img class="img-fluid" src="img/airpods.jpg" alt="GameSir T4 PC Game Controller">
+							<img class="img-fluid" src="<?php echo $photo?>" alt="GameSir T4 PC Game Controller">
 						</div>
-						<!-- <div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-						</div>
-						<div class="single-prd-item">
-							<img class="img-fluid" src="img/category/s-p1.jpg" alt="">
-						</div> -->
+						
 					</div>
 				</div>
 				<div class="col-lg-5 offset-lg-1">
 					<div class="s_product_text">
-						<h3>Airpods Pro with Charging Case</h3>
-						<h2>RM699.00</h2>
+					
+						<h3><?php echo $name; ?></h3>
+						<h2>RM<?php echo  $price; ?></h2>
 						<ul class="list">
-							<li><a class="active" href="#"><span>Category</span> : Household</a></li>
-							<li><a href="#"><span>Availibility</span> : In Stock</a></li>
+							<li><span>category</span> &nbsp :  &nbsp<a class="active" href="#"> <?php echo  $category; ?></a></li>
+							
 						</ul>
-						<p>Universal fit that’s comfortable all day<br>
-							Automatically on, automatically connected<br>
-							Easy setup for all your Apple devices2<br>
-							Control your music and calls from your AirPods<br>
-							Seamless switching between devices2<br>
-							The charging case delivers more than 24 hours of battery life1</p>
+						<p><?php echo $desc; ?></p>
 						<div class="product_count">
               <label for="qty">Quantity:</label>
-
-							<input type="text" name="qty" id="sst" size="2" maxlength="12" value="1" title="Quantity:" class="input-text qty">
-							<a class="button primary-btn" href="#">Add to Cart</a>               
+							<form action='addtocart.php'>
+							<input type="hidden" name='id' value= <?php echo $id?>>
+							<input type="number"  name='quantity' value="1" class="form-control">
+							
+							            
 						</div>
 						<div class="card_area d-flex align-items-center">
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-diamond"></i></a>
-							<a class="icon_btn" href="#"><i class="lnr lnr lnr-heart"></i></a>
+						<input type="submit" value="ADD TO CART"class="button button-login w-10" ></form>  
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	
 	<!--================End Single Product Area =================-->
 
 	<!--================Product Description Area =================-->
@@ -117,21 +130,7 @@
 			</ul>
 			<div class="tab-content" id="myTabContent">
 				<div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-					<p>With optimal talk time and breakthrough technology, and complete with Charging Case, 
-					AirPods deliver an unparalleled wireless headphone experience. They’re ready to use with all your 
-					devices.2 Put them in your ears and they connect immediately, immersing you in rich, high-fidelity sound. Just like magic.<br>
-
-						Key feature bullets<br>
-						• Universal fit that’s comfortable all day<br>
-						• Automatically on, automatically connected<br>
-						• Easy setup for all your Apple devices2<br>
-						• Control your music and calls from your AirPods<br>
-						• Seamless switching between devices2<br>
-						• The charging case delivers more than 24 hours of battery life1<br>
-
-						Legal<br>
-						1Battery life varies by use and configuration. See apple.com/batteries for details.<br>
-						2Requires an iCloud account and macOS 10.14.4, iOS 12.2, iPadOS, watchOS 5.2 or tvOS 13.2, or later.</p>
+					<p><?php echo $desc2; ?></p>
 				</div>
 				<div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 					<div class="table-responsive">
@@ -142,7 +141,7 @@
 										<h5>Brand Name</h5>
 									</td>
 									<td>
-										<h5>Apple</h5>
+										<h5><?php echo $brandname ?></h5>
 									</td>
 								</tr>
 								<tr>
@@ -150,7 +149,7 @@
 										<h5>Color Family</h5>
 									</td>
 									<td>
-										<h5>White</h5>
+										<h5><?php echo $color ?></h5>
 									</td>
 								</tr>
 									
@@ -159,7 +158,7 @@
 										<h5>Quality checking</h5>
 									</td>
 									<td>
-										<h5>yes</h5>
+										<h5><?php echo $check ?></h5>
 									</td>
 								</tr>
 							</tbody>
@@ -353,7 +352,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 	</footer>
 	<!--================ End footer Area  =================-->
 
-
+	
 
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
   <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>

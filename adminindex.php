@@ -22,7 +22,7 @@
 <?php	
 	require('db_connect.php');
 	
-	if (isset($_POST['loginbtn'])){               
+	if (isset($_POST['username'])){               
 		$username = stripslashes($_REQUEST['username']);
 		$username = mysqli_real_escape_string($con,$username);
 
@@ -30,8 +30,8 @@
 		$password = mysqli_real_escape_string($con,$password);
 
 
-		$query = "SELECT * FROM `adminlogin` WHERE User='$username' 
-		AND Pass='$password'";
+		$query = "SELECT * FROM `admin` WHERE username='$username' 
+		AND password='".md5($password)."'";
 		$result = mysqli_query($con,$query) or die(mysql_error());
 		$rows = mysqli_num_rows($result);
 		if($rows==1){
@@ -40,33 +40,16 @@
 			header("Location: admindashboard.php");
 		}
 		else{
-<<<<<<< HEAD
-<<<<<<< HEAD
+
 		echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
 		<div class='confirmation-card' style='text-align: center'>
 		<div class='container'>
 		<br><br><br>
 		<h3>Username/password is incorrect.</h3></div>
 
-		<br><br><br>Click here to <a href='login.php'>Login</a>
+		<br><br><br>Click here to <a href='adminindex.php'>Login</a>
 		<br><br><br></div></div>";
 		}
-=======
-=======
->>>>>>> e6ceee54216880811e486d6e4bd35a3d2a8ff173
-			echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
-			<div class='confirmation-card' style='text-align: center'>
-			<div class='container'>
-			<br><br><br>
-			<h3>Username/password is incorrect.</h3></div>
-	
-			<br><br><br>Click here to <a href='adminindex.php'>Login</a>
-			<br><br><br></div></div>";
-			}
-<<<<<<< HEAD
->>>>>>> e6ceee54216880811e486d6e4bd35a3d2a8ff173
-=======
->>>>>>> e6ceee54216880811e486d6e4bd35a3d2a8ff173
 	}
 	else{
 	?>
@@ -110,7 +93,7 @@
 							
 							<div class="col-md-12 form-group">
 								<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" ></input>
-								<a href="#">Welcome Back!</a>
+								<a href="adminregister.php">Create an Account?</a>
 
 								
 							</div>
