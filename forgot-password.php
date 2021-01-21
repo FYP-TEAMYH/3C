@@ -33,10 +33,7 @@ VALUES ('".$email."', '".$key."', '".$expDate."');");
 $output='<p>Dear user,</p>';
 $output.='<p>Please click on the following link to reset your password.</p>';
 $output.='<p>-------------------------------------------------------------</p>';
-$output.='<p><a href="https://localhost/3C/fgreset-password.php
-key='.$key.'&email='.$email.'&action=reset" target="_blank">
-https://localhost/3C/reset-password.php
-?key='.$key.'&email='.$email.'&action=reset</a></p>'; 
+$output.='<p><a href="https://localhost/3C/reset-password.php?key='.$key.'&email='.$email.'&action=reset" target="_blank">https://localhost/3C/reset-password.php?key='.$key.'&email='.$email.'&action=reset</a></p>'; 
 $output.='<p>-------------------------------------------------------------</p>';
 $output.='<p>Please be sure to copy the entire link into your browser.
 The link will expire after 1 day for security reason.</p>';
@@ -44,7 +41,7 @@ $output.='<p>If you did not request this forgotten password email, no action
 is needed, your password will not be reset. However, you may want to log into 
 your account and change your security password as someone may have guessed it.</p>';   
 $output.='<p>Thanks,</p>';
-$output.='<p>threeC Team Team</p>';
+$output.='<p>threeC Team</p>';
 $body = $output; 
 $subject = "Password Recovery - threeC.com";
  
@@ -81,6 +78,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <br /><br />
 <input type="submit" value="Reset Password"/>
 </form>
+
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
