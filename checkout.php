@@ -1,3 +1,55 @@
+<?php
+
+//order_process.php
+
+session_start();
+if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+    header('location:login.php');
+}
+
+
+$total_price = 0;
+
+$item_details = '';
+
+$order_details = '
+<div class="table-responsive" id="order_table">
+ <table class="table table-bordered table-striped">
+  <tr>  
+            <th>Product Name</th>  
+            <th>Quantity</th>  
+            <th>Price</th>  
+            <th>Total</th>  
+        </tr>
+';
+
+if(!empty($_SESSION["shopping_cart"]))
+{
+ foreach($_SESSION["shopping_cart"] as $keys => $values)
+ {
+  $order_details .= '
+  <tr>
+   <td>'.$values["product_name"].'</td>
+   <td>'.$values["product_quantity"].'</td>
+   <td align="right">$ '.$values["product_price"].'</td>
+   <td align="right">$ '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>
+  </tr>
+  ';
+  $total_price = $total_price + ($values["product_quantity"] * $values["product_price"]);
+
+  $item_details .= $values["product_name"] . ', ';
+ }
+ $item_details = substr($item_details, 0, -2);
+ $order_details .= '
+ <tr>  
+        <td colspan="3" align="right">Total</td>  
+        <td align="right">$ '.number_format($total_price, 2).'</td>
+    </tr>
+ ';
+}
+$order_details .= '</table>';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -12,6 +64,16 @@
 	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
 	<link rel="stylesheet" href="vendors/nice-select/nice-select.css">
 	<link rel="stylesheet" href="css/style.css">
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-2.2.4.min.js"></script>
+
+  <script src="vendors/skrollr.min.js"></script>
+  
+  <script src="vendors/mail-script.js"></script>
+  <script src="js/jquery.creditCardValidator.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+  <script src="https://js.stripe.com/v2/"></script>
+  <script src="vendors/jquery.validate.min.js"></script>
+  
 </head>
 <body>
   <!--================ Start Header Menu Area =================-->
@@ -36,7 +98,7 @@
                
                   <?php
                   require('db_connect.php');
-                  session_start();
+                  
                   if(isset($_SESSION["username"])){?>
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Account</a>
@@ -83,146 +145,91 @@
   <!--================Checkout Area =================-->
   <section class="checkout_area section-margin--small">
     <div class="container">
-        <div class="returning_customer">
-            <div class="check_title">
-                <h2>Returning Customer? <a href="#">Click here to login</a></h2>
-            </div>
-            <p>If you have shopped with us before, please enter your details in the boxes below. If you are a new
-                customer, please proceed to the Billing & Shipping section.</p>
-            <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                <div class="col-md-6 form-group p_star">
-                    <input type="text" class="form-control" placeholder="Username or Email*" onfocus="this.placeholder=''" onblur="this.placeholder = 'Username or Email*'" id="name" name="name">
-                    <!-- <span class="placeholder" data-placeholder="Username or Email"></span> -->
-                </div>
-                <div class="col-md-6 form-group p_star">
-                    <input type="password" class="form-control" placeholder="Password*" onfocus="this.placeholder=''" onblur="this.placeholder = 'Password*'" id="password" name="password">
-                    <!-- <span class="placeholder" data-placeholder="Password"></span> -->
-                </div>
-                <div class="col-md-12 form-group">
-                    <button type="submit" value="submit" class="button button-login">login</button>
-                    <div class="creat_account">
-                        <input type="checkbox" id="f-option" name="selector">
-                        <label for="f-option">Remember me</label>
-                    </div>
-                    <a class="lost_pass" href="#">Lost your password?</a>
-                </div>
-            </form>
-        </div>
-        <div class="cupon_area">
-            <div class="check_title">
-                <h2>Have a coupon? <a href="#">Click here to enter your code</a></h2>
-            </div>
-            <input type="text" placeholder="Enter coupon code">
-            <a class="button button-coupon" href="#">Apply Coupon</a>
-        </div>
+        
+        
         <div class="billing_details">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-6">
                     <h3>Billing Details</h3>
-                    <form class="row contact_form" action="#" method="post" novalidate="novalidate">
-                        <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="first" name="name" placeholder="First Name">
-                            <span class="placeholder" data-placeholder="First name"></span>
+                    <form class="row contact_form" method="post" id="order_process_form" action="payment.php">
+                        <div class="col-md-12 form-group p_star">
+                        <input type="text" name="customer_name" id="customer_name" class="form-control" value=""  />
+                        <span id="error_customer_name" class="text-danger"></span>
                         </div>
-                        <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="last" name="name" placeholder="Last Name">
-                            <span class="placeholder" data-placeholder="Last name"></span>
+                        
+                        <div class="col-md-12 form-group">
+                        <input type="text" name="email_address" id="email_address" class="form-control" value="" placeholder="Email Address" />
+                        <span id="error_email_address" class="text-danger"></span>
+                        </div>
+                        
+                        
+                        
+                        <div class="col-md-12 form-group p_star">
+                        <textarea name="customer_address" id="customer_address" class="form-control" placeholder="Address"></textarea>
+                         <span id="error_customer_address" class="text-danger"></span>
+                        </div>
+                       
+                        <div class="col-md-12 form-group p_star">
+                        <input type="text" name="customer_city" id="customer_city" class="form-control" value="" placeholder="City" />
+                        <span id="error_customer_city" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-12 form-group p_star">
+                        <input type="text" name="customer_pin" id="customer_pin" class="form-control" value="" placeholder="Postcode/ZIP" />
+                        <span id="error_customer_pin" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="company" name="company" placeholder="Company name">
+                        <input type="text" name="customer_state" id="customer_state" class="form-control" value=""  placeholder="State"/>
                         </div>
-                        <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="number" name="number" placeholder="Phone Number">
-                            <span class="placeholder" data-placeholder="Phone number"></span>
-                        </div>
-                        <div class="col-md-6 form-group p_star">
-                            <input type="text" class="form-control" id="email" name="compemailany">
-                            <span class="placeholder" data-placeholder="Email Address"></span>
-                        </div>
-                        <div class="col-md-12 form-group p_star">
-                            <select class="country_select">
-                                <option value="1">East Malaysia</option>
-                                <option value="2">West Malaysia</option>
-                            </select>
-                        </div>
-                        <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="add1" name="add1" placeholder="Address Line 01">
-                            <span class="placeholder" data-placeholder="Address line 01"></span>
-                        </div>
-                        <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="add2" name="add2" placeholder="Address Line 02">
-                            <span class="placeholder" data-placeholder="Address line 02"></span>
-                        </div>
-                        <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="city" name="city" placeholder="City">
-                            <span class="placeholder" data-placeholder="Town/City"></span>
-                        </div>
-                        <div class="col-md-12 form-group p_star">
-                            <input type="text" class="form-control" id="district" name="district" placeholder="District">
-                        </div>
-                        <div class="col-md-12 form-group">
-                            <input type="text" class="form-control" id="zip" name="zip" placeholder="Postcode/ZIP">
-                        </div>
-                        <div class="col-md-12 form-group">
+                       
+                        <div class="col-md-12 form-group ">
                             <div class="creat_account">
-                                <input type="checkbox" id="f-option2" name="selector">
-                                <label for="f-option2">Create an account?</label>
+                                <h3>Payment Details</h3>
+                                
                             </div>
+                            
+                            <label>Card Number</label>
+                            
+                            <div class="col-md-12 form-group">
+                            <input type="text" name="card_holder_number" id="card_holder_number" class="form-control" placeholder="1234 5678 9012 3456" maxlength="20" onkeypress="" />
+                             <span id="error_card_number" class="text-danger" placeholder="State"></span>
                         </div>
-                        <div class="col-md-12 form-group mb-0">
-                            <div class="creat_account">
-                                <h3>Shipping Details</h3>
-                                <input type="checkbox" id="f-option3" name="selector">
-                                <label for="f-option3">Ship to a different address?</label>
-                            </div>
-                            <textarea class="form-control" name="message" id="message" rows="1" placeholder="Order Notes"></textarea>
+                        
+                        <div class="col-md-5 form-group">
+                        <label>Expiry Month</label>
+                        <input type="text" name="card_expiry_month" id="card_expiry_month" class="form-control" placeholder="MM" maxlength="2" onkeypress="return only_number(event);" />
+                        <span id="error_card_expiry_month" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-5 form-group">
+                        <input type="text" name="customer_state" id="customer_state" class="form-control" value=""  placeholder="State"/>
+                        </div>
+                        <div class="col-md-5 form-group">
+                        <label>Expiry Year</label>
+                        <input type="text" name="card_expiry_year" id="card_expiry_year" class="form-control" placeholder="YYYY" maxlength="4" onkeypress="return only_number(event);" />
+                        <span id="error_card_expiry_year" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-5 form-group">
+                        <label>CVC</label>
+                        <input type="text" name="card_cvc" id="card_cvc" class="form-control" placeholder="123" maxlength="4" onkeypress="return only_number(event);" />
+                        <span id="error_card_cvc" class="text-danger"></span>
+                        </div>
+                        <div class="col-md-5 form-group">
+                        <div align="center">
+                        <input type="hidden" name="total_amount" value="<?php echo $total_price; ?>" />
+                        <input type="hidden" name="currency_code" value="USD" />
+                        <input type="hidden" name="item_details" value="<?php echo $item_details; ?>" />
+                        <input type="button" name="button_action" id="button_action" class="btn btn-success btn-sm" onclick="stripePay(event)" value="Pay Now" />
+                        </div>
                         </div>
                     </form>
                 </div>
-                <div class="col-lg-4">
+                
+            </div>
+            <div class="col-lg-6">
                     <div class="order_box">
                         <h2>Your Order</h2>
-                        <ul class="list">
-                            <li><a href="#"><h4>Product <span>Total</span></h4></a></li>
-                            <li><a href="#">Airpods Pro <span class="middle">x 01</span> <span class="last">RM699.00</span></a></li>
-                            <li><a href="#">Macbook Air <span class="middle">x 01</span> <span class="last">RM2299.00</span></a></li>
-                            <li><a href="#">SteelSeries Apex <span class="middle">x 01</span> <span class="last">RM800.00</span></a></li>
-                        </ul>
-                        <ul class="list list_2">
-                            <li><a href="#">Subtotal <span>RM3798</span></a></li>
-                            <li><a href="#">Shipping <span>Flat rate: RM50.00</span></a></li>
-                            <li><a href="#">Total <span>RM3848.00</span></a></li>
-                        </ul>
-                        <div class="payment_item">
-                            <div class="radion_btn">
-                                <input type="radio" id="f-option5" name="selector">
-                                <label for="f-option5">Check payments</label>
-                                <div class="check"></div>
-                            </div>
-                            <p>Please send a check to Store Name, Store Street, Store Town, Store State / County,
-                                Store Postcode.</p>
-                        </div>
-                        <div class="payment_item active">
-                            <div class="radion_btn">
-                                <input type="radio" id="f-option6" name="selector">
-                                <label for="f-option6">Paypal </label>
-                                <img src="img/card.jpg" alt="">
-                                <div class="check"></div>
-                            </div>
-                            <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
-                                account.</p>
-                        </div>
-                        <div class="creat_account">
-                            <input type="checkbox" id="f-option4" name="selector">
-                            <label for="f-option4">I’ve read and accept the </label>
-                            <a href="#">terms & conditions*</a>
-                        </div>
-                        <div class="text-center">
-                          <a class="button button-paypal" href="confirmation.php">Checkout</a>
-                        </div>
+                       <?php echo $order_details; ?>
                     </div>
                 </div>
-            </div>
         </div>
     </div>
   </section>
@@ -297,13 +304,216 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/skrollr.min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="vendors/mail-script.js"></script>
-  <script src="js/main.js"></script>
+  
+  
 </body>
+
+<script>
+
+function validate_form()
+{
+ var valid_card = 0;
+ var valid = false;
+ var card_cvc = $('#card_cvc').val();
+ var card_expiry_month = $('#card_expiry_month').val();
+ var card_expiry_year = $('#card_expiry_year').val();
+ var card_holder_number = $('#card_holder_number').val();
+ var email_address = $('#email_address').val();
+ var customer_name = $('#customer_name').val();
+ var customer_address = $('#customer_address').val();
+ var customer_city = $('#customer_city').val();
+ var customer_pin = $('#customer_pin').val();
+ var customer_country = $('#customer_country').val();
+ var name_expression = /^[a-z ,.'-]+$/i;
+ var email_expression = /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/;
+ var month_expression = /^01|02|03|04|05|06|07|08|09|10|11|12$/;
+ var year_expression = /^2017|2018|2019|2020|2021|2022|2023|2024|2025|2026|2027|2028|2029|2030|2031$/;
+ var cvv_expression = /^[0-9]{3,3}$/;
+
+ $('#card_holder_number').validateCreditCard(function(result){
+  if(result.valid)
+  {
+   $('#card_holder_number').removeClass('require');
+   $('#error_card_number').text('');
+   valid_card = 1;
+  }
+  else
+  {
+   $('#card_holder_number').addClass('require');
+   $('#error_card_number').text('Invalid Card Number');
+   valid_card = 0;
+  }
+ });
+
+ if(valid_card == 1)
+ {
+  if(!month_expression.test(card_expiry_month))
+  {
+   $('#card_expiry_month').addClass('require');
+   $('#error_card_expiry_month').text('Invalid Data');
+   valid = false;
+  }
+  else
+  { 
+   $('#card_expiry_month').removeClass('require');
+   $('#error_card_expiry_month').text('');
+   valid = true;
+  }
+
+  if(!year_expression.test(card_expiry_year))
+  {
+   $('#card_expiry_year').addClass('require');
+   $('#error_card_expiry_year').error('Invalid Data');
+   valid = false;
+  }
+  else
+  {
+   $('#card_expiry_year').removeClass('require');
+   $('#error_card_expiry_year').error('');
+   valid = true;
+  }
+
+  if(!cvv_expression.test(card_cvc))
+  {
+   $('#card_cvc').addClass('require');
+   $('#error_card_cvc').text('Invalid Data');
+   valid = false;
+  }
+  else
+  {
+   $('#card_cvc').removeClass('require');
+   $('#error_card_cvc').text('');
+   valid = true;
+  }
+  if(!name_expression.test(customer_name))
+  {
+   $('#customer_name').addClass('require');
+   $('#error_customer_name').text('Invalid Name');
+   valid = false;
+  }
+  else
+  {
+   $('#customer_name').removeClass('require');
+   $('#error_customer_name').text('');
+   valid = true;
+  }
+
+  if(!email_expression.test(email_address))
+  {
+   $('#email_address').addClass('require');
+   $('#error_email_address').text('Invalid Email Address');
+   valid = false;
+  }
+  else
+  {
+   $('#email_address').removeClass('require');
+   $('#error_email_address').text('');
+   valid = true;
+  }
+
+  if(customer_address == '')
+  {
+   $('#customer_address').addClass('require');
+   $('#error_customer_address').text('Enter Address Detail');
+   valid = false;
+  }
+  else
+  {
+   $('#customer_address').removeClass('require');
+   $('#error_customer_address').text('');
+   valid = true;
+  }
+
+  if(customer_city == '')
+  {
+   $('#customer_city').addClass('require');
+   $('#error_customer_city').text('Enter City');
+   valid = false;
+  }
+  else
+  {
+   $('#customer_city').removeClass('require');
+   $('#error_customer_city').text('');
+   valid = true;
+  }
+
+  if(customer_pin == '')
+  {
+   $('#customer_pin').addClass('require');
+   $('#error_customer_pin').text('Enter Zip code');
+   valid = false;
+  }
+  else
+  {
+   $('#customer_pin').removeClass('require');
+   $('#error_customer_pin').text('');
+   valid = true;
+  }
+
+  if(customer_country == '')
+  {
+   $('#customer_country').addClass('require');
+   $('#error_customer_country').text('Enter Country Detail');
+   valid = false;
+  }
+  else
+  {
+   $('#customer_country').removeClass('require');
+   $('#error_customer_country').text('');
+   valid = true;
+  }
+
+  
+ }
+ return valid;
+}
+
+Stripe.setPublishableKey('pk_test_51IC43mLOApRiqgAEH2QxlQS3BeHBDRHkzx0LeDoTmqF94N3b4F332lKbvjJoKS6GGRp4YrfG5lslCLkWze2K6Iay00ZvDQYh8K');
+
+function stripeResponseHandler(status, response)
+{
+ if(response.error)
+ {
+  $('#button_action').attr('disabled', false);
+  $('#message').html(response.error.message).show();
+ }
+ else
+ {
+  var token = response['id'];
+  $('#order_process_form').append("<input type='hidden' name='token' value='" + token + "' />");
+
+  $('#order_process_form').submit();
+ }
+}
+
+function stripePay(event)
+{
+ event.preventDefault();
+ 
+ if(validate_form() == true)
+ {
+  $('#button_action').attr('disabled', 'disabled');
+  $('#button_action').val('Payment Processing....');
+  Stripe.createToken({
+   number:$('#card_holder_number').val(),
+   cvc:$('#card_cvc').val(),
+   exp_month : $('#card_expiry_month').val(),
+   exp_year : $('#card_expiry_year').val()
+  }, stripeResponseHandler);
+  return false;
+ }
+}
+
+
+function only_number(event)
+{
+ var charCode = (event.which) ? event.which : event.keyCode;
+ if (charCode != 32 && charCode > 31 && (charCode < 48 || charCode > 57))
+ {
+  return false;
+ }
+ return true;
+}
+
+</script>
 </html>

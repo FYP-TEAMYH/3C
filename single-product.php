@@ -11,6 +11,8 @@
 	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
 	<link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
 	<link rel="stylesheet" href="css/style.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 </head>
 <body>
 	<!--================ Start Header Menu Area =================-->
@@ -63,7 +65,7 @@
 							$id = $row["id"];
 							$price = $row["price"];
 							$name = $row["name"];
-							$photo = $row["photo"];
+							$photo = $row["image"];
 							$category = $row["category"];
 							$desc = $row["description"];
 							$desc2 = $row["description2"];
@@ -96,17 +98,12 @@
 							
 						</ul>
 						<p><?php echo $desc; ?></p>
-						<div class="product_count">
-              <label for="qty">Quantity:</label>
-							<form action='addtocart.php'>
-							<input type="hidden" name='id' value= <?php echo $id?>>
-							<input type="number"  name='quantity' value="1" class="form-control">
-							
-							            
-						</div>
-						<div class="card_area d-flex align-items-center">
-						<input type="submit" value="ADD TO CART"class="button button-login w-10" ></form>  
-						</div>
+
+						<input type="text" name="quantity"<?php "id='quantity".$row['id']."' "?>class="form-control" value="1" />
+						<input type="hidden" name="hidden_name" <?php "id='name".$row['id']."' value='".$row['name']."' "?> />
+						<input type="hidden" name="hidden_price" <?php "id='price".$row['id']."'  value='".$row['price']."' "?> />
+						<input type="button" name="add_to_cart" <?php "id='".$row['id']."' "?> style="margin-top:5px;" class="btn btn-success form-control add_to_cart" value="Add to Cart" />
+						
 					</div>
 				</div>
 			</div>
@@ -363,4 +360,60 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
 </body>
+
+<script>  
+$(document).ready(function(){
+
+ 
+
+ load_cart_data();
+
+ 
+
+ function load_cart_data()
+ {
+  $.ajax({
+   url:"fetch_cart.php",
+   method:"POST",
+   dataType:"json",
+   success:function(data)
+   {
+    $('#cart_details').html(data.cart_details);
+    $('.total_price').text(data.total_price);
+    $('.nav-shop__circle').text(data.total_item);
+   }
+  })
+ }
+
+
+
+ $(document).on('click', '.add_to_cart', function(){
+  var product_id = $(this).attr('id');
+  var product_name = $('#name'+product_id+'').val();
+  var product_price = $('#price'+product_id+'').val();
+  var product_quantity = $('#quantity'+product_id).val();
+  var product_image = $('#image'+product_id).val();
+  var action = 'add';
+  if(product_quantity > 0)
+  {
+   $.ajax({
+    url:"action.php",
+    method:"POST",
+    data:{product_id:product_id, product_name:product_name, product_price:product_price, product_quantity:product_quantity, action:action},
+    success:function(data)
+    {
+     load_cart_data();
+     alert("Item has been Added into Cart");
+    }
+   })
+  }
+  else
+  {
+   alert("Please Enter Number of Quantity");
+  }
+ });
+
+});
+ </script>
+
 </html>

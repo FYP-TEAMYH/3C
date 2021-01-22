@@ -2,9 +2,9 @@
 session_start();
 
 if(isset($_GET['id'])){
-    foreach($_SESSION["cart"] as $key => $value) {
+    foreach($_SESSION["shopping_cart"] as $key => $value) {
         if($_GET["id"] == $key)
-            unset($_SESSION["cart"][$key]);				
+            unset($_SESSION["shopping_cart"][$key]);				
         }
     header('location:cart.php');
 }

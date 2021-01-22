@@ -11,7 +11,8 @@
 	<link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
 	<link rel="stylesheet" href="css/style.css">
-</head>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.0/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
 <body>
   <!--================ Start Header Menu Area =================-->
 	<header class="header_area">
@@ -66,12 +67,23 @@
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+            
+      
+
+   
+              <li class="nav-item"><a href="cart.php" id="cart-popover" class="btn" data-placement="bottom" title="Shopping Cart"><button><i class="ti-shopping-cart"></i>
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+              <span class="nav-shop__circle"></span>
+              </button></a> </li>
               <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
+          
         </div>
       </nav>
+      
+      
+      
     </div>
   </header>
 	<!--================ End Header Menu Area =================-->
@@ -132,7 +144,7 @@
           <section class="lattest-product-area pb-40 category-list">
           <?php
           $inc=3;
-          $query=mysqli_query($con,"select * from product ");
+          $query=mysqli_query($con,"select * from product ORDER BY id ASC ");
           while($row=mysqli_fetch_array($query)){
 			
             $inc = ($inc == 3) ? 1 : $inc+1; 
@@ -144,25 +156,37 @@
                 <div class="card text-center card-product">
                   <div class="card-product__img">
                   
-                  <img src="<?php if (empty($row['photo'])){echo "img/noimage.jpg";}else{echo $row['photo'];} ?>" height="125px" width="150px" class="thumbnail">
+                  <img src="<?php if (empty($row['image'])){echo "img/noimage.jpg";}else{echo $row['image'];} ?>" height="125px" width="150px" class="thumbnail">
                   <ul class="card-product__imgOverlay">
+                  
                       <li>
                       <button>
                       <a href="single-product.php?id=<?php echo $row["id"]; ?>"> 
                       <i class="ti-search" href=""></i></a></button></li>
-                      <li><form method="post" action="addtocart.php?id=<?php echo $row["id"]; ?>">
-                      <button>
-                      <i class="ti-shopping-cart"></i></button></form></li>
+                      <li>
+                      
+                      <button name="add_to_cart"<?php echo "id='".$row['id']."' "?> class="form-control add_to_cart" value="1">
+                      
+                      <input type="hidden" name="quantity" <?php echo "id='quantity".$row['id']."' "?> class="form-control" value="1" />
+                      
+                      <i class=ti-shopping-cart ></i></button>
+                    <?php 
+                          echo "<input type='hidden' name='hidden_name' id='name".$row['id']."' value='".$row['name']."' />";
+                          echo "<input type='hidden' name='hidden_price' id='price".$row['id']."' value='".$row['price']."' />" ;
+                           ?></li>
+                      <?php  ?>
                   </ul>
                 </div>
                 <div class="card-body">
                        
                         <h4 class="card-product__title"><?php echo $row['name']; ?></h4>
                          <p class="card-product__price">RM<?php echo $row['price']; ?></p>
+                        
                 </div>
                 
               </div>
             </div>
+            
                                     
                             
                             <?php
@@ -402,5 +426,100 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
+  
 </body>
 </html>
+
+<script>  
+$(document).ready(function(){
+
+ 
+
+ load_cart_data();
+
+ 
+
+ function load_cart_data()
+ {
+  $.ajax({
+   url:"fetch_cart.php",
+   method:"POST",
+   dataType:"json",
+   success:function(data)
+   {
+    $('#cart_details').html(data.cart_details);
+    $('.total_price').text(data.total_price);
+    $('.nav-shop__circle').text(data.total_item);
+   }
+  })
+ }
+
+
+
+ $(document).on('click', '.add_to_cart', function(){
+  var product_id = $(this).attr('id');
+  var product_name = $('#name'+product_id+'').val();
+  var product_price = $('#price'+product_id+'').val();
+  var product_quantity = $('#quantity'+product_id).val();
+  var product_image = $('#image'+product_id).val();
+  var action = 'add';
+  if(product_quantity > 0)
+  {
+   $.ajax({
+    url:"action.php",
+    method:"POST",
+    data:{product_id:product_id, product_name:product_name, product_price:product_price, product_quantity:product_quantity, action:action},
+    success:function(data)
+    {
+     load_cart_data();
+     alert("Item has been Added into Cart");
+    }
+   })
+  }
+  else
+  {
+   alert("Please Enter Number of Quantity");
+  }
+ });
+
+ $(document).on('click', '.delete', function(){
+  var product_id = $(this).attr('id');
+  var action = 'remove';
+  if(confirm("Are you sure you want to remove this product?"))
+  {
+   $.ajax({
+    url:"action.php",
+    method:"POST",
+    data:{product_id:product_id, action:action},
+    success:function(data)
+    {
+     load_cart_data();
+     $('#cart-popover').popover('hide');
+     alert("Item has been removed from Cart");
+    }
+   }) 
+  }
+  else
+  {
+   return false;
+  }
+ });
+
+ $(document).on('click', '#clear_cart', function(){
+  var action = 'empty';
+  $.ajax({
+   url:"action.php",
+   method:"POST",
+   data:{action:action},
+   success:function()
+   {
+    load_cart_data();
+    $('#cart-popover').popover('hide');
+    alert("Your Cart has been clear");
+   }
+  })
+ });
+    
+});
+
+</script>
