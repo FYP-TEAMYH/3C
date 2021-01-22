@@ -180,6 +180,11 @@ $order_details .= '</table>';
                         <div class="col-md-12 form-group">
                         <input type="text" name="customer_state" id="customer_state" class="form-control" value=""  placeholder="State"/>
                         </div>
+                        <div class="col-md-12 form-group">
+                        <label><b>Country <span class="text-danger">*</span></b></label>
+                        <input type="text" name="customer_country" id="customer_country" class="form-control" />
+                        <span id="error_customer_country" class="text-danger"></span>
+                        </div>
                        
                         <div class="col-md-12 form-group ">
                             <div class="creat_account">
@@ -194,13 +199,11 @@ $order_details .= '</table>';
                              <span id="error_card_number" class="text-danger" placeholder="State"></span>
                         </div>
                         
+
                         <div class="col-md-5 form-group">
                         <label>Expiry Month</label>
                         <input type="text" name="card_expiry_month" id="card_expiry_month" class="form-control" placeholder="MM" maxlength="2" onkeypress="return only_number(event);" />
                         <span id="error_card_expiry_month" class="text-danger"></span>
-                        </div>
-                        <div class="col-md-5 form-group">
-                        <input type="text" name="customer_state" id="customer_state" class="form-control" value=""  placeholder="State"/>
                         </div>
                         <div class="col-md-5 form-group">
                         <label>Expiry Year</label>
@@ -450,20 +453,6 @@ function validate_form()
    valid = true;
   }
 
-  if(customer_country == '')
-  {
-   $('#customer_country').addClass('require');
-   $('#error_customer_country').text('Enter Country Detail');
-   valid = false;
-  }
-  else
-  {
-   $('#customer_country').removeClass('require');
-   $('#error_customer_country').text('');
-   valid = true;
-  }
-
-  
  }
  return valid;
 }

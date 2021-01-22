@@ -20,6 +20,7 @@ session_start();
    'postal_code' => $_POST["customer_pin"],
    'city'   => $_POST["customer_city"],
    'state'   => $_POST["customer_state"],
+   'country'  => 'US'
    
   )
  ));

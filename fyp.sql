@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.9.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 21, 2021 at 08:22 AM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- Generation Time: Jan 22, 2021 at 01:04 PM
+-- Server version: 10.4.8-MariaDB
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -78,13 +78,79 @@ INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `batter
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `order_item`
+--
+
+CREATE TABLE `order_item` (
+  `order_item_id` int(11) NOT NULL,
+  `order_id` int(11) NOT NULL,
+  `order_item_name` varchar(250) NOT NULL,
+  `order_item_quantity` int(11) NOT NULL,
+  `order_item_price` double(12,2) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_item`
+--
+
+INSERT INTO `order_item` (`order_item_id`, `order_id`, `order_item_name`, `order_item_quantity`, `order_item_price`) VALUES
+(7, 0, 'Logitech G213 Prodigy Gaming Keyboard', 3, 199.00),
+(8, 1, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `order_table`
+--
+
+CREATE TABLE `order_table` (
+  `order_id` int(11) NOT NULL,
+  `order_number` int(11) NOT NULL,
+  `order_total_amount` double(12,2) NOT NULL,
+  `transaction_id` varchar(200) NOT NULL,
+  `card_cvc` int(5) NOT NULL,
+  `card_expiry_month` varchar(30) NOT NULL,
+  `card_expiry_year` varchar(30) NOT NULL,
+  `order_status` varchar(50) NOT NULL,
+  `card_holder_number` varchar(250) NOT NULL,
+  `email_address` varchar(250) NOT NULL,
+  `customer_name` varchar(250) NOT NULL,
+  `customer_address` text NOT NULL,
+  `customer_city` varchar(250) NOT NULL,
+  `customer_pin` varchar(30) NOT NULL,
+  `customer_state` varchar(250) NOT NULL,
+  `customer_country` varchar(250) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `order_table`
+--
+
+INSERT INTO `order_table` (`order_id`, `order_number`, `order_total_amount`, `transaction_id`, `card_cvc`, `card_expiry_month`, `card_expiry_year`, `order_status`, `card_holder_number`, `email_address`, `customer_name`, `customer_address`, `customer_city`, `customer_pin`, `customer_state`, `customer_country`) VALUES
+(1, 255982, 199.00, 'txn_1ICOMKLOApRiqgAEOVP9hbi1', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'ewekengy@gmail.com', 'Ewe Ken Gy', '6,Jalan Api-Api 5,\r\nTaman Megah Ria', 'Masai', '81750', 'Johor', 'Malaysia');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `password_reset_temp`
+--
+
+CREATE TABLE `password_reset_temp` (
+  `email` varchar(250) NOT NULL,
+  `key` varchar(250) NOT NULL,
+  `expDate` datetime NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
   `id` int(11) NOT NULL,
   `name` varchar(255) NOT NULL,
-  `photo` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
   `description` varchar(999) NOT NULL,
@@ -98,7 +164,7 @@ CREATE TABLE `product` (
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `photo`, `price`, `category`, `description`, `description2`, `brand name`, `Color Family`, `Quality checking`) VALUES
+INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`, `description2`, `brand name`, `Color Family`, `Quality checking`) VALUES
 (1, 'Razer BlackWidow Mechanical Gaming Keyboard', 'img/keyboard/keyboard1.jpg', '399.00', 'keyboard', 'Green Mechanical Switches - Tactile & Clicky - Chroma RGB Lighting - Anti-Ghosting - Programmable Macro Functionality', 'About this item<br><br>\r\n- The Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined<br>\r\n- Signature Mechanical Switch for Gaming: Razer Green switch technology provides a satisfying click sound with 50 G of actuation force, ideal for typing and gaming requiring the highest accuracy<br>\r\n- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys<br>\r\n- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands', 'Razer', 'Black', 'Yes'),
 (2, 'Logitech G213 Prodigy Gaming Keyboard', 'img/keyboard/keyboard5.jpg', '199.00', 'keyboard', 'Worlds NO. 1 Best Selling Gaming Gear Brand - Based on independent aggregated sales data (FEB \'19 - FEB\'20) of Gaming Keyboard, Mice, & PC Headset in units from: US, CA, CN, JP, KR, TW, TH, ID, DE, FR, RU, UK, SE, TR', 'About this item<br><br>\r\n\r\n- Brilliant color spectrum illumination - personalize five individual lighting Zones from a spectrum of over 16. 8 million colors. Change colors to match your setup, specific games, or to showcase your favorite colors. Synchronize lighting effects with other Logitech G devices using Logitech gaming software. Low light leak around each keycap means less more light comes through the lettering - and less leaks around the keycaps. This helps make the illumination of each key more brilliant, making it easier to find your keys in the dark.<br>\r\n\r\n- Comfortable and durable - G213 Prodigy is a full-sized keyboard designed for gaming and productivity. The slim body is built for gamers of all levels, with a durable construction that repels liquids, crumbs and dirt for easy cleanup. An integrated Palm rest And adjustable feet Let you set your keyboard to the ideal position, so it\'s comfortable to use even during the longest gaming sessions.<br>\r\n- Performance tuned with multi-key input - G213 brings together the best in tactile feel and performance with Keys built specifically for the way gamers play. Each key on the G213 is tuned to enhance the tactile experience, delivering ultra-quick, responsive feedback that is up to 4 times faster than standard keyboards. The anti-ghosting gaming Matrix is tuned for optimal gaming performance, keeping you in control when you press multiple gaming keys simultaneously.\r\n', 'Logitech G', 'Black', 'Yes'),
 (3, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 'img/keyboard/keyboard2.jpg', '299.00', 'keyboard', '61 Keys TKL Designed 5.0 Bluetooth Gaming Keyboard with Brown Switches and 16.8 Million RGB Lighting for PC, Laptop, Cell Phone', 'About this item<br><br>\r\n- First Redragon 60% Keyboard - Ultra minimalistic tenkeyless (TKL) design with 61 keys portable layout frees up table space for mouse movement, which offers the purest performance for FPS pro (11.5*3.9*1.4 in).<br>\r\n- Wireless Made Easy - Enjoy the freedom of wirelessness with a Bluetooth 5.0 connection and 3000mAh long-lasting battery capacity. Reliable and fast connects hassle-free with devices such as laptops, tablets, and even phones that support Bluetooth.<br>\r\n- Dual Mode Switch - Easily switch between wireless and wired modes with the mode switch on the side. Included USB-C cable gives you the option to go wired for competitive games.<br>\r\n- Hot-Swappable Brown Switches - Tactile brown switches provide a soft bump, but no click, unlike blue switches for quiet use. Hot-swappable with other Redragon switches. <br>\r\n- Made to last with switches rated for 50 million keypresses.<br>\r\n- RGB Illumination Builder - 13 Dynamic presets available onboard. Millions of color options and effects make you the designer of your ultimate gear with a pro driver. Software/Driver link (http://bit.ly/K530BTKeyboard)', 'Redragon', 'White', 'Yes'),
@@ -140,20 +206,6 @@ INSERT INTO `product` (`id`, `name`, `photo`, `price`, `category`, `description`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pwdreset`
---
-
-CREATE TABLE `pwdreset` (
-  `pwdResetID` int(11) NOT NULL,
-  `pwdResetEmail` text NOT NULL,
-  `pwdResetSelector` text NOT NULL,
-  `pwdResetToken` longtext NOT NULL,
-  `pwdResetExpires` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `register`
 --
 
@@ -171,7 +223,8 @@ CREATE TABLE `register` (
 INSERT INTO `register` (`id`, `username`, `email`, `password`) VALUES
 (9, 'yong hao', 'yonghaocha@gmail.com', '25f9e794323b453885f5181f1b624d0b'),
 (10, 'admin', 'james123@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(11, 'admin2', 'james123@gmail.com', '202cb962ac59075b964b07152d234b70');
+(11, 'admin2', 'james123@gmail.com', '202cb962ac59075b964b07152d234b70'),
+(12, 'kengy', 'ewekengy@gmail.com', 'f1ab187d28758bce923c9f2982ca28ed');
 
 --
 -- Indexes for dumped tables
@@ -190,16 +243,22 @@ ALTER TABLE `compare`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Indexes for table `order_item`
+--
+ALTER TABLE `order_item`
+  ADD PRIMARY KEY (`order_item_id`);
+
+--
+-- Indexes for table `order_table`
+--
+ALTER TABLE `order_table`
+  ADD PRIMARY KEY (`order_id`);
+
+--
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
-
---
--- Indexes for table `pwdreset`
---
-ALTER TABLE `pwdreset`
-  ADD PRIMARY KEY (`pwdResetID`);
 
 --
 -- Indexes for table `register`
@@ -224,22 +283,28 @@ ALTER TABLE `compare`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
+-- AUTO_INCREMENT for table `order_item`
+--
+ALTER TABLE `order_item`
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+
+--
+-- AUTO_INCREMENT for table `order_table`
+--
+ALTER TABLE `order_table`
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
--- AUTO_INCREMENT for table `pwdreset`
---
-ALTER TABLE `pwdreset`
-  MODIFY `pwdResetID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
