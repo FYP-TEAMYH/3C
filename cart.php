@@ -102,105 +102,20 @@
           <div class="cart_inner">
               <div class="table-responsive">
                   <table class="table">
-                      <thead>
-                          <tr>
-                              <th scope="col">Product</th>
-                              <th scope="col">Price</th>
-                              <th scope="col">Quantity</th>
-                              <th scope="col">Total</th>
-                          </tr>
-                      </thead>
-                      <tbody>
-                      <?php 
-                      require('db_connect.php');
                       
-                      $total = 0;
-                      if(isset($_SESSION["cart"]))
-                      {
-                      foreach($_SESSION["cart"] as $id => $value)
-                      {
-                         $sql = "SELECT * FROM product where id = $id";
-                         $result = mysqli_query($con, $sql);
-                        $row = mysqli_fetch_assoc($result);
-                        $total = $total + ($row['price'] *  $value['quantity']); 
-                        
-                     
-                      ?>
-                          <tr>
-                              <td>
-                                  <div class="media">
-                                      <div class="d-flex">
-                                          <img src="<?php echo $row['photo'] ?>" width="120px" height="100px" alt="Airpods Pro">
-                                      </div>
-                                      <div class="media-body">
-                                          <p><?php echo $row['name'] ?></p>
-                                      </div>
-                                  </div>
-                              </td>
-                              <td>
-                                  <h5><?php echo $row['price'] ?></h5>
-                              </td>
-                              <td>
-                                <?php echo $value['quantity'] ?>
-                              </td>
-                              <td>
-                                  <h5><?php echo $row['price'] *  $value['quantity'] ?>.00 </h5>
-                              </td>
-                              <td> 
-                              <form method="post" action="deletecart.php?id=<?php echo $row["id"]; ?>">
-                              <input type="submit" style="margin-top:10px" value="Remove" id="submit" class="button button-login w-100" style=margin-left:20px >
-                              </form>
-                              <form method="post" action="single-product.php?id=<?php echo $row["id"]; ?>">
-                              <input type="submit" style="margin-top:10px" value="Edit" id="submit" class="button button-login w-100" style=margin-left:20px >
-                              </form>
-                              </td>
-                              
-                          </tr>
-                          <?php 
-                        
-                        } ?>
-                         
-                          
-                          <tr>
-                          <td>
-                          </td>
-                              <td>
-
-                              </td>
-                              <td>
-
-                              </td>
-              
-                              <td>
-                                  <h5>Subtotal</h5>
-                              </td>
-                              <td>
-                                  <h5>RM <?php echo $total ?>.00</h5>
-                              </td>
-                            
-                          </tr>
-                          
-                          <tr class="out_button_area">
-                              <td class="d-none-l">
-
-                              </td>
-                              <td class="">
-
-                              </td>
-                              <td>
-                          
-                              </td>
-                              <td>
-                          
-                              </td>
-                              <td>
-                                  <div class="checkout_btn_inner">
-                                      <a class= "gray_btn" href="category.php">Continue Shopping</a>
-                                      <a class="primary-btn ml-2" href="checkout.php">Proceed to checkout</a>
-                                  </div>
-                              </td>
-                          </tr>
-                      </tbody>
+                      <thead>
+                      <div id="popover_content_wrapper" style="">
+    <span id="cart_details"></span>
+    <div align="right">
+     <a href="checkout.php" class="button button-login w-20" id="check_out_cart">
+      <span class="glyphicon glyphicon-shopping-cart"></span> Check out
+     </a>
+     <a href="#" class="button button-login w-20" id="clear_cart">
+      <span class="glyphicon glyphicon-trash"></span> Clear
+     </a>
+    </div>
+   </div>
+                      </thead>
                   </table>
                   
                   <br><br>
@@ -276,7 +191,7 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 		</div>
 	</footer>
 	<!--================ End footer Area  =================-->
-  <?php } ?>
+ 
 
 
   <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
@@ -288,4 +203,97 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
 </body>
+<script>  
+$(document).ready(function(){
+
+ 
+
+ load_cart_data();
+
+ 
+
+ function load_cart_data()
+ {
+  $.ajax({
+   url:"fetch_cart.php",
+   method:"POST",
+   dataType:"json",
+   success:function(data)
+   {
+    $('#cart_details').html(data.cart_details);
+    $('.total_price').text(data.total_price);
+    $('.nav-shop__circle').text(data.total_item);
+   }
+  })
+ }
+
+
+
+ $(document).on('click', '.add_to_cart', function(){
+  var product_id = $(this).attr('id');
+  var product_name = $('#name'+product_id+'').val();
+  var product_price = $('#price'+product_id+'').val();
+  var product_quantity = $('#quantity'+product_id).val();
+  var product_image = $('#image'+product_id).val();
+  var action = 'add';
+  if(product_quantity > 0)
+  {
+   $.ajax({
+    url:"action.php",
+    method:"POST",
+    data:{product_id:product_id, product_name:product_name, product_price:product_price, product_quantity:product_quantity, action:action},
+    success:function(data)
+    {
+     load_cart_data();
+     alert("Item has been Added into Cart");
+    }
+   })
+  }
+  else
+  {
+   alert("Please Enter Number of Quantity");
+  }
+ });
+
+ $(document).on('click', '.delete', function(){
+  var product_id = $(this).attr('id');
+  var action = 'remove';
+  if(confirm("Are you sure you want to remove this product?"))
+  {
+   $.ajax({
+    url:"action.php",
+    method:"POST",
+    data:{product_id:product_id, action:action},
+    success:function(data)
+    {
+     load_cart_data();
+     $('#cart-popover').popover('hide');
+     alert("Item has been removed from Cart");
+    }
+   })
+  }
+  else
+  {
+   return false;
+  }
+ });
+
+ $(document).on('click', '#clear_cart', function(){
+  var action = 'empty';
+  $.ajax({
+   url:"action.php",
+   method:"POST",
+   data:{action:action},
+   success:function()
+   {
+    load_cart_data();
+    $('#cart-popover').popover('hide');
+    alert("Your Cart has been clear");
+   }
+  })
+ });
+    
+});
+
+</script>
 </html>
