@@ -7,22 +7,20 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Startmin - Bootstrap Admin Theme</title>
+        <title>3C Online Store[Admin]</title>
+	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
 
         <!-- Bootstrap Core CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="admincss/bootstrap.min.css" rel="stylesheet">
 
         <!-- MetisMenu CSS -->
-        <link href="../css/metisMenu.min.css" rel="stylesheet">
+        <link href="admincss/metisMenu.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="../css/startmin.css" rel="stylesheet">
-
-        <!-- Morris Charts CSS -->
-        <link href="../css/morris.css" rel="stylesheet">
+        <link href="admincss/startmin.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="admincss/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -36,6 +34,11 @@
   session_start();
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
+  $row=mysqli_fetch_array($query);
+  $image = $row["image"];
+  $email = $row["email"];
+  $gender = $row["gender"];
+  $phone = $row["phone"];
   ?>
     <body>
 
@@ -64,9 +67,9 @@
                             <i class="fa fa-user fa-fw"></i><?php echo $name; ?><b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <li><a href="adminprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                             <li class="divider"></li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="adminlogout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -78,46 +81,46 @@
                         <ul class="nav" id="side-menu">
                             
                             <li>
-                                <a href="index.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="adminindex.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="flot.php">Flot Charts</a>
+                                        <a href="adminflot.php">Flot Charts</a>
                                     </li>
                                     <li>
-                                        <a href="morris.php">Morris.js Charts</a>
+                                        <a href="adminmorris.php">Morris.js Charts</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
                             </li>
                             <li>
-                                <a href="profile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
+                                <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="panels-wells.php">Panels and Wells</a>
+                                        <a href="adminpanels-wells.php">Panels and Wells</a>
                                     </li>
                                     <li>
-                                        <a href="buttons.php">Buttons</a>
+                                        <a href="adminbuttons.php">Buttons</a>
                                     </li>
                                     <li>
-                                        <a href="notifications.php">Notifications</a>
+                                        <a href="adminnotifications.php">Notifications</a>
                                     </li>
                                     <li>
-                                        <a href="typography.php">Typography</a>
+                                        <a href="admintypography.php">Typography</a>
                                     </li>
                                     <li>
-                                        <a href="icons.php"> Icons</a>
+                                        <a href="adminicons.php"> Icons</a>
                                     </li>
                                     <li>
-                                        <a href="grid.php">Grid</a>
+                                        <a href="admingrid.php">Grid</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -156,11 +159,9 @@
                                 <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="blank.php">Blank Page</a>
+                                        <a href="adminblank.php">Blank Page</a>
                                     </li>
-                                    <li>
-                                        <a href="login.php">Login Page</a>
-                                    </li>
+                                    
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
@@ -168,87 +169,69 @@
                     </div>
                 </div>
             </nav>
+
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Morris.js Charts</h1>
+                            <h1 class="page-header">Profile</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Area Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-area-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Bar Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Line Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-line-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Donut Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-donut-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Morris.js Usage
+                                    User Information
                                 </div>
-                                <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <p>Morris.js is a jQuery based charting plugin created by Olly Smith. In SB Admin, we are using the most recent version of Morris.js which includes the resize function, which makes the charts fully responsive. The documentation for Morris.js is available on their website, <a target="_blank" href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
-                                    <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://morrisjs.github.io/morris.js/">View Morris.js Documentation</a>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                        <form method="post" action="#" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label>User Name</label>
+                                                    <p class="form-control-static"><?php echo $name; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Gender</label>
+                                                    <input type="text" class="form-control" id="gender" name="gender" value="<?php echo $gender ?>" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Your Email</label>
+                                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Phone Number</label>
+                                                    <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?php echo $phone ?>"required />
+                                                    <medium>Format: 012-3456789</medium>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Profile Picture</label>
+                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
+                                                </div>
+                                                
+                                                <input type="submit" value="Comfirm" name="submit" style="background-color:#32CD32;width:20em; margin:0;"><br><br>
+                                                
+                                            </form>
+                                            <a href="profile.php"><input type="submit" value="Cancel" name="Edit" style="background-color:#B22222 ;width:20em; margin:0;"></a><br><br>
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
+                                        <div class="col-lg-6">
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
+                                    </div>
+                                    <!-- /.row (nested) -->
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
                             <!-- /.panel -->
                         </div>
-                        <!-- /.col-lg-6 -->
+                        <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -260,21 +243,46 @@
         <!-- /#wrapper -->
 
         <!-- jQuery -->
-        <script src="../js/jquery.min.js"></script>
+        <script src="adminjs/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="../js/bootstrap.min.js"></script>
+        <script src="adminjs/bootstrap.min.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
-        <script src="../js/metisMenu.min.js"></script>
-
-        <!-- Morris Charts JavaScript -->
-        <script src="../js/raphael.min.js"></script>
-        <script src="../js/morris.min.js"></script>
-        <script src="../js/morris-data.js"></script>
+        <script src="adminjs/metisMenu.min.js"></script>
 
         <!-- Custom Theme JavaScript -->
-        <script src="../js/startmin.js"></script>
+        <script src="adminjs/startmin.js"></script>
 
     </body>
 </html>
+
+<?php
+      if(isset($_POST['submit'])){
+        
+        $email = $_POST['email'];
+        $gender = $_POST['gender'];
+        $phone = $_POST['phone'];
+        
+
+        //the path to store the uploaded image
+        $target = "img/".basename($_FILES['image']['name']);
+        
+        $image="img/".$_FILES['image']['name'];
+
+
+      $query = "UPDATE admin SET
+                      email = '$email', password = '".md5($password)."',image='$image', gender='$gender', phone='$phone'
+                      WHERE username = '$name'";
+                    $result = mysqli_query($con, $query);
+      //move uploaded img into folder : img              
+      if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){?>
+        
+        <script type="text/javascript">
+            alert("Update Successfull.");
+            window.location = "adminprofile.php";
+        </script>
+        <?php
+             } 
+            }             
+?> 

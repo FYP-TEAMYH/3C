@@ -120,15 +120,16 @@
                         </div>
 						<div class="col-md-12 form-group">
                         <b><label>Gender</label></b>
-                        <input type="text" class="form-control" id="gender" name="gender" value="<?=$row['gender'];?>" required />
+                        <input type="text" class="form-control" id="gender" name="gender" value="<?php echo $gender ?>" required />
                         </div>
                         <div class="col-md-12 form-group">
                         <b><label>Your Email</label></b>
-                        <input type="email" class="form-control" id="email" name="email" value="<?=$row['email'];?>" required />
+                        <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" required />
                         </div>
                         <div class="col-md-12 form-group">
                         <b><label>Phone Number</label></b>
-                        <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?=$row['phone'];?>"required />
+                        <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?php echo $phone ?>"required />
+                        <medium>Format: 012-3456789</medium>
                         </div>
                         <div class="col-md-12 form-group">
                         <b><label>Profile Picture</label></b>

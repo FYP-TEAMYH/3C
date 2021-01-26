@@ -7,10 +7,16 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>3C Online Store[Admin]</title>
 	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
-  <link rel="stylesheet" href="admincss/bootstrap.min.css">
-  
+	<link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="vendors/linericon/style.css">
+  <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
+  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
+  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
+  <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
 
-  <link rel="stylesheet" href="admincss/style.css">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 <?php	
@@ -31,7 +37,7 @@
 		if($rows==1){
 			session_start();
 			$_SESSION['username'] = $username;                
-			header("Location: index.php");
+			header("Location: adminindex.php");
 		}
 		else{
 
@@ -41,7 +47,7 @@
 		<br><br><br>
 		<h3>Username/password is incorrect.</h3></div>
 
-		<br><br><br>Click here to <a href='adminindex.php'>Login</a>
+		<br><br><br>Click here to <a href='adminlogin.php'>Login</a>
 		<br><br><br></div></div>";
 		}
 	}

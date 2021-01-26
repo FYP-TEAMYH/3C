@@ -37,7 +37,7 @@
 					<div class='container'>
 					<br><br><br>
 					<h3>You are registered successfully.</h3>
-					<br/>Click here to <a href='adminindex.php'>Login</a>
+					<br/>Click here to <a href='adminlogin.php'>Login</a>
 					<br><br><br><br></div></div></div>";
 				}
 		

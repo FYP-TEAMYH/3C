@@ -10,16 +10,16 @@
         <title>Startmin - Bootstrap Admin Theme</title>
 
         <!-- Bootstrap Core CSS -->
-        <link href="../css/bootstrap.min.css" rel="stylesheet">
+        <link href="admincss/bootstrap.min.css" rel="stylesheet">
 
         <!-- MetisMenu CSS -->
-        <link href="../css/metisMenu.min.css" rel="stylesheet">
+        <link href="admincss/metisMenu.min.css" rel="stylesheet">
 
         <!-- Custom CSS -->
-        <link href="../css/startmin.css" rel="stylesheet">
+        <link href="admincss/startmin.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
-        <link href="../css/font-awesome.min.css" rel="stylesheet" type="text/css">
+        <link href="admincss/font-awesome.min.css" rel="stylesheet" type="text/css">
 
         <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
         <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
@@ -61,9 +61,9 @@
                             <i class="fa fa-user fa-fw"></i><?php echo $name; ?><b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
-                            <li><a href="profile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
+                            <li><a href="adminprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
                             <li class="divider"></li>
-                            <li><a href="logout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
+                            <li><a href="adminlogout.php"><i class="fa fa-sign-out fa-fw"></i> Logout</a>
                             </li>
                         </ul>
                     </li>
@@ -75,46 +75,46 @@
                         <ul class="nav" id="side-menu">
                             
                             <li>
-                                <a href="index.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="adminindex.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="flot.php">Flot Charts</a>
+                                        <a href="adminflot.php">Flot Charts</a>
                                     </li>
                                     <li>
-                                        <a href="morris.php">Morris.js Charts</a>
+                                        <a href="adminmorris.php">Morris.js Charts</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="tables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
                             </li>
                             <li>
-                                <a href="profile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
+                                <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="panels-wells.php">Panels and Wells</a>
+                                        <a href="adminpanels-wells.php">Panels and Wells</a>
                                     </li>
                                     <li>
-                                        <a href="buttons.php">Buttons</a>
+                                        <a href="adminbuttons.php">Buttons</a>
                                     </li>
                                     <li>
-                                        <a href="notifications.php">Notifications</a>
+                                        <a href="adminnotifications.php">Notifications</a>
                                     </li>
                                     <li>
-                                        <a href="typography.php">Typography</a>
+                                        <a href="admintypography.php">Typography</a>
                                     </li>
                                     <li>
-                                        <a href="icons.php"> Icons</a>
+                                        <a href="adminicons.php"> Icons</a>
                                     </li>
                                     <li>
-                                        <a href="grid.php">Grid</a>
+                                        <a href="admingrid.php">Grid</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -153,11 +153,9 @@
                                 <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="blank.php">Blank Page</a>
+                                        <a href="adminblank.php">Blank Page</a>
                                     </li>
-                                    <li>
-                                        <a href="login.php">Login Page</a>
-                                    </li>
+                                    
                                 </ul>
                                 <!-- /.nav-second-level -->
                             </li>
@@ -478,16 +476,16 @@
         <!-- /#wrapper -->
 
         <!-- jQuery -->
-        <script src="../js/jquery.min.js"></script>
+        <script src="adminjs/jquery.min.js"></script>
 
         <!-- Bootstrap Core JavaScript -->
-        <script src="../js/bootstrap.min.js"></script>
+        <script src="adminjs/bootstrap.min.js"></script>
 
         <!-- Metis Menu Plugin JavaScript -->
-        <script src="../js/metisMenu.min.js"></script>
+        <script src="adminjs/metisMenu.min.js"></script>
 
         <!-- Custom Theme JavaScript -->
-        <script src="../js/startmin.js"></script>
+        <script src="adminjs/startmin.js"></script>
 
     </body>
 
