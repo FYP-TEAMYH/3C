@@ -13,6 +13,17 @@
 	<link rel="stylesheet" href="css/style.css">
 	
 </head>
+<?php
+  include 'db_connect.php';
+  session_start();
+  $name=$_SESSION['username'];
+  $query=mysqli_query($con,"SELECT * FROM register where username='$name'")or die(mysqli_error());
+  $row=mysqli_fetch_array($query);
+  $image = $row["image"];
+  $email = $row["email"];
+  $gender = $row["gender"];
+  $phone = $row["phone"];
+  ?>
 <body>
 	<!--================ Start Header Menu Area =================-->
 	<header class="header_area">
@@ -35,8 +46,7 @@
 			  <li class="nav-item submenu dropdown">
                
                   <?php
-                  require('db_connect.php');
-                  session_start();
+                  
                   if(isset($_SESSION["username"])){?>
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Account</a>
@@ -79,14 +89,13 @@
 	
 	<!-- ================ start banner area ================= -->	
 	<section class="blog-banner-area" id="category">
-		<div class="container h-100">
+		<div class="container">
 			<div class="blog-banner">
 				<div class="text-center">
-					<h1>Comparison</h1>
+					<h1>Profile</h1>
 					<nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
-              <li class="breadcrumb-item active" aria-current="page">Compare</li>
+              <li class="breadcrumb-item active" aria-current="page">User Information</li>
             </ol>
           </nav>
 				</div>
@@ -102,43 +111,35 @@
         <div class="billing_details" >
             <div class="row">
                 <div class="col-lg-8">
-                    <h3>Please choose the phone to compare</h3>
-                    <form class="row contact_form" action="compareresult.php" method="post">
+                    <form class="row contact_form" action="editprofile.php" method="post">
+                    
                         
-                        <div class="col-md-12 form-group">
-						<form action="compareresult.php">
-                            <select class="country_select" name="select1" id="select1">
-							<?php
-							require('db_connect.php');
-							$result = mysqli_query($con,"SELECT * FROM compare");
-							while($row = mysqli_fetch_array($result))
-							{
-								
-								echo"<option value='" . $row['id'] ."'>" . $row['name']."</option>";
-							}
-							?>	
-                             
-
-                            </select>
-						
+						<div class="col-md-12 form-group">
+                        <b><label>User Name</label></b>
+                        <p class="form-control-static"><?php echo $name; ?></p>
                         </div>
 						<div class="col-md-12 form-group">
-                            <select class="country_select" name="select2" id="select2">
-							<?php
-							require('db_connect.php');
-							$result = mysqli_query($con,"SELECT * FROM compare");
-							while($row = mysqli_fetch_array($result))
-							{
-								echo"<option value='" . $row['id'] ."'>" . $row['name']."</option>";
-							}
-							?>	
-                            </select>
+                        <b><label>Gender</label></b>
+                        <p class="form-control-static"><?php echo $gender; ?></p>
+                        </div>
+                        <div class="col-md-12 form-group">
+                        <b><label>Your Email</label></b>
+                        <p class="form-control-static"><?php echo $email; ?></p>
+                        </div>
+                        <div class="col-md-12 form-group">
+                        <b><label>Phone Number</label></b>
+                        <p class="form-control-static"><?php echo $phone; ?></p>
+                        </div>
+                        <div class="col-md-12 form-group">
+                        <b><label>Profile Picture</label></b>
+                        <p><img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail"></p>
                         </div>
 						
-						
-								<br>
-								<input type="submit" value="Start to Compare" id="submit" class="button button-login w-100" >
-						
+								
+						<input type="submit" value="Edit" name="edit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>		
+
+    
+                                                
                     </form>
                 </div>
                 

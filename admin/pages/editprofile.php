@@ -190,32 +190,32 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                        <form method="post" action="editprofile.php" >
+                                        <form method="post" action="#" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>User Name</label>
                                                     <p class="form-control-static"><?php echo $name; ?></p>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Gender</label>
-                                                    <p class="form-control-static"><?php echo $gender; ?></p>
+                                                    <input type="text" class="form-control" id="gender" name="gender" value="<?=$row['gender'];?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Your Email</label>
-                                                    <p class="form-control-static"><?php echo $email; ?></p>
+                                                    <input type="email" class="form-control" id="email" name="email" value="<?=$row['email'];?>" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Phone Number</label>
-                                                    <p class="form-control-static"><?php echo $phone; ?></p>
+                                                    <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?=$row['phone'];?>"required />
                                                 </div>
-
                                                 <div class="form-group">
                                                     <label>Profile Picture</label>
-                                                    <img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail">
+                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
                                                 </div>
                                                 
-                                                <input type="submit" value="edit" name="Edit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
+                                                <input type="submit" value="Comfirm" name="submit" style="background-color:#32CD32;width:20em; margin:0;"><br><br>
                                                 
                                             </form>
+                                            <a href="profile.php"><input type="submit" value="Cancel" name="Edit" style="background-color:#B22222 ;width:20em; margin:0;"></a><br><br>
                                         </div>
                                         <!-- /.col-lg-6 (nested) -->
                                         <div class="col-lg-6">
@@ -257,3 +257,33 @@
 
     </body>
 </html>
+
+<?php
+      if(isset($_POST['submit'])){
+        
+        $email = $_POST['email'];
+        $gender = $_POST['gender'];
+        $phone = $_POST['phone'];
+        
+
+        //the path to store the uploaded image
+        $target = "img/".basename($_FILES['image']['name']);
+        
+        $image="img/".$_FILES['image']['name'];
+
+
+      $query = "UPDATE admin SET
+                      email = '$email', password = '".md5($password)."',image='$image', gender='$gender', phone='$phone'
+                      WHERE username = '$name'";
+                    $result = mysqli_query($con, $query);
+      //move uploaded img into folder : img              
+      if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){?>
+        
+        <script type="text/javascript">
+            alert("Update Successfull.");
+            window.location = "profile.php";
+        </script>
+        <?php
+             } 
+            }             
+?> 

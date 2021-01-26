@@ -49,7 +49,7 @@
                    ?>
                  
                   
-                 <li class="nav-item"><a class="nav-link" href="editprofile.php">Update Profile</a></li>
+                 <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
                  
                   <?php } ?>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>

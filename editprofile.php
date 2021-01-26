@@ -1,7 +1,5 @@
-
-
 <!DOCTYPE html>
-<html lang="en-US">
+<html lang="en">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,75 +9,256 @@
 	<link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
 	<link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
 	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
+	<link rel="stylesheet" href="vendors/nice-select/nice-select.css">
 	<link rel="stylesheet" href="css/style.css">
+	
 </head>
-  <?php
+<?php
   include 'db_connect.php';
   session_start();
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM register where username='$name'")or die(mysqli_error());
   $row=mysqli_fetch_array($query);
+  $image = $row["image"];
+  $email = $row["email"];
+  $gender = $row["gender"];
+  $phone = $row["phone"];
   ?>
-  <h1>Update Profile</h1>
-<div class="profile-input-field">
-        <h3>Please Fill-out All Fields</h3>
-        <form method="post" action="#" >
-          <div class="form-group">
-            <label>Fullname</label>
-            <h5>
-            <?php echo $name; ?></h5>
-		</div>
-        <div class="form-group">
-            <label>Email</label>
-            <input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />
-        </div>
-          <div class="form-group">
-            <label>Password</label>
-            <input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'" required />
-		</div>
-          <div class="form-group">
-            <label>Comfirm Password</label>
-            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required />
-		</div>
-        <script>
-				                    var password=document.getElementById("password"),confirmPassword=document.getElementById("confirmPassword");
-				                    function validatePassword()
-				                    {
-				                        if(password.value!=confirmPassword.value){
-				                            confirmPassword.setCustomValidity("Passwords Don't Match!");
-				                        }
-				                        else{
-				                            confirmPassword.setCustomValidity("");
-				                        }
-				                    }
-				                    password.onchange=validatePassword;
-				                    confirmPassword.onkeyup=validatePassword;
-			</script>
+<body>
+	<!--================ Start Header Menu Area =================-->
+	<header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" href="index.php"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store</b></a>
       
-          <div class="form-group">
-          
-            <input type="submit" name="submit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
-        
+	<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
+            <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
+              <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
+              <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
+			  <li class="nav-item submenu dropdown">
+               
+                  <?php
+                  
+                  if(isset($_SESSION["username"])){?>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Account</a>
+                <ul class="dropdown-menu">
+                 <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
+                 <?php 
+                 $query=mysqli_query($con,"select * from register ");
+                 if($row=mysqli_fetch_array($query)){  
+                   $username=$_SESSION["username"];
+                   ?>
+                 
+                  
+                 <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
+                 
+                  <?php } ?>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
+                  </ul>
+                  <?php }else if(!isset($_SESSION["username"]))
+                  {?>
+                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Login/Register</a>
+                <ul class="dropdown-menu">
+                  <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+                </ul>
+                <?php }?>
+              </li>
+            </ul>
+
+            <ul class="nav-shop">
+              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
+            </ul>
           </div>
-        </form>
-        <a href="index.php"><input style="margin-left:15px" type="submit" value="                           Back                      " id="submit" class="button button-register w-100"></a>
-      </div>
-      </html>
-      <?php
-      if(isset($_POST['submit'])){
-        $username = $_POST['username'];
-        $email = $_POST['email'];
-        $password = $_POST['password'];
+        </div>
+      </nav>
+    </div>
+  </header>
+	<!--================ End Header Menu Area =================-->
+	
+	<!-- ================ start banner area ================= -->	
+	<section class="blog-banner-area" id="category">
+		<div class="container">
+			<div class="blog-banner">
+				<div class="text-center">
+					<h1>Profile</h1>
+					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item active" aria-current="page">User Information</li>
+            </ol>
+          </nav>
+				</div>
+			</div>
+    </div>
+	</section>
+	<!-- ================ end banner area ================= -->
+
+	<section class="checkout_area section-margin--small">
+    <div class="container">
+
         
-      $query = "UPDATE register SET 
-                      email = '$email', password = '".md5($password)."'
+        <div class="billing_details" >
+            <div class="row">
+                <div class="col-lg-8">
+               
+                <form method="post" action="#" enctype="multipart/form-data">     
+                        
+						<div class="col-md-12 form-group">
+                        <b><label>User Name</label></b>
+                        <p class="form-control-static"><?php echo $name; ?></p>
+                        </div>
+						<div class="col-md-12 form-group">
+                        <b><label>Gender</label></b>
+                        <input type="text" class="form-control" id="gender" name="gender" value="<?=$row['gender'];?>" required />
+                        </div>
+                        <div class="col-md-12 form-group">
+                        <b><label>Your Email</label></b>
+                        <input type="email" class="form-control" id="email" name="email" value="<?=$row['email'];?>" required />
+                        </div>
+                        <div class="col-md-12 form-group">
+                        <b><label>Phone Number</label></b>
+                        <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?=$row['phone'];?>"required />
+                        </div>
+                        <div class="col-md-12 form-group">
+                        <b><label>Profile Picture</label></b>
+                        <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
+                        </div>
+						
+								
+                        <input type="submit" value="comfirm" name="submit" id="submit" class="button button-login w-25" >
+
+    
+                                                
+                    </form>
+                    <br>
+                    <a href="profile.php"><input type="submit" value="Cancel" name="Edit" class="button button-login w-100" style="background-color:red"></a><br><br>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+  </section>
+		<br><br><br><br><br>
+		
+
+
+  
+
+   <!--================ Start footer Area  =================-->	
+	<footer class="footer">
+		<div class="footer-area">
+			<div class="container">
+				<div class="row section_gap">
+					<div class="col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title large_title">Our Mission</h4>
+							<p>
+								Our online shop has provided the best interface platform for customer to purchase and compare about each Multimedia Accessories.
+							</p>
+							<p>
+								Quality Assurance | Efficient 
+								
+							</p>
+						</div>
+					</div>
+					<div class="offset-lg-2 col-lg-2 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Quick Links</h4>
+							<ul class="list">
+								<ul class="list">
+								<li><a href="index.php">Home</a></li>
+								<li><a href="category.php">Shop</a></li>		
+								<li><a href="compare.php">compare</a></li>				
+							</ul>
+							</ul>
+						</div>
+					</div>
+					<div class="col-lg-2 col-md-6 col-sm-6">
+						
+					</div>
+					<div class="offset-lg-0 col-lg-3 col-md-6 col-sm-6">
+						<div class="single-footer-widget tp_widgets">
+							<h4 class="footer_title">Contact Us</h4>
+							<div class="ml-40">
+								
+	
+								<p class="sm-head">
+									<span class="fa fa-envelope"></span>
+									Email
+								</p>
+								<p>
+									3c_online@hotmail.com
+								</p>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="footer-bottom">
+			<div class="container">
+				<div class="row d-flex">
+					<p class="col-lg-12 footer-text text-center">
+						
+Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | 3C Online Store
+</p>
+				</div>
+			</div>
+		</div>
+	</footer>
+	<!--================ End footer Area  =================-->
+
+
+
+  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
+  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
+  <script src="vendors/skrollr.min.js"></script>
+  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
+  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
+  <script src="vendors/jquery.ajaxchimp.min.js"></script>
+  <script src="vendors/mail-script.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
+
+<?php
+      if(isset($_POST['submit'])){
+        
+        $email = $_POST['email'];
+        $gender = $_POST['gender'];
+        $phone = $_POST['phone'];
+        
+
+        //the path to store the uploaded image
+        $target = "img/".basename($_FILES['image']['name']);
+        
+        $image="img/".$_FILES['image']['name'];
+
+
+      $query = "UPDATE register SET
+                      email = '$email', image='$image', gender='$gender', phone='$phone'
                       WHERE username = '$name'";
                     $result = mysqli_query($con, $query);
-                    ?>
-                     <script type="text/javascript">
+      //move uploaded img into folder : img              
+      if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){?>
+        
+        <script type="text/javascript">
             alert("Update Successfull.");
-            window.location = "index.php";
+            window.location = "profile.php";
         </script>
         <?php
-             }              
-?>
+             } 
+            }             
+?> 
