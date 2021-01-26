@@ -7,16 +7,10 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>3C Online Store[Admin]</title>
 	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
-  <link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
-  <link rel="stylesheet" href="vendors/fontawesome/css/all.min.css">
-	<link rel="stylesheet" href="vendors/themify-icons/themify-icons.css">
-	<link rel="stylesheet" href="vendors/linericon/style.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.theme.default.min.css">
-  <link rel="stylesheet" href="vendors/owl-carousel/owl.carousel.min.css">
-  <link rel="stylesheet" href="vendors/nice-select/nice-select.css">
-  <link rel="stylesheet" href="vendors/nouislider/nouislider.min.css">
+  <link rel="stylesheet" href="admincss/bootstrap.min.css">
+  
 
-  <link rel="stylesheet" href="css/style.css">
+  <link rel="stylesheet" href="admincss/style.css">
 </head>
 <body>
 <?php	
@@ -37,7 +31,7 @@
 		if($rows==1){
 			session_start();
 			$_SESSION['username'] = $username;                
-			header("Location: admindashboard.php");
+			header("Location: index.php");
 		}
 		else{
 
@@ -126,14 +120,6 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
 
 
 
-  <script src="vendors/jquery/jquery-3.2.1.min.js"></script>
-  <script src="vendors/bootstrap/bootstrap.bundle.min.js"></script>
-  <script src="vendors/skrollr.min.js"></script>
-  <script src="vendors/owl-carousel/owl.carousel.min.js"></script>
-  <script src="vendors/nice-select/jquery.nice-select.min.js"></script>
-  <script src="vendors/jquery.ajaxchimp.min.js"></script>
-  <script src="vendors/mail-script.js"></script>
-  <script src="js/main.js"></script>
 </body>
 </html>
 
