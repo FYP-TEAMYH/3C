@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 22, 2021 at 01:04 PM
--- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- Generation Time: Jan 27, 2021 at 08:33 AM
+-- Server version: 10.1.29-MariaDB
+-- PHP Version: 7.1.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -32,16 +32,18 @@ CREATE TABLE `admin` (
   `id` int(11) NOT NULL,
   `username` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `admin`
 --
 
-INSERT INTO `admin` (`id`, `username`, `email`, `password`) VALUES
-(4, 'YongHao', 'yonghaocha@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(6, 'admin', 'james@gmail.com', '81dc9bdb52d04dc20036dbd8313ed055');
+INSERT INTO `admin` (`id`, `username`, `email`, `password`, `image`, `gender`, `phone`) VALUES
+(14, 'YongHao', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/WeChat Image_20200817232601.jpg', 'Male', '012-7027533');
 
 -- --------------------------------------------------------
 
@@ -58,14 +60,14 @@ CREATE TABLE `compare` (
   `battery` varchar(100) NOT NULL,
   `display` varchar(100) NOT NULL,
   `ram` varchar(100) NOT NULL,
-  `photo` varchar(500) NOT NULL
+  `image` varchar(500) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `compare`
 --
 
-INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `battery`, `display`, `ram`, `photo`) VALUES
+INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `battery`, `display`, `ram`, `image`) VALUES
 (1, 'IPHONE 11', 'Apple A13 Bionic', '64GB', '12MP+12MP', '3110mAh', '6.1 inches', '4GB', 'img/2020FlagshipPhoneSpec/iphone11.png'),
 (2, 'Asus Zenfone 7 Pro ZS671KS', 'Qualcomm SM8250 Snapdragon 865+ (7 nm+)', '256GB', '64MP+8MP+12MP', '5000 mAh', '6.67 inches', '8GB', 'img/2020FlagshipPhoneSpec/AsusZenfone7_Pro_ZS671KS.jpg'),
 (3, 'Xiaomi Mi 10 Pro 5G', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '256GB,512GB', '108MP,12MP,8MP,20MP', '4500 mAh', '6.67 inches\r\n', '8GB,12GB', 'img/2020FlagshipPhoneSpec/XiaomiMi10Pro_5G.jpg'),
@@ -74,72 +76,6 @@ INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `batter
 (6, 'Samsung Galaxy Z Fold2 5G', 'Qualcomm SM8250 Snapdragon 865+ (7 nm+)', '256GB,512GB', '12MP+ 12MP+ 12MP', '4500mAh', '7.6 inches', '12GB', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_ZFold2_5G.jpg'),
 (7, 'Oppo Find X2 Pro', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '256GB,512GB', '48MP+13MP+48MP', '4260mAh', '6.7 inches', '12', 'img/2020FlagshipPhoneSpec/OppoFindX2_Pro.jpg'),
 (8, 'One Plus 8 Pro', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '128GB,256GB', '48MP+8MP+48MP', '4510 mAh', '6.78 inches', '8GB,12GB', 'img/2020FlagshipPhoneSpec/OnePlus8_Pro.jpg');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_item`
---
-
-CREATE TABLE `order_item` (
-  `order_item_id` int(11) NOT NULL,
-  `order_id` int(11) NOT NULL,
-  `order_item_name` varchar(250) NOT NULL,
-  `order_item_quantity` int(11) NOT NULL,
-  `order_item_price` double(12,2) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `order_item`
---
-
-INSERT INTO `order_item` (`order_item_id`, `order_id`, `order_item_name`, `order_item_quantity`, `order_item_price`) VALUES
-(7, 0, 'Logitech G213 Prodigy Gaming Keyboard', 3, 199.00),
-(8, 1, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00);
-
--- --------------------------------------------------------
-
---
--- Table structure for table `order_table`
---
-
-CREATE TABLE `order_table` (
-  `order_id` int(11) NOT NULL,
-  `order_number` int(11) NOT NULL,
-  `order_total_amount` double(12,2) NOT NULL,
-  `transaction_id` varchar(200) NOT NULL,
-  `card_cvc` int(5) NOT NULL,
-  `card_expiry_month` varchar(30) NOT NULL,
-  `card_expiry_year` varchar(30) NOT NULL,
-  `order_status` varchar(50) NOT NULL,
-  `card_holder_number` varchar(250) NOT NULL,
-  `email_address` varchar(250) NOT NULL,
-  `customer_name` varchar(250) NOT NULL,
-  `customer_address` text NOT NULL,
-  `customer_city` varchar(250) NOT NULL,
-  `customer_pin` varchar(30) NOT NULL,
-  `customer_state` varchar(250) NOT NULL,
-  `customer_country` varchar(250) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `order_table`
---
-
-INSERT INTO `order_table` (`order_id`, `order_number`, `order_total_amount`, `transaction_id`, `card_cvc`, `card_expiry_month`, `card_expiry_year`, `order_status`, `card_holder_number`, `email_address`, `customer_name`, `customer_address`, `customer_city`, `customer_pin`, `customer_state`, `customer_country`) VALUES
-(1, 255982, 199.00, 'txn_1ICOMKLOApRiqgAEOVP9hbi1', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'ewekengy@gmail.com', 'Ewe Ken Gy', '6,Jalan Api-Api 5,\r\nTaman Megah Ria', 'Masai', '81750', 'Johor', 'Malaysia');
-
--- --------------------------------------------------------
-
---
--- Table structure for table `password_reset_temp`
---
-
-CREATE TABLE `password_reset_temp` (
-  `email` varchar(250) NOT NULL,
-  `key` varchar(250) NOT NULL,
-  `expDate` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -153,19 +89,19 @@ CREATE TABLE `product` (
   `image` varchar(255) NOT NULL,
   `price` varchar(255) NOT NULL,
   `category` varchar(255) NOT NULL,
-  `description` varchar(999) NOT NULL,
-  `description2` varchar(9999) NOT NULL,
-  `brand name` varchar(255) NOT NULL,
-  `Color Family` varchar(255) NOT NULL,
-  `Quality checking` varchar(255) NOT NULL
+  `description` text NOT NULL,
+  `description2` longtext NOT NULL,
+  `brand` varchar(255) NOT NULL,
+  `color` varchar(255) NOT NULL,
+  `quality` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `product`
 --
 
-INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`, `description2`, `brand name`, `Color Family`, `Quality checking`) VALUES
-(1, 'Razer BlackWidow Mechanical Gaming Keyboard', 'img/keyboard/keyboard1.jpg', '399.00', 'keyboard', 'Green Mechanical Switches - Tactile & Clicky - Chroma RGB Lighting - Anti-Ghosting - Programmable Macro Functionality', 'About this item<br><br>\r\n- The Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined<br>\r\n- Signature Mechanical Switch for Gaming: Razer Green switch technology provides a satisfying click sound with 50 G of actuation force, ideal for typing and gaming requiring the highest accuracy<br>\r\n- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys<br>\r\n- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands', 'Razer', 'Black', 'Yes'),
+INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`, `description2`, `brand`, `color`, `quality`) VALUES
+(1, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 'img/keyboard1.jpg', '399.00', 'keyboard', '<br>- Tactile & Silent \r\n<br>- Chroma RGB Lighting \r\n<br>- Magnetic Wrist Rest \r\n<br>- Dedicated Media Keys & Dial \r\n<br>- USB Passthrough ', '<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- Zero-Compromise Mechanical Switch for Speed & Accuracy: Razer Orange switch technology provides tactile feedback with a quieter click, requiring 45 G of actuation force; ideal for most gaming and typing experiences\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands\r\n<br>- Ergonomic, Magnetic Wrist Rest: Made of plush leatherette to maximize comfort over extended gaming sessions\r\n<br>- Durable Construction: Supports up to 80 million clicks; made of military-grade metal top plate ', 'Razer', 'Black', 'Yes'),
 (2, 'Logitech G213 Prodigy Gaming Keyboard', 'img/keyboard/keyboard5.jpg', '199.00', 'keyboard', 'Worlds NO. 1 Best Selling Gaming Gear Brand - Based on independent aggregated sales data (FEB \'19 - FEB\'20) of Gaming Keyboard, Mice, & PC Headset in units from: US, CA, CN, JP, KR, TW, TH, ID, DE, FR, RU, UK, SE, TR', 'About this item<br><br>\r\n\r\n- Brilliant color spectrum illumination - personalize five individual lighting Zones from a spectrum of over 16. 8 million colors. Change colors to match your setup, specific games, or to showcase your favorite colors. Synchronize lighting effects with other Logitech G devices using Logitech gaming software. Low light leak around each keycap means less more light comes through the lettering - and less leaks around the keycaps. This helps make the illumination of each key more brilliant, making it easier to find your keys in the dark.<br>\r\n\r\n- Comfortable and durable - G213 Prodigy is a full-sized keyboard designed for gaming and productivity. The slim body is built for gamers of all levels, with a durable construction that repels liquids, crumbs and dirt for easy cleanup. An integrated Palm rest And adjustable feet Let you set your keyboard to the ideal position, so it\'s comfortable to use even during the longest gaming sessions.<br>\r\n- Performance tuned with multi-key input - G213 brings together the best in tactile feel and performance with Keys built specifically for the way gamers play. Each key on the G213 is tuned to enhance the tactile experience, delivering ultra-quick, responsive feedback that is up to 4 times faster than standard keyboards. The anti-ghosting gaming Matrix is tuned for optimal gaming performance, keeping you in control when you press multiple gaming keys simultaneously.\r\n', 'Logitech G', 'Black', 'Yes'),
 (3, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 'img/keyboard/keyboard2.jpg', '299.00', 'keyboard', '61 Keys TKL Designed 5.0 Bluetooth Gaming Keyboard with Brown Switches and 16.8 Million RGB Lighting for PC, Laptop, Cell Phone', 'About this item<br><br>\r\n- First Redragon 60% Keyboard - Ultra minimalistic tenkeyless (TKL) design with 61 keys portable layout frees up table space for mouse movement, which offers the purest performance for FPS pro (11.5*3.9*1.4 in).<br>\r\n- Wireless Made Easy - Enjoy the freedom of wirelessness with a Bluetooth 5.0 connection and 3000mAh long-lasting battery capacity. Reliable and fast connects hassle-free with devices such as laptops, tablets, and even phones that support Bluetooth.<br>\r\n- Dual Mode Switch - Easily switch between wireless and wired modes with the mode switch on the side. Included USB-C cable gives you the option to go wired for competitive games.<br>\r\n- Hot-Swappable Brown Switches - Tactile brown switches provide a soft bump, but no click, unlike blue switches for quiet use. Hot-swappable with other Redragon switches. <br>\r\n- Made to last with switches rated for 50 million keypresses.<br>\r\n- RGB Illumination Builder - 13 Dynamic presets available onboard. Millions of color options and effects make you the designer of your ultimate gear with a pro driver. Software/Driver link (http://bit.ly/K530BTKeyboard)', 'Redragon', 'White', 'Yes'),
 (4, 'Razer Cynosa Chroma Gaming Keyboard', 'img/keyboard/keyboard3.jpg', '199.00', 'keyboard', '168 Individually Backlit RGB Keys - Spill-Resistant Design - Programmable Macro Functionality - Quiet & Cushioned', 'About this item<br><br>\r\n<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- All-around Gaming Performance: Able to execute up to ten commands at the same time with built-in key rollover anti-ghosting\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Spill-Resistant Design: Built to withstand most accidental liquid splashes\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands\r\n<br>- Durable Construction: Supports up to 80 million clicks with a 2 year manufacturer warranty', 'Razer', 'Black', 'Yes'),
@@ -176,7 +112,7 @@ INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`
 (9, 'Razer Huntsman Mini 60% Gaming Keyboard', 'img/keyboard/keyboard10.jpg', '499.00', 'keyboard', 'Fastest Keyboard Switches Ever - Clicky Optical Switches - Chroma RGB Lighting - PBT Keycaps - Onboard Memory - Classic Black', 'About this item<br><br>\r\n<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- Faster Than Legacy Mechanical Switches: Razer Optical switches use light-based actuation, registering key presses at the speed of light (30% shorter actuation distance than other clicky switches at 1.5 millimeter) with satisfying, clicky feedback\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Quality, Aluminum Construction: Covered with a matte, aluminum top frame for increased structural integrity\r\n<br>- Oil-Resistant Double shot PBT Keycaps: Made of textured, high-grade PBT for a more durable and textured finish less prone to long-term grime build up\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands', 'Razer', 'Black', 'Yes'),
 (10, 'Razer Huntsman Elite Gaming Keyboard', 'img/keyboard/keyboard11.jpg', '649.00', 'keyboard', 'Fastest Keyboard Switches Ever - Linear Optical Switches - Chroma RGB Lighting - Magnetic Plush Wrist Rest - Dedicated Media Keys & Dial - Classic Black', 'About this item<br><br>\r\n<br>- The #1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- Faster Than Traditional Mechanical Switches: Razer Linear Optical switch technology uses optical beam-based actuation, registering key presses at the speed of light (15-30% shorter actuation distance than other linear switches at 1.0 mm)\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Quality, Aluminum Construction: Covered with a matte, aluminum top frame for increased structural integrity\r\n<br>- Ergonomic, Magnetic Wrist Rest: Made of plush leatherette to maximize comfort over extended gaming sessions (with built-in underglow lighting)\r\n<br>- Fully Programmable Macro Support: Razer Hypershift allows for all keys and keypress combinations to be remapped to execute complex commands\r\n<br>- Unrivalled Durability: Supports up to 100 million clicks with a 2 year manufacturer warranty, double the lifespan of most competitor keyboards', 'Razer', 'Black', 'Yes'),
 (11, 'Razer DeathAdder Essential Gaming Mouse', 'img/mouse/mouse3.png', '119.00', 'mouse', '6400 DPI Optical Sensor - 5 Programmable Buttons - Mechanical Switches - Rubber Side Grips - White', 'About this item<br><br>\r\n<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- High-Precision 6,400 DPI Optical Sensor: Offers on-the-fly sensitivity adjustment through dedicated DPI buttons (reprogrammable) for gaming and creative work\r\n<br>- Durable Mechanical Switches: Supports up to 10 million clicks, backed by a 2 year warranty\r\n<br>- Ridged, Rubberized Scroll Wheel for Maximum Accuracy: Small, tactile bumps increases grip and allows for more controlled scrolling in high-stakes gaming situations\r\n<br>- 5 Programmable Buttons: Allows for button remapping and assignment of complex macro functions through Razer Synapse', 'Razer ', 'White', 'Yes'),
-(12, 'HyperX Pulsefire Raid – Gaming Mouse', 'img/mouse/mouse1.png', '239.00', 'mouse', '11 Programmable Buttons, RGB, Ergonomic Design, Comfortable Side Grips, Software-Controlled Customization', 'About this item<br><br>\r\n<br>- Lightweight 11-button programmable mouse\r\n<br>- Premium Pixart 3389 Sensor\r\n<br>- Advanced customization using HyperX NGenuity software\r\n<br>- Ergonomic design with comfortable side grips\r\n<br>- Split-button design for extreme responsiveness\r\n<br>- Customizable RGB lighting\r\n<br>- Large skates and flexible braided cable\r\n<br>- Multi-platform compatibility', 'HyperX', 'Black', 'Yes'),
+(12, 'HyperX Pulsefire Raid Gaming Mouse', 'img/mouse1.png', '239.00', 'mouse', '11 Programmable Buttons, RGB, Ergonomic Design, Comfortable Side Grips, Software-Controlled Customization  ', 'About this item<br><br>\r\n<br>- Lightweight 11-button programmable mouse\r\n<br>- Premium Pixart 3389 Sensor\r\n<br>- Advanced customization using HyperX NGenuity software\r\n<br>- Ergonomic design with comfortable side grips\r\n<br>- Split-button design for extreme responsiveness\r\n<br>- Customizable RGB lighting\r\n<br>- Large skates and flexible braided cable\r\n<br>- Multi-platform compatibility  ', 'HyperX', 'Black', 'Yes'),
 (13, 'Razer Basilisk X HyperSpeed Wireless Gaming Mouse', 'img/mouse/mouse2.png', '199.00', 'mouse', 'luetooth & Wireless Compatible, 16K DPI Optical Sensor, 6 Programmable Buttons, 450 Hr Battery, Classic Black', 'About this item<br><br>\r\n<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Keyboards, Mice, PC Headset, PC Microphone, Gaming Designed, Based on dollar sales, Jan. 2017- Mar. 2020 combined.\r\n<br>- 25% Faster Than Competing Wireless Mice: The all-new, Razer HyperSpeed wireless technology brings together extreme low-latency and interference reduction for true wireless freedom\r\n<br>- Dual Mode Connectivity: Supports Bluetooth for efficient power consumption and  HyperSpeed Wireless for lag-free gaming. Max Acceleration (G): 40\r\n<br>- 6 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3\r\n<br>- Up to 450 Hour Battery Life: Lasts 450 hours on Bluetooth, 285 hours on HyperSpeed Wireless', 'Razer', 'Black', 'Yes'),
 (14, 'Razer Basilisk v2 Wired Gaming Mouse', 'img/mouse/mouse4.png', '299.00', 'mouse', '20K DPI Optical Sensor, Fastest Gaming Mouse Switch, Chroma RGB Lighting, 11 Programmable Buttons, Classic Black', 'About this item<br><br>\r\n<br>- The #1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined.\r\n<br>- Focus+ 20K DPI Optical Sensor: Offers an on-the-fly sensitivity adjustment through dedicated DPI buttons (programmable) for gaming\r\n<br>- 3x Faster Than Traditional Mechanical Switches: New Razer optical mouse switches use light beam-based actuation, registering button presses at the speed of light for complete immersion and absolute control\r\n<br>- Customizable Chroma RGB Color Profiles: Supports 16.8 million color combinations w/ included preset profiles\r\n<br>- 11 Programmable Buttons: Allows for reconfiguration and assignment of complex macro functions through Razer Synapse 3\r\n<br>- Drag-Free Cord for Wireless-Like Performance: Razer Speedflex cables eliminate the need for mouse bungees, drastically reducing weight and drag for absolute control', 'Razer', 'Black', 'Yes'),
 (15, 'Logitech G203 LIGHTSYNC Wired Gaming Mouse - Black', 'img/mouse/mouse5.jpg', '129.00', 'mouse', 'Worlds no.1 Best Selling Gaming Gear Brand - Based on independent aggregated sales data (FEB \'19 - FEB\'20) of Gaming Keyboard, Mice, & PC Headset in units from: US, CA, CN, JP, KR, TW, TH, ID, DE, FR, RU, UK, SE, TR', 'About this item<br><br>\r\n\r\n<br>- 8, 000 DPI gaming-grade sensor responds precisely to movements. Customize your sensitivity settings to suit the sensitivity you like with Logitech G HUB gaming software and cycle easily through up to 5 DPI settings.\r\n<br>- Play in color with our most vibrant LIGHTSYNC RGB featuring color wave effects customizable across -16. 8 million colors. Install Logitech G HUB software to choose from preset colors and animations or make your own. Game-driven, audio visualization and screen mapping options are also available.\r\n<br>- Play comfortably and with total control. The classic and simple 6-button layout and classic gaming shape is a comfortable time-tested and loved design. Each button can be customized using Logitech G HUB software to simplify tasks.\r\n<br>- Primary buttons are mechanical and tensioned with durable metal springs for reliability, performance and excellent feel. The crisp clicks and precise feedback delivers a great precision feel to maximize your fun in game.', 'Logitech', 'Black', 'Yes'),
@@ -191,8 +127,8 @@ INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`
 (24, 'Iphone 12', 'img/2020FlagshipPhoneSpec/iPhone12-Blue.jpg', '4099.00', 'smartphone', 'As part of Apple\'s efforts to reach their environmental goals, iPhone 12 does not include a power adapter or EarPods. Please use your existing Apple power adapter and headphones or purchase these accessories separately.\r\n<br><br>\r\n6.1-inch Super Retina XDR display\r\nWater and dust resistant (maximum depth of 6 metres for up to 30 minutes)\r\nAdvanced dual-camera system with 12MP Ultra Wide and Wide cameras\r\n12MP TrueDepth front camera with Night mode', 'iPhone 12. Beautifully bright 6.1-inch Super Retina XDR display. Ceramic Shield with four times better drop performance.2 Incredible low-light photography with Night mode on all cameras. Cinema-grade Dolby Vision video recording, editing and playback. Powerful A14 Bionic chip. And new MagSafe accessories for easy attachment and faster wireless charging. Let the fun begin.\r\n<br><br>\r\nFeature bullets\r\n<br>- 6.1-inch Super Retina XDR display\r\n<br>- Ceramic Shield, tougher than any smartphone glass\r\n<br>- A14 Bionic chip, the fastest chip ever in a smartphone\r\n<br>- Advanced dual-camera system with 12MP Ultra Wide and Wide cameras; Night mode, Deep Fusion,\r\nSmart HDR 3, 4K Dolby Vision HDR recording\r\n<br>- 12MP TrueDepth front camera with Night mode, 4K Dolby Vision HDR recording\r\n<br>- Industry-leading IP68 water resistance4\r\n<br>- Supports MagSafe accessories for easy attachment and faster wireless charging\r\n<br>- iOS 14 with redesigned widgets on the Home Screen, all-new App Library, App Clips and more', 'Apple', 'Blue', 'Yes'),
 (25, 'Iphone 12 Pro', 'img/2020FlagshipPhoneSpec/iphone-12-pro-blue.webp', '4899.00', 'smartphone', 'As part of Apple\'s efforts to reach their environmental goals, iPhone 12 Pro does not include a power adapter or EarPods. Please use your existing Apple power adapter and headphones or purchase these accessories separately.\r\n<br><br>\r\n6.1-inch Super Retina XDR display\r\nWater and dust resistant (maximum depth of 6 metres for up to 30 minutes)\r\nPro camera system with 12MP Ultra Wide, Wide and Telephoto cameras\r\n12MP TrueDepth front camera with Night mode', 'iPhone 12 Pro. Beautifully bright 6.1-inch Super Retina XDR display. Ceramic Shield with four times better drop performance. Incredible low-light photography with a new Pro camera system and 4x optical zoom range. Cinema-grade Dolby Vision video recording, editing and playback. Night mode portraits and next-level AR experiences with the LiDAR Scanner. Powerful A14 Bionic chip. And new MagSafe accessories for easy attachment and faster wireless charging.3 For infinitely spectacular possibilities.\r\n<br><br>\r\nKey feature bullets<br>\r\n- 6.1-inch Super Retina XDR display<br>\r\n- Ceramic Shield, tougher than any smartphone glass<br>\r\n- A14 Bionic chip, the fastest chip ever in a smartphone<br>\r\n- Pro camera system with 12MP Ultra Wide, Wide and Telephoto cameras; 4x optical zoom range;\r\nNight mode, Deep Fusion, Smart HDR 3, Apple ProRAW, 4K Dolby Vision HDR recording<br>\r\n- LiDAR Scanner for improved AR experiences, Night mode portraits<br>\r\n- 12MP TrueDepth front camera with Night mode, 4K Dolby Vision HDR recording<br>\r\n- Industry-leading IP68 water resistance<br>\r\n- Supports MagSafe accessories for easy attachment and faster wireless charging<br>\r\n- iOS 14 with redesigned widgets on the Home Screen, all-new App Library, App Clips and more<br>', 'Apple', 'Pacific Blue', 'Yes'),
 (26, 'Iphone 12 Pro Max', 'img/2020FlagshipPhoneSpec/iphone-12-pro-max-blue.webp', '5799.00', 'smartphone', 'As part of Apple\'s efforts to reach their environmental goals, iPhone 12 Pro Max does not include a power adapter or EarPods. Please use your existing Apple power adapter and headphones or purchase these accessories separately.\r\n\r\n\r\n<br><br>6.7-inch Super Retina XDR display\r\nWater and dust resistant (maximum depth of 6 metres for up to 30 minutes)\r\nPro camera system with 12MP Ultra Wide, Wide and Telephoto cameras\r\n12MP TrueDepth front camera with Night mode.', 'iPhone 12 Pro Max. Larger 6.7-inch Super Retina XDR display. Ceramic Shield with four times better drop performance. Incredible low-light photography with the best Pro camera system on an iPhone, and 5x optical zoom range. Cinema-grade Dolby Vision video recording, editing and playback. Night mode portraits and next-level AR experiences with the LiDAR Scanner.  Powerful A14 Bionic chip. And new MagSafe accessories for easy attachment and faster wireless charging.3 For infinitely spectacular possibilities.\r\n<br><br>\r\nFeature bullets<br>\r\n- 6.7-inch Super Retina XDR display<br>\r\n- Ceramic Shield, tougher than any smartphone glass<br>\r\n- A14 Bionic chip, the fastest chip ever in a smartphone<br>\r\n- Pro camera system with 12MP Ultra Wide, Wide and Telephoto cameras; 5x optical zoom range; Night mode, Deep Fusion, Smart HDR 3, Apple ProRAW, 4K Dolby Vision HDR recording<br>\r\n- LiDAR Scanner for improved AR experiences, Night mode portraits<br>\r\n- 12MP TrueDepth front camera with Night mode, 4K Dolby Vision HDR recording<br>\r\n- Industry-leading IP68 water resistance<br>\r\n- Supports MagSafe accessories for easy attachment and faster wireless charging<br>\r\n- iOS 14 with redesigned widgets on the Home Screen, all-new App Library, App Clips and more<br>', 'Apple', 'Pacific Blue', 'Yes'),
-(27, 'OnePlus 8 Pro', 'img/2020FlagshipPhoneSpec/OnePlus8_Pro.jpg', '3389.00', 'smartphone', '', '', '', '', ''),
-(28, 'Oppo Find X2 Pro', 'img/2020FlagshipPhoneSpec/OppoFindX2_Pro.jpg', '4599.00', 'smartphone', '', '', '', '', ''),
+(27, 'OnePlus 8 Pro', 'img/OnePlus8_Pro.jpg', '3389.00', 'smartphone', 'The OnePlus 8 Pro is a proper flagship phone.   ', 'Weight: 199g\r\n  ', 'OnePlus', 'Blue', 'Yes'),
+(28, 'Oppa Find X2 Pro', 'img/OppoFindX2_Pro.jpg', '4599.00', 'smartphone', '12GB RAM+512GB ROM\r\n\r\n<br>RAM Type: LPDDR5\r\n\r\n<br>ROM Type: UFS 3.0\r\n\r\n<br>External Memory: not supported    ', '120Hz Ultra Vision Screen\r\n\r\n<br>Size: 6.7 inches (diagonal)\r\n\r\n<br>Type: OLED\r\n\r\n<br>Screen Ratio: 93.1%\r\n\r\n<br>Resolution: 3168*1440 (3K QHD+)\r\n\r\n<br>Refresh Rate: up to 120Hz\r\n\r\n<br>Touch Sampling Rate: up to 240Hz\r\n\r\n<br>Colour Depth: 8+2-bit (1.07 billion colours)\r\n\r\n<br>Colour Gamut: 100% P3 (typical)\r\n\r\n<br>Pixel Density: 513 PPI\r\n\r\n<br>Contrast Ratio: 5,000,000:1 (typical)    ', 'Oppo', 'Orange', 'Check'),
 (29, 'Samsung Galaxy Note20 Ultra5G', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_Note20Ultra_5G.jpg', '4224.00', 'smartphone', '', '', '', '', ''),
 (30, 'Samsung Galaxy Z Fold2 5G', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_ZFold2_5G.jpg', '7999.00', 'smartphone', '', '', '', '', ''),
 (31, 'Xiaomi Mi 10 Pro 5G', 'img/2020FlagshipPhoneSpec/XiaomiMi10Pro_5G.jpg', '2299.00', 'smartphone', '', '', '', '', ''),
@@ -201,7 +137,23 @@ INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`
 (34, 'Logitech G633 Artemis Spectrum', 'img/earphone/earphone3.png', '419.00', 'earphone', '', '', '', '', ''),
 (35, 'Logitech G433 7.1 Wired Gaming Headset with DTS Headphone', 'img/earphone/earphone4.png', '399.00', 'earphone', '', '', '', '', ''),
 (36, 'Sony Noise Cancelling Headphones WHCH710N', 'img/earphone/earphone5.png', '699.00', 'earphone', '', '', '', '', ''),
-(37, '\r\nSony MDRZX110/BLK ZX Series Stereo Headphones (Black)', 'img/earphone/earphone6.png', '249.00', 'earphone', '', '', '', '', '');
+(37, '\r\nSony MDRZX110/BLK ZX Series Stereo Headphones (Black)', 'img/earphone/earphone6.png', '249.00', 'earphone', '', '', '', '', ''),
+(40, 'iphone11', 'img/WeChat Image_20200714182754.jpg', '1199.00', 'smartphone', '. ', '. ', 'Apple', 'Black', 'Yes'),
+(41, 'iphone11', 'img/user2.jpg', '1199.00', 'smart', 'The OnePlus 8 Pro is a proper flagship phone.', 'The OnePlus 8 Pro is a proper flagship phone. ', 'Apple', 'Black', 'Yes');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `pwdreset`
+--
+
+CREATE TABLE `pwdreset` (
+  `pwdResetID` int(11) NOT NULL,
+  `pwdResetEmail` text NOT NULL,
+  `pwdResetSelector` text NOT NULL,
+  `pwdResetToken` longtext NOT NULL,
+  `pwdResetExpires` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 
@@ -213,18 +165,21 @@ CREATE TABLE `register` (
   `id` int(11) NOT NULL,
   `username` varchar(100) NOT NULL,
   `email` varchar(100) NOT NULL,
-  `password` varchar(100) NOT NULL
+  `password` varchar(100) NOT NULL,
+  `image` varchar(255) NOT NULL,
+  `gender` varchar(255) NOT NULL,
+  `phone` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `register`
 --
 
-INSERT INTO `register` (`id`, `username`, `email`, `password`) VALUES
-(9, 'yong hao', 'yonghaocha@gmail.com', '25f9e794323b453885f5181f1b624d0b'),
-(10, 'admin', 'james123@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b'),
-(11, 'admin2', 'james123@gmail.com', '202cb962ac59075b964b07152d234b70'),
-(12, 'kengy', 'ewekengy@gmail.com', 'f1ab187d28758bce923c9f2982ca28ed');
+INSERT INTO `register` (`id`, `username`, `email`, `password`, `image`, `gender`, `phone`) VALUES
+(9, 'yong hao', 'yonghaocha@gmail.com', '25f9e794323b453885f5181f1b624d0b', '', '', ''),
+(10, 'admin', 'james123@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '', '', ''),
+(11, 'admin2', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/WeChat Image_20200714182754.jpg', 'Male', '012-7027533'),
+(12, 'YongHao', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/WeChat Image_20200817232601.jpg', 'Male', '012-7027533');
 
 --
 -- Indexes for dumped tables
@@ -243,22 +198,16 @@ ALTER TABLE `compare`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order_item`
---
-ALTER TABLE `order_item`
-  ADD PRIMARY KEY (`order_item_id`);
-
---
--- Indexes for table `order_table`
---
-ALTER TABLE `order_table`
-  ADD PRIMARY KEY (`order_id`);
-
---
 -- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `pwdreset`
+--
+ALTER TABLE `pwdreset`
+  ADD PRIMARY KEY (`pwdResetID`);
 
 --
 -- Indexes for table `register`
@@ -274,7 +223,7 @@ ALTER TABLE `register`
 -- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT for table `compare`
@@ -283,22 +232,16 @@ ALTER TABLE `compare`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `order_item`
---
-ALTER TABLE `order_item`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
-
---
--- AUTO_INCREMENT for table `order_table`
---
-ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
-
---
 -- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+
+--
+-- AUTO_INCREMENT for table `pwdreset`
+--
+ALTER TABLE `pwdreset`
+  MODIFY `pwdResetID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `register`

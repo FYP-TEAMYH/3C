@@ -7,7 +7,8 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>Startmin - Bootstrap Admin Theme</title>
+        <title>3C Online Store [Admin]</title>
+	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
 
         <!-- Bootstrap Core CSS -->
         <link href="admincss/bootstrap.min.css" rel="stylesheet">
@@ -81,13 +82,13 @@
                         <ul class="nav" id="side-menu">
                             
                             <li>
-                                <a href="adminindex.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="adminindex.php" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="adminflot.php">Flot Charts</a>
+                                        <a href="adminflot.php" class="active">Flot Charts</a>
                                     </li>
                                     <li>
                                         <a href="adminmorris.php">Morris.js Charts</a>
@@ -96,7 +97,10 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href="#"><i class="fa fa-cube fa-fw"></i> Order</a>
+                            </li>
+                            <li>
+                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>

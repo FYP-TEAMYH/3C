@@ -40,7 +40,7 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
               <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
@@ -48,7 +48,7 @@
                   <?php
                   
                   if(isset($_SESSION["username"])){?>
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  <a href="#" class=" nav-link dropdown-toggle " data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Account</a>
                 <ul class="dropdown-menu">
                  <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
@@ -59,7 +59,7 @@
                    ?>
                  
                   
-                 <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
+                 <li class="nav-item "><a class="nav-link" href="profile.php">User Profile</a></li>
                  
                   <?php } ?>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>

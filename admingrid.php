@@ -90,7 +90,10 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href=""><i class="fa fa-cube fa-fw"></i> Order</a>
+                            </li>
+                            <li>
+                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>

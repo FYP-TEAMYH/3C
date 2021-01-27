@@ -28,9 +28,9 @@
           </button>
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
-              <li class="nav-item active"><a class="nav-link" href="index.php">Home</a></li>
+              <li class="nav-item "><a class="nav-link" href="index.php">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
-              <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
+              <li class="nav-item active"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
                
                   <?php
@@ -107,11 +107,11 @@
 							<th></th>
 							<td style='text-align: center'>
 							<?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
-							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["photo"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
+							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["image"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
 							</td>
 							<td style='text-align: center'>
 							<?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
-							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["photo"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
+							  while($row = mysqli_fetch_assoc($result)){ ?> <img src="<?php echo $row["image"];?>" height="250px" width="250px" alt="Image" title="Image"> <?php } ?>
 							</td>
 						</tr>
 						<tr>

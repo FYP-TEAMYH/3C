@@ -81,7 +81,7 @@
                         <ul class="nav" id="side-menu">
                             
                             <li>
-                                <a href="adminindex.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="adminindex.php" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
@@ -96,10 +96,13 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Tables</a>
+                                <a href="#"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
                             <li>
-                                <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
+                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
+                            </li>
+                            <li>
+                                <a href="adminprofile.php" class="active"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
                             <li>
                                 <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
@@ -188,6 +191,7 @@
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6">
+                                       
                                         <form method="post" action="#" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>User Name</label>
@@ -211,10 +215,10 @@
                                                     <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
                                                 </div>
                                                 
-                                                <input type="submit" value="Comfirm" name="submit" style="background-color:#32CD32;width:20em; margin:0;"><br><br>
+                                                <input type="submit" value="Comfirm" name="submit" class="btn btn-primary"style="width:20em; margin:0;"><br><br>
                                                 
                                             </form>
-                                            <a href="profile.php"><input type="submit" value="Cancel" name="Edit" style="background-color:#B22222 ;width:20em; margin:0;"></a><br><br>
+                                            <a href="adminprofile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary"style="background-color:#B22222 ;width:20em; margin:0;"></a><br><br>
                                         </div>
                                         <!-- /.col-lg-6 (nested) -->
                                         <div class="col-lg-6">
@@ -272,7 +276,7 @@
 
 
       $query = "UPDATE admin SET
-                      email = '$email', password = '".md5($password)."',image='$image', gender='$gender', phone='$phone'
+                      email = '$email', image='$image', gender='$gender', phone='$phone'
                       WHERE username = '$name'";
                     $result = mysqli_query($con, $query);
       //move uploaded img into folder : img              

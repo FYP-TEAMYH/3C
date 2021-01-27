@@ -69,9 +69,9 @@
 							$category = $row["category"];
 							$desc = $row["description"];
 							$desc2 = $row["description2"];
-							$brandname = $row["brand name"];
-							$color= $row["Color Family"];
-							$check = $row["Quality checking"];
+							$brandname = $row["brand"];
+							$color= $row["color"];
+							$check = $row["quality"];
 					}
 					
 				?>

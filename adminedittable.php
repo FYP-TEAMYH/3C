@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>3C Online Store [Admin]</title>
+        <title>3C Online Store[Admin]</title>
 	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
 
         <!-- Bootstrap Core CSS -->
@@ -18,9 +18,6 @@
 
         <!-- Custom CSS -->
         <link href="admincss/startmin.css" rel="stylesheet">
-
-        <!-- Morris Charts CSS -->
-        <link href="admincss/morris.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="admincss/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -35,8 +32,19 @@
     <?php
   include 'db_connect.php';
   session_start();
-  $name=$_SESSION['username'];
-  $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
+
+  $id=$_GET['id'];
+  $query=mysqli_query($con,"SELECT * FROM product where id='$id'")or die(mysqli_error());
+  $row=mysqli_fetch_array($query);
+  $price = $row["price"];
+  $name = $row["name"];
+  $image = $row["image"];
+  $category = $row["category"]; 
+  $desc = $row["description"];
+  $desc2 = $row["description2"];
+  $brandname = $row["brand"];
+  $color= $row["color"];
+  $check = $row["quality"];
   ?>
     <body>
 
@@ -62,7 +70,7 @@
                     </li>
                     <li class="dropdown">
                         <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i><?php echo $name; ?><b class="caret"></b>
+                            <i class="fa fa-user fa-fw"></i><b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="adminprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -88,7 +96,7 @@
                                         <a href="adminflot.php">Flot Charts</a>
                                     </li>
                                     <li>
-                                        <a href="adminmorris.php" class="active">Morris.js Charts</a>
+                                        <a href="adminmorris.php">Morris.js Charts</a>
                                     </li>
                                 </ul>
                                 <!-- /.nav-second-level -->
@@ -97,7 +105,7 @@
                                 <a href="#"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
                             <li>
-                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
+                                <a href="admintables.php" class="active"><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
@@ -170,87 +178,92 @@
                     </div>
                 </div>
             </nav>
+
             <div id="page-wrapper">
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Morris.js Charts</h1>
+                            <h1 class="page-header">Product</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
                     <div class="row">
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Area Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-area-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Bar Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-bar-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Line Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-line-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Donut Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div id="morris-donut-chart"></div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Morris.js Usage
+                                    Edit Product Details
                                 </div>
-                                <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <p>Morris.js is a jQuery based charting plugin created by Olly Smith. In SB Admin, we are using the most recent version of Morris.js which includes the resize function, which makes the charts fully responsive. The documentation for Morris.js is available on their website, <a target="_blank" href="http://morrisjs.github.io/morris.js/">http://morrisjs.github.io/morris.js/</a>.</p>
-                                    <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://morrisjs.github.io/morris.js/">View Morris.js Documentation</a>
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                        <form method="post" action="#" enctype="multipart/form-data">
+                                                <div class="form-group">
+                                                    <label>Image</label>
+                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" id="name" name="name" value="<?php echo $name; ?>" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Price</label>
+                                                    <input type="number" class="form-control" id="price" name="price" value="<?php echo $price; ?>" required />
+                                                
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Category</label>
+                                                    <input type="text" class="form-control" id="category" name="category" value="<?php echo $category;  ?>" required />
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Description</label>
+                                                    <textarea class="form-control" rows ="5" cols ="2000" id="desc" name="desc" required><?php echo $desc; ?> </textarea>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Details</label>
+                                                    <textarea class="form-control" rows ="5" cols ="2000" id="detail" name="detail" required><?php echo $desc2; ?> </textarea>
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Brand name</label>
+                                                    <input type="text" class="form-control" id="brand" name="brand" value="<?php echo $brandname;  ?>" required />
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Color family</label>
+                                                    <input type="text" class="form-control" id="color" name="color" value="<?php echo $color;  ?>" required />
+                                                
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Quality checking</label>
+                                                    <input type="text" class="form-control" id="check" name="check" value="<?php echo $check;  ?>" required />
+                                                    
+                                                </div>
+
+                                                
+                                                
+                                                <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
+                                                
+                                            </form>
+                                            <a href="admintabledetail.php?id=<?php echo $id ?>" ><input type="submit" value="Back" name="back" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a><br><br>
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
+                                        <div class="col-lg-6">
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
+                                    </div>
+                                    <!-- /.row (nested) -->
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
                             <!-- /.panel -->
                         </div>
-                        <!-- /.col-lg-6 -->
+                        <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
                 </div>
@@ -270,13 +283,43 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="adminjs/metisMenu.min.js"></script>
 
-        <!-- Morris Charts JavaScript -->
-        <script src="adminjs/raphael.min.js"></script>
-        <script src="adminjs/morris.min.js"></script>
-        <script src="adminjs/morris-data.js"></script>
-
         <!-- Custom Theme JavaScript -->
         <script src="adminjs/startmin.js"></script>
 
     </body>
 </html>
+<?php
+      if(isset($_POST['submit'])){
+                  
+                    $price = $_POST["price"];
+                    $name = $_POST["name"];
+                    $category = $_POST["category"];
+                    $desc = $_POST["desc"];
+                    $desc2 = $_POST["detail"];
+                    $brandname = $_POST["brand"];
+                    $color= $_POST["color"];
+                    $check = $_POST["check"];
+        
+
+        //the path to store the uploaded image
+        $target = "img/".basename($_FILES['image']['name']);
+        
+        $image="img/".$_FILES['image']['name'];
+
+
+      $query = "UPDATE product SET
+                      price = '$price', name = '$name', image='$image', category='$category', description='$desc', description2='$desc2',
+                      brand = '$brandname', color = '$color', quality = '$check' 
+                      WHERE id = '$id'";
+                    $result = mysqli_query($con, $query);
+      //move uploaded img into folder : img              
+      if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){?>
+        
+        <script type="text/javascript">
+            alert("Update Successfull.");
+            window.location = "admintabledetail.php?id=<?php echo $id ?>";
+        </script>
+        <?php
+             } 
+            }             
+?> 
