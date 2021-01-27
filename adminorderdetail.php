@@ -16,14 +16,14 @@
         <!-- MetisMenu CSS -->
         <link href="admincss/metisMenu.min.css" rel="stylesheet">
 
-        <!-- Timeline CSS -->
-        <link href="admincss/timeline.css" rel="stylesheet">
+        <!-- DataTables CSS -->
+        <link href="admincss/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="admincss/dataTables/dataTables.responsive.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="admincss/startmin.css" rel="stylesheet">
-
-        <!-- Morris Charts CSS -->
-        <link href="admincss/morris.css" rel="stylesheet">
 
         <!-- Custom Fonts -->
         <link href="admincss/font-awesome.min.css" rel="stylesheet" type="text/css">
@@ -36,7 +36,7 @@
         <![endif]-->
     </head>
     <?php
-  include 'db_connect.php';
+  require('db_connect.php');
   session_start();
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
@@ -88,7 +88,7 @@
                                 <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
                                 <ul class="nav nav-second-level">
                                     <li>
-                                        <a href="adminflot.php" class="active">Flot Charts</a>
+                                        <a href="adminflot.php">Flot Charts</a>
                                     </li>
                                     <li>
                                         <a href="adminmorris.php">Morris.js Charts</a>
@@ -97,10 +97,10 @@
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
-                                <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
+                                <a href="adminorder.php" class="active"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
                             <li>
-                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
+                                <a href="admintables.php" ><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
@@ -178,7 +178,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Flot</h1>
+                            <h1 class="page-header">Order</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -187,107 +187,57 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Line Chart Example
+                                    Order Details
                                 </div>
                                 <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-line-chart"></div>
+                                        <table class="table table-striped table-bordered table-hover" id="">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th>Product Name</th>
+                                                    <th>Product Quantity</th>
+                                                    <th>Product Name</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php 
+                                            $id=$_GET['id'];
+                                            $query=mysqli_query($con,"select * from order_item where order_id=$id");
+                                            while($row=mysqli_fetch_array($query)){
+                                                
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $row['order_item_name']; ?></td>
+                                                    <td><?php echo $row['order_item_quantity']; ?></td>
+                                                    <td><?php echo "RM ".$row['order_item_price']; ?></td>
+                                        
+                                                </tr>
+                                            
+                                                
+
+                                                <?php  }?> 
+
+                                            </tbody>
+                                            
+                                        </table>
+                                        <a href="adminorder.php" ><input type="submit" value="Back" name="back" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a><br><br>
                                     </div>
+                                    <!-- /.table-responsive -->
+                                    
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
                             <!-- /.panel -->
                         </div>
                         <!-- /.col-lg-12 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Pie Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-pie-chart"></div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Multiple Axes Line Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-line-chart-multi"></div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Moving Line Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-line-chart-moving"></div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-6">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Bar Chart Example
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <div class="flot-chart">
-                                        <div class="flot-chart-content" id="flot-bar-chart"></div>
-                                    </div>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
-                        <div class="col-lg-12">
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    Flot Charts Usage
-                                </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body">
-                                    <p>Flot is a pure JavaScript plotting library for jQuery, with a focus on simple usage, attractive looks, and interactive features. In SB Admin, we are using the most recent version of Flot along with a few plugins to enhance the user experience. The Flot plugins being used are the tooltip plugin for hoverable tooltips, and the resize plugin for fully responsive charts. The documentation for Flot Charts is available on their website, <a target="_blank" href="http://www.flotcharts.org/">http://www.flotcharts.org/</a>.</p>
-                                    <a target="_blank" class="btn btn-default btn-lg btn-block" href="http://www.flotcharts.org/">View Flot Charts Documentation</a>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
-                        </div>
-                        <!-- /.col-lg-6 -->
                     </div>
                     <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /#page-wrapper -->
-
-        </div>
-        <!-- /#wrapper -->
+                
+                    
+                    
+                                        
 
         <!-- jQuery -->
         <script src="adminjs/jquery.min.js"></script>
@@ -298,17 +248,15 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="adminjs/metisMenu.min.js"></script>
 
-        <!-- Flot Charts JavaScript -->
-        <script src="adminjs/flot/excanvas.min.js"></script>
-        <script src="adminjs/flot/jquery.flot.js"></script>
-        <script src="adminjs/flot/jquery.flot.pie.js"></script>
-        <script src="adminjs/flot/jquery.flot.resize.js"></script>
-        <script src="adminjs/flot/jquery.flot.time.js"></script>
-        <script src="adminjs/flot/jquery.flot.tooltip.min.js"></script>
-        <script src="adminjs/flot-data.js"></script>
+        <!-- DataTables JavaScript -->
+        <script src="adminjs/dataTables/jquery.dataTables.min.js"></script>
+        <script src="adminjs/dataTables/dataTables.bootstrap.min.js"></script>
 
         <!-- Custom Theme JavaScript -->
         <script src="adminjs/startmin.js"></script>
+
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
 
     </body>
 </html>
