@@ -30,7 +30,7 @@
           <div class="collapse navbar-collapse offset" id="navbarSupportedContent">
             <ul class="nav navbar-nav menu_nav ml-auto mr-auto">
               <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
-              <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
+              <li class="nav-item active"><a class="nav-link" href="category.php">Category</a></li>
               <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -98,12 +98,19 @@
 							
 						</ul>
 						<p><?php echo $desc; ?></p>
-
-						<input type="text" name="quantity"<?php "id='quantity".$row['id']."' "?>class="form-control" value="1" />
-						<input type="hidden" name="hidden_name" <?php "id='name".$row['id']."' value='".$row['name']."' "?> />
-						<input type="hidden" name="hidden_price" <?php "id='price".$row['id']."'  value='".$row['price']."' "?> />
-						<input type="button" name="add_to_cart" <?php "id='".$row['id']."' "?> style="margin-top:5px;" class="btn btn-success form-control add_to_cart" value="Add to Cart" />
-						
+            <div>
+           <?php $sql = "SELECT * FROM product where id='$id'";
+					$result = mysqli_query($con,$sql);
+					$count = mysqli_num_rows($result);
+					while($row = mysqli_fetch_assoc($result))
+					{ 
+          echo '
+          <input type="text" name="quantity" id="quantity'.$row["id"].'" class="form-control" value="1" />
+          <input type="hidden" name="hidden_name" id="name'.$row["id"].'" value="'.$row["name"].'" />
+          <input type="hidden" name="hidden_price" id="price'.$row["id"].'" value="'.$row["price"].'" />
+          <input type="button" name="add_to_cart" id="'.$row["id"].'" style="margin-top:5px;" class="btn btn-success form-control add_to_cart" value="Add to Cart" />
+         '; } ?>
+						</div>
 					</div>
 				</div>
 			</div>

@@ -1,3 +1,54 @@
+<?php
+
+
+session_start();
+if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+    header('location:login.php');
+}
+
+
+$total_price = 0;
+
+$item_details = '';
+
+$order_details = '
+<div class="table-responsive" id="order_table">
+ <table class="table table-bordered table-striped">
+  <tr>  
+            <th>Product Name</th>  
+            <th>Quantity</th>  
+              
+            <th>Total</th>  
+        </tr>
+';
+
+if(!empty($_SESSION["shopping_cart"]))
+{
+ foreach($_SESSION["shopping_cart"] as $keys => $values)
+ {
+  $order_details .= '
+  <tr>
+   <td>'.$values["product_name"].'</td>
+   <td>'.$values["product_quantity"].'</td>
+   
+   <td align="right">RM '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>
+  </tr>
+  ';
+  $total_price = $total_price + ($values["product_quantity"] * $values["product_price"]);
+
+  $item_details .= $values["product_name"] . ', ';
+ }
+ $item_details = substr($item_details, 0, -2);
+ $order_details .= '
+ <tr>  
+        <td colspan="2" align="right">Total</td>  
+        <td align="right">RM '.number_format($total_price, 2).'</td>
+    </tr>
+ ';
+}
+$order_details .= '</table>';
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -30,17 +81,43 @@
               <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
               <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
 			  <li class="nav-item submenu dropdown">
+        <?php
+                  require('db_connect.php');
+                 
+                  if(isset($_SESSION["username"])){?>
+                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                  aria-expanded="false">Account</a>
+                <ul class="dropdown-menu">
+                 <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
+                 <?php 
+                 $query=mysqli_query($con,"select * from register ");
+                 if($row=mysqli_fetch_array($query)){  
+                   $username=$_SESSION["username"];
+                   ?>
+                 
+                  
+                 <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
+                 
+                  <?php } ?>
+                  <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
+                  </ul>
+                  <?php }else if(!isset($_SESSION["username"]))
+                  {?>
                 <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                   aria-expanded="false">Login/Register</a>
                 <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" href="login.php">Login</a></li>
+                  <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
                   <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
                 </ul>
+                <?php }?>
               </li>
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a href="cart.php" id="cart-popover" class="btn" data-placement="bottom" title="Shopping Cart"><button><i class="ti-shopping-cart"></i>
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+              <span class="nav-shop__circle"></span>
+              </button></a> </li>
               <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
@@ -49,7 +126,11 @@
     </div>
   </header>
 	<!--================ End Header Menu Area =================-->
-  
+  <?php $id=$_GET['id'];
+          
+           
+				
+          ?>
 
   
   <!--================Order Details Area =================-->
@@ -57,156 +138,25 @@
     <div class="container">
       <p class="text-center billing-alert">Thank you. Your order has been received.</p>
       <div class="row mb-5">
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
+        <div class="col-md-8 col-xl-12 mb-6 mb-xl-0">
           <div class="confirmation-card">
             <h3 class="billing-title">Order Info</h3>
             <table class="order-rable">
               <tr>
-                <td>Order number</td>
-                <td>: 50698</td>
+                <td>Transaction ID</td>
+                <td><?php echo $id ?></td>
               </tr>
-              <tr>
-                <td>Date</td>
-                <td>: Feb 25, 2020</td>
-              </tr>
-              <tr>
-                <td>Total</td>
-                <td>: MYR 3798.00</td>
-              </tr>
-              <tr>
-                <td>Payment method</td>
-                <td>: Check payments</td>
-              </tr>
+              
             </table>
           </div>
         </div>
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Billing Address</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: NO.2 Jalan Merdeka</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Ayer Keroh</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: Malaysia</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 75450</td>
-              </tr>
-            </table>
-          </div>
-        </div>
-        <div class="col-md-6 col-xl-4 mb-4 mb-xl-0">
-          <div class="confirmation-card">
-            <h3 class="billing-title">Shipping Address</h3>
-            <table class="order-rable">
-              <tr>
-                <td>Street</td>
-                <td>: NO.2 Jalan Merdeka</td>
-              </tr>
-              <tr>
-                <td>City</td>
-                <td>: Ayer Keroh</td>
-              </tr>
-              <tr>
-                <td>Country</td>
-                <td>: Malaysia</td>
-              </tr>
-              <tr>
-                <td>Postcode</td>
-                <td>: 75450</td>
-              </tr>
-            </table>
-          </div>
-        </div>
+        
       </div>
       <div class="order_details_table">
         <h2>Order Details</h2>
         <div class="table-responsive">
-          <table class="table">
-            <thead>
-              <tr>
-                <th scope="col">Product</th>
-                <th scope="col">Quantity</th>
-                <th scope="col">Total</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr>
-                <td>
-                  <p>Airpods Pro</p>
-                </td>
-                <td>
-                  <h5>x 01</h5>
-                </td>
-                <td>
-                  <p>RM699.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>Macbook Air</p>
-                </td>
-                <td>
-                  <h5>x 01</h5>
-                </td>
-                <td>
-                  <p>RM2299.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <p>SteelSeries Apex Pro</p>
-                </td>
-                <td>
-                  <h5>x 01</h5>
-                </td>
-                <td>
-                  <p>RM800.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Subtotal</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <p>RM3798.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Shipping</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <p>Flat rate: RM50.00</p>
-                </td>
-              </tr>
-              <tr>
-                <td>
-                  <h4>Total</h4>
-                </td>
-                <td>
-                  <h5></h5>
-                </td>
-                <td>
-                  <h4>RM3848.00</h4>
-                </td>
-              </tr>
-            </tbody>
-          </table>
+        <?php echo $order_details; ?>
+          
         </div>
       </div>
     </div>
@@ -291,5 +241,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
+  <?php unset($_SESSION["shopping_cart"]); ?>
 </body>
+<script>
+load_cart_data();
+function load_cart_data()
+ {
+  $.ajax({
+   url:"fetch_cart.php",
+   method:"POST",
+   dataType:"json",
+   success:function(data)
+   {
+    $('#cart_details').html(data.cart_details);
+    $('.total_price').text(data.total_price);
+    $('.nav-shop__circle').text(data.total_item);
+   }
+  })
+ }
+ </script>
 </html>

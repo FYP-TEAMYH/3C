@@ -77,7 +77,10 @@
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a href="cart.php" id="cart-popover" class="btn" data-placement="bottom" title="Shopping Cart"><button><i class="ti-shopping-cart"></i>
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+              <span class="nav-shop__circle"></span>
+              </button></a> </li>
               <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
@@ -232,6 +235,23 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
 </body>
+<script>
+load_cart_data();
+function load_cart_data()
+ {
+  $.ajax({
+   url:"fetch_cart.php",
+   method:"POST",
+   dataType:"json",
+   success:function(data)
+   {
+    $('#cart_details').html(data.cart_details);
+    $('.total_price').text(data.total_price);
+    $('.nav-shop__circle').text(data.total_item);
+   }
+  })
+ }
+ </script>
 </html>
 
 <?php

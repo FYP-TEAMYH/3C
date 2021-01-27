@@ -28,8 +28,8 @@ if(!empty($_SESSION["shopping_cart"]))
   <tr>
    <td>'.$values["product_name"].'</td>
    <td>'.$values["product_quantity"].'</td>
-   <td align="right">$ '.$values["product_price"].'</td>
-   <td align="right">$ '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>
+   <td align="right">RM '.$values["product_price"].'</td>
+   <td align="right">RM '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>
    <td><button name="delete" class="btn btn-danger btn-xs delete" id="'. $values["product_id"].'">Remove</button></td>
   </tr>
   ';
@@ -40,7 +40,7 @@ if(!empty($_SESSION["shopping_cart"]))
  $output .= '
  <tr>  
         <td colspan="3" align="right">Total</td>  
-        <td align="right">$ '.number_format($total_price, 2).'</td>  
+        <td align="right">RM '.number_format($total_price, 2).'</td>  
         <td></td>  
     </tr>
  ';

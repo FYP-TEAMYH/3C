@@ -8,7 +8,7 @@ session_start();
 
 
  require_once 'stripe-php/init.php';
-
+ 
  \Stripe\Stripe::setApiKey('sk_test_51IC43mLOApRiqgAEp6KhwCnfCKv8gB4GYAR6UbUmKI4zJDf4d2vgImrYTW3fSvlxZ5VzI6gVnDBzlE5tiKeLUWzD00DJQ8uoYC');
 
  $customer = \Stripe\Customer::create(array(
@@ -25,8 +25,11 @@ session_start();
   )
  ));
 
- $order_number = rand(100000,999999);
+ 
 
+   
+ $order_number = rand(100000,999999);
+ 
  $charge = \Stripe\Charge::create(array(
   'customer'  => $customer->id,
   'amount'  => $_POST["total_amount"] * 100,
@@ -79,7 +82,8 @@ session_start();
     ':order_id'  => $order_id,
     ':order_item_name' => $values["product_name"],
     ':order_item_quantity' => $values["product_quantity"],
-    ':order_item_price' => $values["product_price"]
+    ':order_item_price' => $values["product_price"],
+    
    );
 
    $query = "
@@ -93,12 +97,16 @@ session_start();
    $statement->execute($order_item_data);
   }
 
-  unset($_SESSION["shopping_cart"]);
-
+  
+   
   $_SESSION["success_message"] = "Payment is completed successfully. The TXN ID is " . $response["balance_transaction"] . "";
-  header('location:index.php');
+  
  }
-
+header('location:confirmation.php?id= ' . $response["balance_transaction"] . '');
 
 
 ?>
+
+
+   
+
