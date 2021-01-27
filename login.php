@@ -72,7 +72,10 @@ if (isset($_POST['username'])){
             </ul>
 
             <ul class="nav-shop">
-              <li class="nav-item"><a href="cart.php"><button><i class="ti-shopping-cart"></i><span class="nav-shop__circle">3</span></button></a> </li>
+              <li class="nav-item"><a href="cart.php" id="cart-popover" class="btn" data-placement="bottom" title="Shopping Cart"><button><i class="ti-shopping-cart"></i>
+              <span class="glyphicon glyphicon-shopping-cart"></span>
+              <span class="nav-shop__circle"></span>
+              </button></a> </li>
               <li class="nav-item"><a class="button button-header" href="checkout.php">Buy Now</a></li>
             </ul>
           </div>
@@ -124,12 +127,7 @@ if (isset($_POST['username'])){
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
-							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div>
-							</div>
+							
 							<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
 							<div class="col-md-12 form-group">
 								<a href="forgot-password.php">Forgot Password?</a>		
@@ -222,4 +220,21 @@ Copyright &copy;<script>document.write(new Date().getFullYear());</script> All r
   <script src="js/main.js"></script>
 <?php } ?>
 </body>
+<script>
+load_cart_data();
+function load_cart_data()
+ {
+  $.ajax({
+   url:"fetch_cart.php",
+   method:"POST",
+   dataType:"json",
+   success:function(data)
+   {
+    $('#cart_details').html(data.cart_details);
+    $('.total_price').text(data.total_price);
+    $('.nav-shop__circle').text(data.total_item);
+   }
+  })
+ }
+ </script>
 </html>
