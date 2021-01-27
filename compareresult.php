@@ -243,14 +243,7 @@
 		</div>
 
 		<div class="footer-bottom">
-			<div class="container">
-				<div class="row d-flex">
-					<p class="col-lg-12 footer-text text-center">
-						
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | 3C Online Store
-</p>
-				</div>
-			</div>
+			
 		</div>
 	</footer>
 	<!--================ End footer Area  =================-->

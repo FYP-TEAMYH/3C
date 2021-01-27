@@ -6,7 +6,9 @@ session_start();
 if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
     header('location:login.php');
 }
-
+if((!isset($_SESSION["shopping_cart"])) && empty($_SESSION["shopping_cart"])){
+  header('location:cart.php');
+}
 
 $total_price = 0;
 
@@ -156,7 +158,7 @@ $order_details .= '</table>';
                     <h3>Billing Details</h3>
                     <form class="row contact_form" method="post" id="order_process_form" action="payment.php">
                         <div class="col-md-12 form-group p_star">
-                        <input type="text" name="customer_name" id="customer_name" class="form-control" value=""  />
+                        <input type="text" name="customer_name" id="customer_name" class="form-control" value="" placeholder="Name" />
                         <span id="error_customer_name" class="text-danger"></span>
                         </div>
                         
@@ -184,8 +186,8 @@ $order_details .= '</table>';
                         <input type="text" name="customer_state" id="customer_state" class="form-control" value=""  placeholder="State"/>
                         </div>
                         <div class="col-md-12 form-group">
-                        <label><b>Country <span class="text-danger">*</span></b></label>
-                        <input type="text" name="customer_country" id="customer_country" class="form-control" />
+                        
+                        <input type="text" name="customer_country" id="customer_country" class="form-control" placeholder="Country" />
                         <span id="error_customer_country" class="text-danger"></span>
                         </div>
                        
@@ -223,7 +225,7 @@ $order_details .= '</table>';
                         <input type="hidden" name="total_amount" value="<?php echo $total_price; ?>" />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="hidden" name="item_details" value="<?php echo $item_details; ?>" />
-                        <input type="button" name="button_action" id="button_action" class="btn btn-success btn-sm" onclick="stripePay(event)" value="Pay Now" />
+                        <input type="button" name="button_action" id="button_action" class="btn btn-success" onclick="stripePay(event)" value="Pay Now" />
                         </div>
                         </div>
                     </form>
@@ -296,14 +298,7 @@ $order_details .= '</table>';
 		</div>
 
 		<div class="footer-bottom">
-			<div class="container">
-				<div class="row d-flex">
-					<p class="col-lg-12 footer-text text-center">
-						
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | 3C Online Store
-</p>
-				</div>
-			</div>
+			
 		</div>
 	</footer>
 	<!--================ End footer Area  =================-->
