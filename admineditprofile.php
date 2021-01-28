@@ -56,7 +56,7 @@
     
 
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
+                    <li><a href="adminindex.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
                 </ul>
 
                 <ul class="nav navbar-right navbar-top-links">
@@ -194,6 +194,10 @@
                                        
                                         <form method="post" action="#" enctype="multipart/form-data">
                                                 <div class="form-group">
+                                                    <label>Profile Picture</label>
+                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
+                                                </div>
+                                                <div class="form-group">
                                                     <label>User Name</label>
                                                     <p class="form-control-static"><?php echo $name; ?></p>
                                                 </div>
@@ -210,10 +214,7 @@
                                                     <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?php echo $phone ?>"required />
                                                     <medium>Format: 012-3456789</medium>
                                                 </div>
-                                                <div class="form-group">
-                                                    <label>Profile Picture</label>
-                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
-                                                </div>
+                                                
                                                 
                                                 <input type="submit" value="Comfirm" name="submit" class="btn btn-primary"style="width:20em; margin:0;"><br><br>
                                                 
@@ -267,26 +268,33 @@
         $email = $_POST['email'];
         $gender = $_POST['gender'];
         $phone = $_POST['phone'];
-        
+        $fileInfo = PATHINFO($_FILES["image"]["name"]);
 
         //the path to store the uploaded image
-        $target = "img/".basename($_FILES['image']['name']);
-        
-        $image="img/".$_FILES['image']['name'];
+        if (empty($_FILES["image"]["name"])){
+		$location=$row['image'];
+		
 
+	}
+	else{
+		if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
+			$newFilename = $fileInfo['filename'] . $fileInfo['extension'];
+			move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
+			$location = "img/" . $newFilename;
+        }
+    }
 
       $query = "UPDATE admin SET
-                      email = '$email', image='$image', gender='$gender', phone='$phone'
+                      email = '$email', image='$location', gender='$gender', phone='$phone'
                       WHERE username = '$name'";
                     $result = mysqli_query($con, $query);
-      //move uploaded img into folder : img              
-      if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){?>
+      ?>
         
         <script type="text/javascript">
             alert("Update Successfull.");
             window.location = "adminprofile.php";
         </script>
         <?php
-             } 
+             
             }             
-?> 
+?>

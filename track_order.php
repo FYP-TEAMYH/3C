@@ -45,13 +45,29 @@
                  $query=mysqli_query($con,"select * from register ");
                  if($row=mysqli_fetch_array($query)){  
                    $username=$_SESSION["username"];
-                   
+
+                   if(isset($_GET['type']) && $_GET['type']!=''){
+                    $type=$_GET['type'];
+                    if($type=='status'){
+                      $operation=$_GET['operation'];
+                      $id=$_GET['id'];
+                      if($operation=='active'){
+                        $status='1';
+                        echo "<script type='text/javascript'>alert('Thank you for supporting us !');</script>";
+                      }else{
+                        $status='0';
+                      }
+                      $update_status_sql="update order_table set status='$status' where order_id='$id'";
+                      mysqli_query($con,$update_status_sql);
+                    }
+                  }
                    ?>
                  
                   
                  <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
                  
                   <?php } ?>
+                  <li class="nav-item"><a class="nav-link" href="track_order.php">Track Order</a></li>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                   </ul>
                   <?php }else if(!isset($_SESSION["username"]))
@@ -113,7 +129,7 @@
                                                     <th>Transaction ID</th>
                                                     <th>Total Amount</th>
                                                     <th>View</th>
-                                                    <th>Received?</th>
+                                                    <th style="text-align:center;">Please press the button, if you reveice</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -131,10 +147,19 @@
                                                     <td>
                                                     <a href="order_detail.php?id=<?php echo $row["order_id"]; ?>">
                                                     <input type="submit" value="view" id="submit" class="button button-login w-10" ></a></td>
-                                                    <td>
-                                                    <a href="received.php?id=<?php echo $row["order_id"]; ?>">
-                                                    <input type="submit" value="Received" id="submit" class="button button-login " style="background-color:green" ></a></td>
-                                                    
+                                                    <td style="text-align:center;">
+                                                    <?php
+                                                        if($row['status']==1){
+                                                            echo "<span class='badge badge-success' style='color:black;text-align: center;background-color:#32CD32;'>
+                                                            <h4><a href='?type=status&operation=deactive&id=".$row['order_id']."'>Received</a></h4></span>";
+                                                            
+                                                        }else{
+
+                                                            echo "<span class='badge badge-danger' style='color:black;text-align: center;background-color:#FF8C00;'>
+                                                            
+                                                            <h4><a href='?type=status&operation=active&id=".$row['order_id']."'>Delivered</a></h4></span>";
+                                                        }
+                                                    ?></td>
                                                 </tr>
 
                                                

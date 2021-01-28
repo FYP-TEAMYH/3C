@@ -56,7 +56,7 @@
     
 
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
+                    <li><a href="adminindex.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
                 </ul>
 
                 <ul class="nav navbar-right navbar-top-links">
@@ -193,6 +193,10 @@
                                         <div class="col-lg-6">
                                         <form method="post" action="admineditprofile.php" >
                                                 <div class="form-group">
+                                                    <label>Profile Picture</label>
+                                                    <img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail">
+                                                </div>
+                                                <div class="form-group">
                                                     <label>User Name</label>
                                                     <p class="form-control-static"><?php echo $name; ?></p>
                                                 </div>
@@ -209,14 +213,17 @@
                                                     <p class="form-control-static"><?php echo $phone; ?></p>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <label>Profile Picture</label>
-                                                    <img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail">
-                                                </div>
+                                                
                                                 
                                                 <input type="submit" value="edit" name="Edit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
                                                 
                                             </form>
+                                                <div class="form-group">
+                                                    <label>Change Password</label><br>
+                                                    <p class="form-control-static">*******************************</p>
+                                                    <a href="admineditpassword.php"><input type="submit" value="change" name="Edit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
+                                                </div>
+
                                         </div>
                                         <!-- /.col-lg-6 (nested) -->
                                         <div class="col-lg-6">

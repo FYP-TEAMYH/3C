@@ -57,7 +57,7 @@
     
 
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
+                    <li><a href="adminindex.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
                 </ul>
 
                 <ul class="nav navbar-right navbar-top-links">
@@ -190,15 +190,16 @@
                                     Order Details
                                 </div>
                                 <!-- /.panel-heading -->
-                                <div class="panel-body">
+                                <div class="panel-body" style="text-align:center;">
                                         <table class="table table-striped table-bordered table-hover" id="">
                                             <thead>
-                                                <tr>
+                                                <tr >
                                                     
-                                                    <th>Number</th>
-                                                    <th>Transaction ID</th>
-                                                    <th>Total Amount</th>
-                                                    <th>View</th>
+                                                    <th style="text-align:center;">Number</th>
+                                                    <th style="text-align:center;">Customer Name</th>
+                                                    <th style="text-align:center;">Transaction ID</th>
+                                                    <th style="text-align:center;">Total Amount</th>
+                                                    <th style="text-align:center;">View</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -209,8 +210,9 @@
                                                 ?>
                                                 <tr>
                                                     <td><?php echo $row['order_number']; ?></td>
+                                                    <td><?php echo $row['customer_name']; ?></td>
                                                     <td><?php echo $row['transaction_id']; ?></td>
-                                                    <td><?php echo $row['order_total_amount']; ?></td>
+                                                    <td><?php echo "RM ".$row['order_total_amount']; ?></td>
                                                     
                                                     <td>
                                                     <a href="adminorderdetail.php?id=<?php echo $row["order_id"]; ?>">

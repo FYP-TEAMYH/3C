@@ -57,7 +57,7 @@
     
 
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
+                    <li><a href="adminindex.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
                 </ul>
 
                 <ul class="nav navbar-right navbar-top-links">

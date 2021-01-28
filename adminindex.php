@@ -57,7 +57,7 @@
     
 
                 <ul class="nav navbar-nav navbar-left navbar-top-links">
-                    <li><a href="index.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
+                    <li><a href="adminindex.php"><i class="fa fa-home fa-fw"></i> 3C Online Store [Admin]</a></li>
                 </ul>
 
                 <ul class="nav navbar-right navbar-top-links">
@@ -98,6 +98,9 @@
                             </li>
                             <li>
                                 <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
+                            </li>
+                            <li>
+                                <a href="adminvoucher.php" ><i class="fa fa-barcode fa-fw"></i> Voucher</a>
                             </li>
                             <li>
                                 <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>

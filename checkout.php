@@ -116,6 +116,7 @@ $order_details .= '</table>';
                  <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
                  
                   <?php } ?>
+                  <li class="nav-item"><a class="nav-link" href="track_order.php">Track Order</a></li>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                   </ul>
                   <?php }else if(!isset($_SESSION["username"]))
@@ -225,7 +226,7 @@ $order_details .= '</table>';
                         <input type="hidden" name="total_amount" value="<?php echo $total_price; ?>" />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="hidden" name="item_details" value="<?php echo $item_details; ?>" />
-                        <input type="button" name="button_action" id="button_action" class="btn btn-success" onclick="stripePay(event)" value="Pay Now" />
+                        <input type="button" name="" id="" class="btn btn-success" onclick="stripePay(event)" value="Pay Now" />
                         </div>
                         </div>
                     </form>

@@ -62,6 +62,7 @@
                  <li class="nav-item "><a class="nav-link" href="profile.php">User Profile</a></li>
                  
                   <?php } ?>
+                  <li class="nav-item"><a class="nav-link" href="track_order.php">Track Order</a></li>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                   </ul>
                   <?php }else if(!isset($_SESSION["username"]))
@@ -92,68 +93,60 @@
 	
 	<!-- ================ start banner area ================= -->	
 	<section class="blog-banner-area" id="category">
-		<div class="container">
+		<div class="container h-100">
 			<div class="blog-banner">
 				<div class="text-center">
 					<h1>Profile</h1>
-					<nav aria-label="breadcrumb" class="banner-breadcrumb">
+          <nav aria-label="breadcrumb" class="banner-breadcrumb">
             <ol class="breadcrumb">
-              <li class="breadcrumb-item active" aria-current="page">User Information</li>
+              <li class="breadcrumb-item"><a href="index.php">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Information</li>
             </ol>
           </nav>
+					
 				</div>
 			</div>
     </div>
 	</section>
-	<!-- ================ end banner area ================= -->
+                      <div class="panel-body" style="margin-left:220px">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                            <form method="post" action="editprofile.php" >
+                                                <div class="form-group"><br><br>
+                                                    <b><label>Profile Picture</label></b><br>
+                                                    <img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail">
+                                                </div>
+                                                <div class="form-group">
+                                                <b><label>User Name</label></b>
+                                                    <p class="form-control-static"><?php echo $name; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                <b><label>Gender</label></b>
+                                                    <p class="form-control-static"><?php echo $gender; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                <b><label>Your Email</label></b>
+                                                    <p class="form-control-static"><?php echo $email; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                <b><label>Phone Number</label></b>
+                                                    <p class="form-control-static"><?php echo $phone; ?></p>
+                                                </div>
 
-	<section class="checkout_area section-margin--small">
-    <div class="container">
-
-        
-        <div class="billing_details" >
-            <div class="row">
-                <div class="col-lg-8">
-                    <form class="row contact_form" action="editprofile.php" method="post">
-                    
-                        
-						<div class="col-md-12 form-group">
-                        <b><label>User Name</label></b>
-                        <p class="form-control-static"><?php echo $name; ?></p>
-                        </div>
-						<div class="col-md-12 form-group">
-                        <b><label>Gender</label></b>
-                        <p class="form-control-static"><?php echo $gender; ?></p>
-                        </div>
-                        <div class="col-md-12 form-group">
-                        <b><label>Your Email</label></b>
-                        <p class="form-control-static"><?php echo $email; ?></p>
-                        </div>
-                        <div class="col-md-12 form-group">
-                        <b><label>Phone Number</label></b>
-                        <p class="form-control-static"><?php echo $phone; ?></p>
-                        </div>
-                        <div class="col-md-12 form-group">
-                        <b><label>Profile Picture</label></b>
-                        <p><img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail"></p>
-                        </div>
-						
-								
-						<input type="submit" value="Edit" name="edit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>		
-
-    
                                                 
-                    </form>
-                </div>
-                
-            </div>
-        </div>
-    </div>
-  </section>
-		<br><br><br><br><br>
-		
+                                                
+                                                <input type="submit" value="edit" name="Edit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
+                                                
+                                            </form>
+                                                <div class="form-group">
+                                                    <label>Change Password</label><br>
+                                                    <p class="form-control-static">*******************************</p>
+                                                    <a href="editpassword.php"><input type="submit" value="change" name="Edit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
+                                                </div>
 
-
+                                        </div>
+                                </div></div>
+                                
   
 
    <!--================ Start footer Area  =================-->	
