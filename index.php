@@ -106,8 +106,8 @@
         <div class="row">
           <div class="col-xl-5">
             <div class="offer__content text-center">
-              <h3>Up To 50% Off</h3>
-              <h4>Winter Sale</h4>
+              <h3>Jian Ping Events!</h3>
+              <h4>come get his panties</h4>
               <a class="button button--active mt-3 mt-xl-4" href="category.php">Shop Now</a>
             </div>
           </div>
@@ -116,122 +116,7 @@
     </section>
     <!-- ================ offer section end ================= --> 
 
-    <!-- ================ top product area start ================= -->	
-	<section class="related-product-area">
-		<div class="container">
-			<div class="section-intro pb-60px">
-        <p>Popular Item in the market</p>
-        <h2>Best <span class="section-intro__style">Seller</span></h2>
-      </div>
-			<div class="row mt-30">
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-          <div class="single-search-product-wrapper">
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
-              <div class="desc">
-                  <a href="category.php" class="title">Airpods Pro</a>
-                  <div class="price">RM699.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Airpods Pro</a>
-                <div class="price">RM699.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/airpods.jpg" alt="Airpods Pro"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Airpods Pro</a>
-                <div class="price">RM699.00</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-          <div class="single-search-product-wrapper">
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/mouse1.png" alt="Magic Mouse"></a>
-              <div class="desc">
-                  <a href="category.php" class="title">Magic Mouse</a>
-                  <div class="price">RM319.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/mouse1.png" alt="Magic Mouse"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Magic Mouse</a>
-                <div class="price">RM319.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/mouse1.png" alt="Magic Mouse"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Magic Mouse</a>
-                <div class="price">RM319.00</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-          <div class="single-search-product-wrapper">
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/iphone12.png" alt="Iphone 12 Pro Max"></a>
-              <div class="desc">
-                  <a href="category.php" class="title">Iphone 12 Pro Max</a>
-                  <div class="price">RM3899.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/iphone12.png" alt="Iphone 12 Pro Max"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Iphone 12 Pro Max</a>
-                <div class="price">RM3899.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/iphone12.png" alt="GameSir T4 PC Game Controller"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Iphone 12 Pro Max</a>
-                <div class="price">RM3899.00</div>
-              </div>
-            </div>
-          </div>
-        </div>
-
-        <div class="col-sm-6 col-xl-3 mb-4 mb-xl-0">
-          <div class="single-search-product-wrapper">
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/macbook.jpg" alt="Macbook Air"></a>
-              <div class="desc">
-                  <a href="category.php" class="title">Macbook Air</a>
-                  <div class="price">RM2299.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/macbook.jpg" alt="Macbook Air"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Macbook Air</a>
-                <div class="price">RM2299.00</div>
-              </div>
-            </div>
-            <div class="single-search-product d-flex">
-              <a href="category.php"><img src="img/macbook.jpg" alt="Macbook Air"></a>
-              <div class="desc">
-                <a href="category.php" class="title">Macbook Air</a>
-                <div class="price">RM2299.00</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-		</div>
-	</section>
-  <!-- ================ top product area end ================= -->
-  
+    
 	<!-- ================ Subscribe section start ================= -->		  
   <section class="subscribe-position">
     <div class="container">
@@ -239,14 +124,15 @@
         <h3 class="subscribe__title">Get Update From Anywhere</h3>
         <p>Bearing Void gathering light light his eavening unto dont afraid</p>
         <div id="mc_embed_signup">
-          <form target="_blank" action="https://spondonit.us12.list-manage.com/subscribe/post?u=1462626880ade1ac87bd9c93a&amp;id=92a4423d01" method="get" class="subscribe-form form-inline mt-5 pt-1">
+          <form target="_blank" action=" " method="get" class="subscribe-form form-inline mt-5 pt-1">
             <div class="form-group ml-sm-auto">
-              <input class="form-control mb-1" type="email" name="EMAIL" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
+              <input class="form-control mb-1" type="email" name="email" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
               <div class="info"></div>
             </div>
             <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
             <div style="position: absolute; left: -5000px;">
               <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
+              
             </div>
 
           </form>
@@ -255,6 +141,61 @@
       </div>
     </div>
   </section>
+  <!-- ================ Welcome Email section start ================= -->
+  <?php
+include('db.php');
+$error = "";
+if(isset($_POST["email"]) && (!empty($_POST["email"]))){
+$email = $_POST["email"];
+$email = filter_var($email, FILTER_SANITIZE_EMAIL);
+$email = filter_var($email, FILTER_VALIDATE_EMAIL);
+
+if (!$email) {
+   $error .="<p>Invalid email address please type a valid email address!</p>";
+   }else{
+   $sel_query = "SELECT * FROM `register` WHERE email='".$email."'";
+   $results = mysqli_query($con,$sel_query);
+   $row = mysqli_num_rows($results);
+   if ($row==""){
+   $error .= "<p>No user is registered with this email address!</p>";
+   }
+  }
+ 
+$output='<p>Dear user,</p>';
+$output.='<p>Hi</p>';
+$output.='<p>-------------------------------------------------------------</p>';  
+$output.='<p>Thanks,</p>';
+$output.='<p>threeC Team</p>';
+$body = $output; 
+$subject = "ThreeC Online Store - threeC.com";
+ 
+$email_to = $email;
+$fromserver = "threeC_onlinestore@hotmail.com"; 
+require("PHPMailer/PHPMailerAutoload.php");
+$mail = new PHPMailer();
+$mail->IsSMTP();
+$mail->Host = "smtp.outlook.com"; // Enter your host here
+$mail->SMTPAuth = true;
+$mail->Username = "threeC_onlinestore@hotmail.com"; // Enter your email here
+$mail->Password = "jianpinglovexia1314"; //Enter your password here
+$mail->Port = 587;
+$mail->IsHTML(true);
+$mail->From = "threeC_onlinestore@hotmail.com";
+$mail->FromName = "threeC Team";
+$mail->Sender = $fromserver; // indicates ReturnPath header
+$mail->Subject = $subject;
+$mail->Body = $body;
+$mail->AddAddress($email_to);
+if(!$mail->Send()){
+echo "Mailer Error: " . $mail->ErrorInfo;
+}else{
+   echo '<script type="text/javascript">
+   alert("Hello~ Verification email has been sent successfully")
+   </script>';
+ }
+}
+?>
+<!-- ================ Email section end ================= -->
 	<!-- ================ Subscribe section end ================= -->
     
 

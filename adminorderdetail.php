@@ -85,15 +85,8 @@
                                 <a href="adminindex.php" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="adminflot.php">Flot Charts</a>
-                                    </li>
-                                    <li>
-                                        <a href="adminmorris.php">Morris.js Charts</a>
-                                    </li>
-                                </ul>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</span></a>
+                                
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>
@@ -105,70 +98,7 @@
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-wrench fa-fw"></i> UI Elements<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="adminpanels-wells.php">Panels and Wells</a>
-                                    </li>
-                                    <li>
-                                        <a href="adminbuttons.php">Buttons</a>
-                                    </li>
-                                    <li>
-                                        <a href="adminnotifications.php">Notifications</a>
-                                    </li>
-                                    <li>
-                                        <a href="admintypography.php">Typography</a>
-                                    </li>
-                                    <li>
-                                        <a href="adminicons.php"> Icons</a>
-                                    </li>
-                                    <li>
-                                        <a href="admingrid.php">Grid</a>
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-sitemap fa-fw"></i> Multi-Level Dropdown<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Second Level Item</a>
-                                    </li>
-                                    <li>
-                                        <a href="#">Third Level <span class="fa arrow"></span></a>
-                                        <ul class="nav nav-third-level">
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                            <li>
-                                                <a href="#">Third Level Item</a>
-                                            </li>
-                                        </ul>
-                                        <!-- /.nav-third-level -->
-                                    </li>
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
-                            <li>
-                                <a href="#"><i class="fa fa-files-o fa-fw"></i> Sample Pages<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="adminblank.php">Blank Page</a>
-                                    </li>
-                                    
-                                </ul>
-                                <!-- /.nav-second-level -->
-                            </li>
+                            
                         </ul>
                     </div>
                 </div>
