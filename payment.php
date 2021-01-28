@@ -26,9 +26,16 @@ session_start();
  ));
 
  
-
+ $username=$_SESSION["username"];
+ $query=mysqli_query($con,"select * from register where username='$username'");
+ if($row=mysqli_fetch_array($query)){  
+ $id=$row["id"];
+ 
+   
+ } 
    
  $order_number = rand(100000,999999);
+ $date = date('Y-m-d H:i:s');
  
  $charge = \Stripe\Charge::create(array(
   'customer'  => $customer->id,
@@ -66,8 +73,8 @@ session_start();
 
   $query = "
   INSERT INTO order_table 
-     (order_number, order_total_amount, transaction_id, card_cvc, card_expiry_month, card_expiry_year, order_status, card_holder_number, email_address, customer_name, customer_address, customer_city, customer_pin, customer_state, customer_country) 
-     VALUES (:order_number, :order_total_amount, :transaction_id, :card_cvc, :card_expiry_month, :card_expiry_year, :order_status, :card_holder_number, :email_address, :customer_name, :customer_address, :customer_city, :customer_pin, :customer_state, :customer_country)
+     (order_number, order_total_amount, transaction_id, card_cvc, card_expiry_month, card_expiry_year, order_status, card_holder_number, email_address, customer_name, customer_address, customer_city, customer_pin, customer_state, customer_country, user_id, date) 
+     VALUES (:order_number, :order_total_amount, :transaction_id, :card_cvc, :card_expiry_month, :card_expiry_year, :order_status, :card_holder_number, :email_address, :customer_name, :customer_address, :customer_city, :customer_pin, :customer_state, :customer_country, $id, '$date')
   ";
 
   $statement = $connect->prepare($query);
@@ -85,11 +92,15 @@ session_start();
     ':order_item_price' => $values["product_price"],
     
    );
+  
+  
+   
+
 
    $query = "
    INSERT INTO order_item 
-   (order_id, order_item_name, order_item_quantity, order_item_price) 
-   VALUES (:order_id, :order_item_name, :order_item_quantity, :order_item_price)
+   (order_id, order_item_name, order_item_quantity, order_item_price,user_id, date) 
+   VALUES (:order_id, :order_item_name, :order_item_quantity, :order_item_price, $id, '$date')
    ";
 
    $statement = $connect->prepare($query);
