@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
--- Host: 127.0.0.1
--- Generation Time: Jan 27, 2021 at 05:09 PM
--- Server version: 10.1.29-MariaDB
--- PHP Version: 7.1.12
+-- 主机： 127.0.0.1
+-- 生成日期： 2021-01-28 08:48:34
+-- 服务器版本： 10.4.11-MariaDB
+-- PHP 版本： 7.2.31
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -19,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `fyp`
+-- 数据库： `fyp`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `admin`
+-- 表的结构 `admin`
 --
 
 CREATE TABLE `admin` (
@@ -39,7 +38,7 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `admin`
+-- 转存表中的数据 `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `email`, `password`, `image`, `gender`, `phone`) VALUES
@@ -48,7 +47,7 @@ INSERT INTO `admin` (`id`, `username`, `email`, `password`, `image`, `gender`, `
 -- --------------------------------------------------------
 
 --
--- Table structure for table `compare`
+-- 表的结构 `compare`
 --
 
 CREATE TABLE `compare` (
@@ -64,7 +63,7 @@ CREATE TABLE `compare` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data for table `compare`
+-- 转存表中的数据 `compare`
 --
 
 INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `battery`, `display`, `ram`, `image`) VALUES
@@ -80,7 +79,7 @@ INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `batter
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_item`
+-- 表的结构 `order_item`
 --
 
 CREATE TABLE `order_item` (
@@ -88,24 +87,49 @@ CREATE TABLE `order_item` (
   `order_id` int(11) NOT NULL,
   `order_item_name` varchar(250) NOT NULL,
   `order_item_quantity` int(11) NOT NULL,
-  `order_item_price` double(12,2) NOT NULL
+  `order_item_price` double(12,2) NOT NULL,
+  `user_id` int(255) NOT NULL,
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `order_item`
+-- 转存表中的数据 `order_item`
 --
 
-INSERT INTO `order_item` (`order_item_id`, `order_id`, `order_item_name`, `order_item_quantity`, `order_item_price`) VALUES
-(1, 1, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00),
-(2, 1, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00),
-(3, 1, 'Corsair K55 RGB Gaming Keyboard', 1, 219.00),
-(4, 2, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00),
-(5, 2, 'Razer DeathAdder Essential Gaming Mouse', 1, 119.00);
+INSERT INTO `order_item` (`order_item_id`, `order_id`, `order_item_name`, `order_item_quantity`, `order_item_price`, `user_id`, `date`) VALUES
+(1, 1, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 0, '0000-00-00 00:00:00'),
+(2, 1, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(3, 1, 'Corsair K55 RGB Gaming Keyboard', 1, 219.00, 0, '0000-00-00 00:00:00'),
+(4, 2, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(5, 2, 'Razer DeathAdder Essential Gaming Mouse', 1, 119.00, 0, '0000-00-00 00:00:00'),
+(6, 3, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(7, 4, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(8, 5, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(9, 6, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 0, '0000-00-00 00:00:00'),
+(10, 7, 'Corsair K55 RGB Gaming Keyboard', 1, 219.00, 0, '0000-00-00 00:00:00'),
+(11, 8, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(12, 9, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(13, 10, 'Corsair K55 RGB Gaming Keyboard', 1, 219.00, 0, '0000-00-00 00:00:00'),
+(14, 11, 'Corsair K55 RGB Gaming Keyboard', 1, 219.00, 0, '0000-00-00 00:00:00'),
+(15, 11, 'Corsair K68 RGB Mechanical Gaming Keyboard', 3, 369.00, 0, '0000-00-00 00:00:00'),
+(16, 12, 'Corsair K55 RGB Gaming Keyboard', 1, 219.00, 0, '0000-00-00 00:00:00'),
+(17, 12, 'Razer Cynosa Chroma Gaming Keyboard', 3, 199.00, 0, '0000-00-00 00:00:00'),
+(18, 13, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 0, '0000-00-00 00:00:00'),
+(19, 14, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 1, 299.00, 0, '0000-00-00 00:00:00'),
+(20, 14, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 0, '0000-00-00 00:00:00'),
+(21, 15, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 10, '0000-00-00 00:00:00'),
+(22, 16, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 14, '0000-00-00 00:00:00'),
+(23, 17, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 14, '0000-00-00 00:00:00'),
+(28, 20, 'Corsair K55 RGB Gaming Keyboard', 1, 219.00, 14, '0000-00-00 00:00:00'),
+(29, 21, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 14, '0000-00-00 00:00:00'),
+(30, 22, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 14, '0000-00-00 00:00:00'),
+(31, 23, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 14, '0000-00-00 00:00:00'),
+(32, 24, 'Asus Zenfone 7_Pro ZS671KS', 1, 3999.00, 14, '2021-01-28 08:42:57');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `order_table`
+-- 表的结构 `order_table`
 --
 
 CREATE TABLE `order_table` (
@@ -124,21 +148,43 @@ CREATE TABLE `order_table` (
   `customer_city` varchar(250) NOT NULL,
   `customer_pin` varchar(30) NOT NULL,
   `customer_state` varchar(250) NOT NULL,
-  `customer_country` varchar(250) NOT NULL
+  `customer_country` varchar(250) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `date` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `order_table`
+-- 转存表中的数据 `order_table`
 --
 
-INSERT INTO `order_table` (`order_id`, `order_number`, `order_total_amount`, `transaction_id`, `card_cvc`, `card_expiry_month`, `card_expiry_year`, `order_status`, `card_holder_number`, `email_address`, `customer_name`, `customer_address`, `customer_city`, `customer_pin`, `customer_state`, `customer_country`) VALUES
-(1, 285746, 817.00, 'txn_1IEF3HLOApRiqgAEEbC0k04v', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'malaysia'),
-(2, 780933, 318.00, 'txn_1IEFl8LOApRiqgAE2uMoZXhE', 123, '12', '2022', 'succeeded', '4242424242424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia');
+INSERT INTO `order_table` (`order_id`, `order_number`, `order_total_amount`, `transaction_id`, `card_cvc`, `card_expiry_month`, `card_expiry_year`, `order_status`, `card_holder_number`, `email_address`, `customer_name`, `customer_address`, `customer_city`, `customer_pin`, `customer_state`, `customer_country`, `user_id`, `date`) VALUES
+(1, 285746, 817.00, 'txn_1IEF3HLOApRiqgAEEbC0k04v', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'malaysia', 0, '0000-00-00 00:00:00'),
+(2, 780933, 318.00, 'txn_1IEFl8LOApRiqgAE2uMoZXhE', 123, '12', '2022', 'succeeded', '4242424242424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(3, 895971, 199.00, 'txn_1IEGvULOApRiqgAEo2l8x8hm', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(4, 442731, 199.00, 'txn_1IEGwXLOApRiqgAEbmdH3dZZ', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(5, 732794, 199.00, 'txn_1IEH09LOApRiqgAEwFTcHXLR', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(6, 263625, 399.00, 'txn_1IEH1iLOApRiqgAE6QZ4hIIj', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(7, 341248, 219.00, 'txn_1IEH2XLOApRiqgAEdYzXaUl4', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(8, 479414, 199.00, 'txn_1IEHJGLOApRiqgAELrfbOSBi', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(9, 512652, 199.00, 'txn_1IEHlfLOApRiqgAEP9QY9qPf', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(10, 343758, 219.00, 'txn_1IEIAALOApRiqgAE4Xt6EqOF', 123, '12', '2022', 'succeeded', '4242424242424242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(11, 911031, 1326.00, 'txn_1IEIG1LOApRiqgAEdupbVFHr', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(12, 397323, 816.00, 'txn_1IEIHPLOApRiqgAEKOMBrCdp', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(13, 727211, 199.00, 'txn_1IEINnLOApRiqgAESkQAxx4H', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(14, 737956, 698.00, 'txn_1IEIj8LOApRiqgAEMi00t8Oj', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(15, 703488, 399.00, 'txn_1IET9KLOApRiqgAE6Lb2Ckg0', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(16, 958390, 199.00, 'txn_1IETCVLOApRiqgAE7Z7d4SQN', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(17, 742588, 399.00, 'txn_1IETDtLOApRiqgAE9FTAji0U', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 0, '0000-00-00 00:00:00'),
+(20, 543473, 219.00, 'txn_1IEUcALOApRiqgAEu60i6LS4', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 14, '0000-00-00 00:00:00'),
+(21, 273578, 199.00, 'txn_1IEUvVLOApRiqgAEzDhwvpWr', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 14, '0000-00-00 00:00:00'),
+(22, 213369, 399.00, 'txn_1IEUxbLOApRiqgAEkMKgSHGz', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 14, '0000-00-00 00:00:00'),
+(23, 736605, 199.00, 'txn_1IEV1yLOApRiqgAEMdFw2kvY', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 14, '0000-00-00 00:00:00'),
+(24, 393931, 3999.00, 'txn_1IEV9bLOApRiqgAE8edghUCQ', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 14, '2021-01-28 08:42:57');
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `product`
+-- 表的结构 `product`
 --
 
 CREATE TABLE `product` (
@@ -155,7 +201,7 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `product`
+-- 转存表中的数据 `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`, `description2`, `brand`, `color`, `quality`) VALUES
@@ -202,7 +248,7 @@ INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `pwdreset`
+-- 表的结构 `pwdreset`
 --
 
 CREATE TABLE `pwdreset` (
@@ -216,7 +262,7 @@ CREATE TABLE `pwdreset` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `register`
+-- 表的结构 `register`
 --
 
 CREATE TABLE `register` (
@@ -230,106 +276,108 @@ CREATE TABLE `register` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- Dumping data for table `register`
+-- 转存表中的数据 `register`
 --
 
 INSERT INTO `register` (`id`, `username`, `email`, `password`, `image`, `gender`, `phone`) VALUES
 (9, 'yong hao', 'yonghaocha@gmail.com', '25f9e794323b453885f5181f1b624d0b', '', '', ''),
 (10, 'admin', 'james123@gmail.com', '827ccb0eea8a706c4c34a16891f84e7b', '', '', ''),
 (11, 'admin2', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/WeChat Image_20200714182754.jpg', 'Male', '012-7027533'),
-(12, 'YongHao', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/WeChat Image_20200817232601.jpg', 'Male', '012-7027533');
+(12, 'YongHao', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/WeChat Image_20200817232601.jpg', 'Male', '012-7027533'),
+(13, 'admin', 'jjj@hotmail.com', '21232f297a57a5a743894a0e4a801fc3', '', '', ''),
+(14, 'test', 'jjj@hotmail.com', '098f6bcd4621d373cade4e832627b4f6', '', '', '');
 
 --
--- Indexes for dumped tables
+-- 转储表的索引
 --
 
 --
--- Indexes for table `admin`
+-- 表的索引 `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `compare`
+-- 表的索引 `compare`
 --
 ALTER TABLE `compare`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `order_item`
+-- 表的索引 `order_item`
 --
 ALTER TABLE `order_item`
   ADD PRIMARY KEY (`order_item_id`);
 
 --
--- Indexes for table `order_table`
+-- 表的索引 `order_table`
 --
 ALTER TABLE `order_table`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- Indexes for table `product`
+-- 表的索引 `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- Indexes for table `pwdreset`
+-- 表的索引 `pwdreset`
 --
 ALTER TABLE `pwdreset`
   ADD PRIMARY KEY (`pwdResetID`);
 
 --
--- Indexes for table `register`
+-- 表的索引 `register`
 --
 ALTER TABLE `register`
   ADD PRIMARY KEY (`id`);
 
 --
--- AUTO_INCREMENT for dumped tables
+-- 在导出的表使用AUTO_INCREMENT
 --
 
 --
--- AUTO_INCREMENT for table `admin`
+-- 使用表AUTO_INCREMENT `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `compare`
+-- 使用表AUTO_INCREMENT `compare`
 --
 ALTER TABLE `compare`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
--- AUTO_INCREMENT for table `order_item`
+-- 使用表AUTO_INCREMENT `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
 
 --
--- AUTO_INCREMENT for table `order_table`
+-- 使用表AUTO_INCREMENT `order_table`
 --
 ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=25;
 
 --
--- AUTO_INCREMENT for table `product`
+-- 使用表AUTO_INCREMENT `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
 
 --
--- AUTO_INCREMENT for table `pwdreset`
+-- 使用表AUTO_INCREMENT `pwdreset`
 --
 ALTER TABLE `pwdreset`
   MODIFY `pwdResetID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT for table `register`
+-- 使用表AUTO_INCREMENT `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

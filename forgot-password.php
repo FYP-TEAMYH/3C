@@ -1,3 +1,15 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>3C Online Store</title>
+	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
+	<link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
+	<link rel="stylesheet" href="css/style.css">
+</head>
+
 <?php
 include('db.php');
 $error = "";
@@ -12,12 +24,19 @@ if (!$email) {
    $results = mysqli_query($con,$sel_query);
    $row = mysqli_num_rows($results);
    if ($row==""){
-   $error .= "<p>No user is registered with this email address!</p>";
+   $error .= "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+   <div class='confirmation-card' style='text-align: center'>
+   
+   <h5>No user is registered with this email address!</h5>
+   </div></div>";
    }
   }
    if($error!=""){
-   echo "<div class='error'>".$error."</div>
-   <br /><a href='javascript:history.go(-1)'>Go Back</a>";
+   echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+   <div class='confirmation-card' style='text-align: center'>
+   <div class='error'>".$error."</div>
+   <br /><h5><a href='javascript:history.go(-1)'>Go Back</a></h5>
+   </div></div>";
    }else{
    $expFormat = mktime(
    date("H"), date("i"), date("s"), date("m") ,date("d")+1, date("Y")
@@ -73,14 +92,20 @@ echo "Mailer Error: " . $mail->ErrorInfo;
    }
 }else{
 ?>
+<section class="checkout_area section-margin--small">
+    
+<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+		<div class='confirmation-card' style='text-align: center'>
+		
 <form method="post" action="" name="reset"><br /><br />
-<label><strong>Enter Your Email Address:</strong></label><br /><br />
+<h5><label><strong>Enter Your Email Address:</strong></label></h5><br />
 <input type="email" name="email" placeholder="username@email.com" />
 <br /><br />
-<input type="submit" value="Reset Password"/>
+<input type="submit" class="button button-login w-10" value="Reset Password"/>
 </form>
 
 <p>&nbsp;</p>
 <p>&nbsp;</p>
 <p>&nbsp;</p>
+</div></div></section>
 <?php } ?>

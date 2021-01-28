@@ -35,7 +35,7 @@ session_start();
  } 
    
  $order_number = rand(100000,999999);
- $date = date('Y-m-d H:i:s');
+ $date = date('Y-m-d');
  
  $charge = \Stripe\Charge::create(array(
   'customer'  => $customer->id,
