@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -104,9 +106,34 @@
     </div>
 	</section>
 	<!-- ================ end banner area ================= -->
-  
+	
   <!--================Login Box Area =================-->
 	<section class="login_box_area section-margin">
+	<!-- ================ same name validation ================= -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#username').keyup(function()
+        {
+            $.post("register.test.php",
+            {username:$('#username').val()
+            },function(response)
+            {
+                $('#usernameResult').fadeOut();
+                setTimeout("Userresult('usernameResult','"+escape(response)+"')",350);
+            });
+            return false;
+
+        });
+    });
+    function Userresult(id,response)
+    {
+        $('#usernameLoading').hide();
+        $('#'+id).html(unescape(response));
+        $('#'+id).fadeIn();
+    }
+</script>
+<!-- ================ same name validation ================= -->
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">
@@ -124,6 +151,8 @@
 						<form class="row login_form" action="" method="post"  id="register_form" >
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required />
+								<span id="usernameLoading"></span>
+        						<span id="usernameResult"></span>
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />

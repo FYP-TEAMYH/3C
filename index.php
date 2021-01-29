@@ -117,31 +117,9 @@
     <!-- ================ offer section end ================= --> 
 
     
-	<!-- ================ Subscribe section start ================= -->		  
-  <section class="subscribe-position">
-    <div class="container">
-      <div class="subscribe text-center">
-        <h3 class="subscribe__title">Get Update From Anywhere</h3>
-        <p>Bearing Void gathering light light his eavening unto dont afraid</p>
-        <div id="mc_embed_signup">
-          <form target="_blank" action=" " method="get" class="subscribe-form form-inline mt-5 pt-1">
-            <div class="form-group ml-sm-auto">
-              <input class="form-control mb-1" type="email" name="email" placeholder="Enter your email" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Your Email Address '" >
-              <div class="info"></div>
-            </div>
-            <button class="button button-subscribe mr-auto mb-1" type="submit">Subscribe Now</button>
-            <div style="position: absolute; left: -5000px;">
-              <input name="b_36c4fd991d266f23781ded980_aefe40901a" tabindex="-1" value="" type="text">
-              
-            </div>
-
-          </form>
-        </div>
-        
-      </div>
-    </div>
-  </section>
+	
   <!-- ================ Welcome Email section start ================= -->
+  
   <?php
 include('db.php');
 $error = "";
@@ -149,7 +127,6 @@ if(isset($_POST["email"]) && (!empty($_POST["email"]))){
 $email = $_POST["email"];
 $email = filter_var($email, FILTER_SANITIZE_EMAIL);
 $email = filter_var($email, FILTER_VALIDATE_EMAIL);
-
 if (!$email) {
    $error .="<p>Invalid email address please type a valid email address!</p>";
    }else{
@@ -157,17 +134,38 @@ if (!$email) {
    $results = mysqli_query($con,$sel_query);
    $row = mysqli_num_rows($results);
    if ($row==""){
-   $error .= "<p>No user is registered with this email address!</p>";
+   $error .= "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+   <div class='confirmation-card' style='text-align: center'>
+   
+   <h5>No user is registered with this email address!</h5>
+   </div></div>";
    }
   }
+   if($error!=""){
+   echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+   <div class='confirmation-card' style='text-align: center'>
+   <div class='error'>".$error."</div>
+   <br /><h5><a href='javascript:history.go(-1)'>Go Back</a></h5>
+   </div></div>";
+   }else{
+// Insert Subscribe Table
+mysqli_query($con,
+"INSERT INTO `subscribe` (`email`)
+VALUES ('".$email."');");
  
 $output='<p>Dear user,</p>';
-$output.='<p>Hi</p>';
-$output.='<p>-------------------------------------------------------------</p>';  
+$output.='<p>Please click on the following link to reset your password.</p>';
+$output.='<p>-------------------------------------------------------------</p>';
+$output.='<p>-------------------------------------------------------------</p>';
+$output.='<p>Please be sure to copy the entire link into your browser.
+The link will expire after 1 day for security reason.</p>';
+$output.='<p>If you did not request this forgotten password email, no action 
+is needed, your password will not be reset. However, you may want to log into 
+your account and change your security password as someone may have guessed it.</p>';   
 $output.='<p>Thanks,</p>';
 $output.='<p>threeC Team</p>';
 $body = $output; 
-$subject = "ThreeC Online Store - threeC.com";
+$subject = "Subcription Activated";
  
 $email_to = $email;
 $fromserver = "threeC_onlinestore@hotmail.com"; 
@@ -177,7 +175,7 @@ $mail->IsSMTP();
 $mail->Host = "smtp.outlook.com"; // Enter your host here
 $mail->SMTPAuth = true;
 $mail->Username = "threeC_onlinestore@hotmail.com"; // Enter your email here
-$mail->Password = "jianpinglovexia1314"; //Enter your password here
+$mail->Password = "Xiajianping520"; //Enter your password here
 $mail->Port = 587;
 $mail->IsHTML(true);
 $mail->From = "threeC_onlinestore@hotmail.com";
@@ -190,12 +188,35 @@ if(!$mail->Send()){
 echo "Mailer Error: " . $mail->ErrorInfo;
 }else{
    echo '<script type="text/javascript">
-   alert("Hello~ Verification email has been sent successfully")
+   alert("Verification email has been sent successfully")
    </script>';
  }
-}
+   }
+}else{
 ?>
+<section class="checkout_area section-margin--small">
+    
+
+</div></div></section>
+
 <!-- ================ Email section end ================= -->
+<!-- ================ Subscribe section start ================= -->		  
+<section class="subscribe-position">
+<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+		<div class='confirmation-card' style='text-align: center'>
+		
+<form method="post" action="" name="reset"><br /><br />
+<h5><label><strong>Enter Your Email Address:</strong></label></h5><br />
+<input type="email" name="email" placeholder="username@email.com" />
+<br /><br />
+<input type="submit" class="button button-login w-10" value="Reset Password"/>
+</form>
+
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+  </section>
+  <?php } ?>
 	<!-- ================ Subscribe section end ================= -->
     
 
@@ -275,6 +296,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 </body>
 <script>
 load_cart_data();
+
 function load_cart_data()
  {
   $.ajax({
@@ -289,5 +311,29 @@ function load_cart_data()
    }
   })
  }
+
+
+
  </script>
 </html>
+<?php 
+		 if(isset($_POST['submit'])){
+        
+      $email = $_POST['subsemail'];
+    
+      $query = "INSERT into `subscibe` (email)
+      VALUES ('$email')";
+      $result = mysqli_query($con, $query);
+    //move uploaded img into folder : img 
+    
+               
+  ?>
+      
+      <script type="text/javascript">
+          alert("Update Successfull.");
+          window.location = "subscibe.php?email=<?php echo $email ?>";
+      </script>
+      <?php
+           } 
+                  			
+?>

@@ -1,15 +1,3 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta http-equiv="X-UA-Compatible" content="ie=edge">
-  <title>3C Online Store</title>
-	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
-	<link rel="stylesheet" href="vendors/bootstrap/bootstrap.min.css">
-	<link rel="stylesheet" href="css/style.css">
-</head>
-
 <?php
 include('db.php');
 $error = "";
@@ -38,17 +26,10 @@ if (!$email) {
    <br /><h5><a href='javascript:history.go(-1)'>Go Back</a></h5>
    </div></div>";
    }else{
-   $expFormat = mktime(
-   date("H"), date("i"), date("s"), date("m") ,date("d")+1, date("Y")
-   );
-   $expDate = date("Y-m-d H:i:s",$expFormat);
-   $key = md5(2418*2+$email);
-   $addKey = substr(md5(uniqid(rand(),1)),3,10);
-   $key = $key . $addKey;
-// Insert Temp Table
+// Insert Subscribe Table
 mysqli_query($con,
-"INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`)
-VALUES ('".$email."', '".$key."', '".$expDate."');");
+"INSERT INTO `subscribe` (`email`)
+VALUES ('".$email."');");
  
 $output='<p>Dear user,</p>';
 $output.='<p>Please click on the following link to reset your password.</p>';
@@ -63,7 +44,7 @@ your account and change your security password as someone may have guessed it.</
 $output.='<p>Thanks,</p>';
 $output.='<p>threeC Team</p>';
 $body = $output; 
-$subject = "Password Recovery - threeC.com";
+$subject = "Subcription Activated";
  
 $email_to = $email;
 $fromserver = "threeC_onlinestore@hotmail.com"; 

@@ -78,15 +78,8 @@
                                 <a href="adminindex.php" class="active"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts<span class="fa arrow"></span></a>
-                                <ul class="nav nav-second-level">
-                                    <li>
-                                        <a href="adminflot.php">Flot Charts</a>
-                                    </li>
-                                    <li>
-                                        <a href="adminmorris.php">Morris.js Charts</a>
-                                    </li>
-                                </ul>
+                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</span></a>
+                                
                                 <!-- /.nav-second-level -->
                             </li>
                             <li>

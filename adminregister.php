@@ -24,12 +24,14 @@
 		 $email = mysqli_real_escape_string($con,$email);
 		 $password = stripslashes($_REQUEST['password']);
 		$password = mysqli_real_escape_string($con,$password);
+		$img = "img/user2.jpg" ;
+
 
 
 		 
 		
-				$query = "INSERT into `admin` (username, email, password)
-				VALUES ('$username', '$email' , '".md5($password)."')";
+				$query = "INSERT into `admin` (username, email, password,image)
+				VALUES ('$username', '$email' , '".md5($password)."','$img')";
 				$result = mysqli_query($con,$query);
 				if($result){
 					echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>

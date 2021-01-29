@@ -193,7 +193,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#">
+                                <a href="https://localhost/3C/adminvoucher.php">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Details</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -322,7 +322,7 @@
                             <!-- /.panel -->
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart Example
+                                    <i class="fa fa-bar-chart-o fa-fw"></i> Bar Chart 
                                     <div class="pull-right">
                                         <div class="btn-group">
                                             <button type="button" class="btn btn-default btn-xs dropdown-toggle"
@@ -356,21 +356,21 @@
  function drawChart() {
  var data = google.visualization.arrayToDataTable([
 
-['Order Item','Order quantity'],
+['User ID','Order Amount'],
  <?php 
-			$query = "SELECT * from order_item";
+			$query = "SELECT * from order_table";
 
 			 $exec = mysqli_query($con,$query);
 			 while($row = mysqli_fetch_array($exec)){
 
-			 echo "['".$row['order_item_name']."',".$row['order_item_quantity']."],";
+			 echo "['".$row['user_id']."',".$row['order_total_amount']."],";
 			 }
 			 ?> 
  
  ]);
 
  var options = {
- title: 'Order Details ',
+ title: 'User / Order Amount ',
           is3D: true,
  };
  var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));

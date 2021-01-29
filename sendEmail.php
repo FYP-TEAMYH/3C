@@ -16,7 +16,7 @@ $mail->IsSMTP();
 $mail->Host = "smtp.outlook.com"; // Enter Your Host/Server
 $mail->SMTPAuth = true;
 $mail->Username = "threeC_onlinestore@hotmail.com"; // Enter Sender Email
-$mail->Password = "jianpinglovexia1314";
+$mail->Password = "Xiajianping520";
 //If SMTP requires TLS encryption then remove comment from it
 //$mail->SMTPSecure = "tls";
 $mail->Port = 587;
