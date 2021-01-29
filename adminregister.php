@@ -46,7 +46,24 @@
 
 				
 ?>
-	
+	<!--================ Start Header Menu Area =================-->
+	<header class="header_area">
+    <div class="main_menu">
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <div class="container">
+          <a class="navbar-brand logo_h" href="#"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store  [ Admin ]</b></a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          
+        </div>
+      </nav>
+    </div>
+  </header>
+	<!--================ End Header Menu Area =================-->
 	<section class="login_box_area section-margin">
 		<div class="container">
 			<div class="row">
