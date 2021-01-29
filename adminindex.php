@@ -185,11 +185,17 @@
                                 <div class="panel-heading">
                                     <div class="row">
                                         <div class="col-xs-3">
-                                            <i class="fa fa-support fa-5x"></i>
+                                            <i class="fa fa-cubes fa-5x"></i>
                                         </div>
                                         <div class="col-xs-9 text-right">
-                                            <div class="huge">0</div>
-                                            <div>Voucher been used</div>
+                                            <div class="huge">
+                                                    <?php $query = "SELECT COUNT(*) totalProduct FROM product ;";
+                                                    $result = mysqli_query( $con, $query );
+                                                    $totalAdmins = mysqli_fetch_assoc( $result );
+                                                    echo $totalAdmins['totalProduct'];
+                                            ?> 
+                                            </div>
+                                            <div>Total Product in stock</div>
                                         </div>
                                     </div>
                                 </div>
@@ -370,7 +376,7 @@
  ]);
 
  var options = {
- title: 'User / Order Amount ',
+ title: 'User ID/ Order Amount ',
           is3D: true,
  };
  var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
@@ -402,14 +408,20 @@
                                                 <span class="caret"></span>
                                             </button>
                                             <ul class="dropdown-menu pull-right" role="menu">
-                                                <li><a href="#">Action</a>
-                                                </li>
-                                                <li><a href="#">Another action</a>
-                                                </li>
-                                                <li><a href="#">Something else here</a>
-                                                </li>
                                                 <li class="divider"></li>
-                                                <li><a href="#">Separated link</a>
+                                                <p style = "display:none" id="p1">Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka</p>
+                                                <button type="button" onclick="copyToClipboard('#p1')" class="btn btn-default" >Copy Address</button>
+                                                <script>
+                                                function copyToClipboard(element) {
+                                                var $temp = $("<input>");
+                                                $("body").append($temp);
+                                                $temp.val($(element).text()).select();
+                                                document.execCommand("copy");
+                                                $temp.remove();
+                                                alert("Address Copied");
+                                                }
+                                            
+                                                </script>
                                                 </li>
                                             </ul>
                                             
@@ -421,19 +433,6 @@
                                             width="1020" height="380" frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
                             </div>      
                             <!-- /.Map-panel-body --> 
-
-                            <!-- panel-body -->            
-                            <div class="panel panel-default">
-                                <div class="panel-heading">
-                                    <i class="fa fa-bar-chart-o fa-fw"></i> Donut Chart Example
-                                </div>
-                                <div class="panel-body">
-                                    <div id="morris-donut-chart"></div>
-                                    <a href="#" class="btn btn-default btn-block">View Details</a>
-                                </div>
-                                <!-- /.panel-body -->
-                            </div>
-                            <!-- /.panel -->
                                 
         <!-- /#wrapper -->
 
