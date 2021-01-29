@@ -38,6 +38,9 @@
     <?php
   require('db_connect.php');
   session_start();
+  if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+    header('location:adminlogin.php');
+    }
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
   ?>
@@ -84,11 +87,7 @@
                             <li>
                                 <a href="adminindex.php" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</span></a>
-                                
-                                <!-- /.nav-second-level -->
-                            </li>
+                            
                             <li>
                                 <a href="adminorder.php" class="active"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>

@@ -30,7 +30,11 @@
         <![endif]-->
     </head>
     <?php 
-		require('db_connect.php');
+        require('db_connect.php');
+        session_start();
+        if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+            header('location:adminlogin.php');
+            }
 		$errors = array();
 		if (isset($_REQUEST['name'])){
 				// removes backslashes
@@ -120,11 +124,7 @@
                             <li>
                                 <a href="adminindex.php" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
-                            <li>
-                                <a href="#"><i class="fa fa-bar-chart-o fa-fw"></i> Charts</span></a>
-                                
-                                <!-- /.nav-second-level -->
-                            </li>
+                           
                             <li>
                                 <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
