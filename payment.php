@@ -30,12 +30,12 @@ session_start();
  $query=mysqli_query($con,"select * from register where username='$username'");
  if($row=mysqli_fetch_array($query)){  
  $id=$row["id"];
- 
+ $status=0;
    
  } 
    
  $order_number = rand(100000,999999);
- $date = date('Y-m-d');
+ $date = date('Y-m-d H:i:s');
  
  $charge = \Stripe\Charge::create(array(
   'customer'  => $customer->id,
@@ -68,13 +68,13 @@ session_start();
    ':customer_city'  => $_POST['customer_city'],
    ':customer_pin'   => $_POST['customer_pin'],
    ':customer_state'  => $_POST['customer_state'],
-   ':customer_country'  => $_POST['customer_country'],
+   ':customer_country'  => $_POST['customer_country']
   );
 
   $query = "
   INSERT INTO order_table 
-     (order_number, order_total_amount, transaction_id, card_cvc, card_expiry_month, card_expiry_year, order_status, card_holder_number, email_address, customer_name, customer_address, customer_city, customer_pin, customer_state, customer_country, user_id, date, status) 
-     VALUES (:order_number, :order_total_amount, :transaction_id, :card_cvc, :card_expiry_month, :card_expiry_year, :order_status, :card_holder_number, :email_address, :customer_name, :customer_address, :customer_city, :customer_pin, :customer_state, :customer_country, $id, '$date', 0)
+     (order_number, order_total_amount, transaction_id, card_cvc, card_expiry_month, card_expiry_year, order_status, card_holder_number, email_address, customer_name, customer_address, customer_city, customer_pin, customer_state, customer_country, user_id, date,status) 
+     VALUES (:order_number, :order_total_amount, :transaction_id, :card_cvc, :card_expiry_month, :card_expiry_year, :order_status, :card_holder_number, :email_address, :customer_name, :customer_address, :customer_city, :customer_pin, :customer_state, :customer_country, $id, '$date', $status)
   ";
 
   $statement = $connect->prepare($query);
