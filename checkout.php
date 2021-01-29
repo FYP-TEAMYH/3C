@@ -159,12 +159,12 @@ $order_details .= '</table>';
                     <h3>Billing Details</h3>
                     <form class="row contact_form" method="post" id="order_process_form" action="payment.php">
                         <div class="col-md-12 form-group p_star">
-                        <input type="text" name="customer_name" id="customer_name" class="form-control" value="" placeholder="Name" />
+                        <input type="text" name="customer_name" id="customer_name" class="form-control" value="" placeholder="Name"  />
                         <span id="error_customer_name" class="text-danger"></span>
                         </div>
                         
                         <div class="col-md-12 form-group">
-                        <input type="text" name="email_address" id="email_address" class="form-control" value="" placeholder="Email Address" />
+                        <input type="text" name="email_address" id="email_address" class="form-control" value="" placeholder="Email Address"  />
                         <span id="error_email_address" class="text-danger"></span>
                         </div>
                         
@@ -185,6 +185,7 @@ $order_details .= '</table>';
                         </div>
                         <div class="col-md-12 form-group">
                         <input type="text" name="customer_state" id="customer_state" class="form-control" value=""  placeholder="State"/>
+                        <span id="error_customer_state" class="text-danger"></span>
                         </div>
                         <div class="col-md-12 form-group">
                         
@@ -342,11 +343,12 @@ function validate_form()
  var customer_address = $('#customer_address').val();
  var customer_city = $('#customer_city').val();
  var customer_pin = $('#customer_pin').val();
+ var customer_state = $('#customer_state').val();
  var customer_country = $('#customer_country').val();
  var name_expression = /^[a-z ,.'-]+$/i;
  var email_expression = /^([a-z0-9\+_\-]+)(\.[a-z0-9\+_\-]+)*@([a-z0-9\-]+\.)+[a-z]{2,6}$/;
  var month_expression = /^01|02|03|04|05|06|07|08|09|10|11|12$/;
- var year_expression = /^2017|2018|2019|2020|2021|2022|2023|2024|2025|2026|2027|2028|2029|2030|2031$/;
+ var year_expression = /^2020|2021|2022|2023|2024|2025|2026|2027|2028|2029|2030|2031|2032|2033|2034$/;
  var cvv_expression = /^[0-9]{3,3}$/;
 
  $('#card_holder_number').validateCreditCard(function(result){
@@ -362,115 +364,160 @@ function validate_form()
    $('#error_card_number').text('Invalid Card Number');
    valid_card = 0;
   }
+
+  
+
  });
+
+ 
 
  if(valid_card == 1)
  {
+   
   if(!month_expression.test(card_expiry_month))
   {
    $('#card_expiry_month').addClass('require');
    $('#error_card_expiry_month').text('Invalid Data');
-   valid = false;
+   valid8 = false;
   }
   else
   { 
    $('#card_expiry_month').removeClass('require');
    $('#error_card_expiry_month').text('');
-   valid = true;
+   valid8 = true;
   }
 
   if(!year_expression.test(card_expiry_year))
   {
    $('#card_expiry_year').addClass('require');
-   $('#error_card_expiry_year').error('Invalid Data');
-   valid = false;
+   $('#error_card_expiry_year').text('Invalid Data');
+   valid9 = false;
   }
   else
   {
    $('#card_expiry_year').removeClass('require');
-   $('#error_card_expiry_year').error('');
-   valid = true;
+   $('#error_card_expiry_year').text('');
+   valid9 = true;
   }
 
   if(!cvv_expression.test(card_cvc))
   {
    $('#card_cvc').addClass('require');
    $('#error_card_cvc').text('Invalid Data');
-   valid = false;
+   valid10 = false;
   }
   else
   {
    $('#card_cvc').removeClass('require');
    $('#error_card_cvc').text('');
-   valid = true;
+   valid10 = true;
   }
+  
+  
   if(!name_expression.test(customer_name))
   {
    $('#customer_name').addClass('require');
    $('#error_customer_name').text('Invalid Name');
-   valid = false;
+   valid1=false;
   }
   else
   {
    $('#customer_name').removeClass('require');
    $('#error_customer_name').text('');
-   valid = true;
+   valid1=true;
   }
-
   if(!email_expression.test(email_address))
   {
    $('#email_address').addClass('require');
    $('#error_email_address').text('Invalid Email Address');
-   valid = false;
+   valid2=false;
   }
   else
   {
    $('#email_address').removeClass('require');
    $('#error_email_address').text('');
-   valid = true;
+   valid2=true;
   }
 
   if(customer_address == '')
   {
    $('#customer_address').addClass('require');
    $('#error_customer_address').text('Enter Address Detail');
-   valid = false;
+   valid3=false;
   }
   else
   {
    $('#customer_address').removeClass('require');
    $('#error_customer_address').text('');
-   valid = true;
+   valid3=true;
+   
   }
 
   if(customer_city == '')
   {
    $('#customer_city').addClass('require');
    $('#error_customer_city').text('Enter City');
-   valid = false;
+   valid4= false;
+   
   }
   else
   {
    $('#customer_city').removeClass('require');
    $('#error_customer_city').text('');
-   valid = true;
+   valid4 =true;
+   
   }
 
   if(customer_pin == '')
   {
    $('#customer_pin').addClass('require');
    $('#error_customer_pin').text('Enter Zip code');
-   valid = false;
+   valid5 =false;
+   
   }
   else
   {
    $('#customer_pin').removeClass('require');
    $('#error_customer_pin').text('');
-   valid = true;
+   valid5 =true;
+   
+  }
+
+  if(customer_state == '')
+  {
+   $('#customer_state').addClass('require');
+   $('#error_customer_state').text('Enter State');
+   valid6 = false;
+   
+  }
+  else
+  {
+   $('#customer_state').removeClass('require');
+   $('#error_customer_state').text('');
+   valid6=true;
+   
+  }
+
+  if(customer_country == '')
+  {
+   $('#customer_country').addClass('require');
+   $('#error_customer_country').text('Enter Country');
+   valid7= false;
+  }
+  else
+  {
+   $('#customer_country').removeClass('require');
+   $('#error_customer_country').text('');
+   valid7=true;
+   
   }
 
  }
- return valid;
+ if(valid1==true &&valid2==true &&valid3==true &&valid4==true &&valid5==true &&valid6==true &&valid7==true &&valid8==true &&valid9==true &&valid10==true)
+  {
+    valid=true;
+  return valid;
+  }
 }
 
 Stripe.setPublishableKey('pk_test_51IC43mLOApRiqgAEH2QxlQS3BeHBDRHkzx0LeDoTmqF94N3b4F332lKbvjJoKS6GGRp4YrfG5lslCLkWze2K6Iay00ZvDQYh8K');
@@ -497,8 +544,7 @@ function stripePay(event)
  
  if(validate_form() == true)
  {
-  $('#button_action').attr('disabled', 'disabled');
-  $('#button_action').val('Payment Processing....');
+  
   Stripe.createToken({
    number:$('#card_holder_number').val(),
    cvc:$('#card_cvc').val(),
