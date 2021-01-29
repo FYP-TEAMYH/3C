@@ -51,18 +51,18 @@
 		<div class="container">
 			<div class="row">
 				
-				<div class="col-lg-6">
+				<div class="col-lg-12">
 					<div class="login_form_inner register_form_inner">
 						<h3>Create an account</h3>
 						<form class="row login_form" action="" method="post"  id="register_form" >
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required />
+								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required pattern="(?=.*[a-z])" title="Username only contains letter." />
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />
               </div>
               <div class="col-md-12 form-group">
-								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contains one Upperletter and Lowerletters, minimum length is 8">
+								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contains one Upperletter and Lowerletters, minimum length is 8.">
 			  </div>
 			  
               <div class="col-md-12 form-group">
@@ -83,14 +83,9 @@
 				                    confirmPassword.onkeyup=validatePassword;
 			</script>
 	
-							<div class="col-md-12 form-group">
-								<div class="creat_account">
-									<input type="checkbox" id="f-option2" name="selector">
-									<label for="f-option2">Keep me logged in</label>
-								</div>
-							</div>
 							
-								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100"></button>
+							
+								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100 " style="margin:50px 0px 50px 0px"></button>
 							
 						</form>
 					</div>
