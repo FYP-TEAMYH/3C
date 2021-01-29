@@ -204,12 +204,13 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <section class="subscribe-position">
 <div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
 		<div class='confirmation-card' style='text-align: center'>
+    <h3 class="subscribe__title">Get Update From Anywhere</h3>
+    <p>We will inform you when a new product release!</p>
 		
-<form method="post" action="" name="reset"><br /><br />
-<h5><label><strong>Enter Your Email Address:</strong></label></h5><br />
+<form method="post" action="" name="reset"><br />
 <input type="email" name="email" placeholder="username@email.com" />
 <br /><br />
-<input type="submit" class="button button-login w-10" value="Reset Password"/>
+<input type="submit" class="button button-login w-10" value="Subscribe now"/>
 </form>
 
 <p>&nbsp;</p>
@@ -217,7 +218,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 <p>&nbsp;</p>
   </section>
   <?php } ?>
-	<!-- ================ Subscribe section end ================= -->
+	<!-- ================ Subscribe section end ================= -->	
     
 
    
