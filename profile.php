@@ -192,7 +192,7 @@
 									Email
 								</p>
 								<p>
-									3c_online@hotmail.com
+                threeC_onlinestore@hotmail.com
 								</p>
 							</div>
 						</div>

@@ -106,8 +106,8 @@
         <div class="row">
           <div class="col-xl-5">
             <div class="offer__content text-center">
-              <h3>Jian Ping Events!</h3>
-              <h4>come get his panties</h4>
+              <h4>Welcome to 3C Online Store!</h4><br>
+              <h5>Enjoy your shopping!</h5>
               <a class="button button--active mt-3 mt-xl-4" href="category.php">Shop Now</a>
             </div>
           </div>
@@ -269,7 +269,7 @@ echo "Mailer Error: " . $mail->ErrorInfo;
 									Email
 								</p>
 								<p>
-									3c_online@hotmail.com
+                threeC_onlinestore@hotmail.com
 								</p>
 							</div>
 						</div>
