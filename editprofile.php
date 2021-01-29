@@ -62,6 +62,7 @@
                  <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
                  
                   <?php } ?>
+                  <li class="nav-item"><a class="nav-link" href="track_order.php">Track Order</a></li>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                   </ul>
                   <?php }else if(!isset($_SESSION["username"]))
@@ -115,7 +116,13 @@
             <div class="row">
                 <div class="col-lg-8">
                
-                <form method="post" action="#" enctype="multipart/form-data">     
+                <form method="post" action="#" enctype="multipart/form-data"> 
+
+                <div class="col-md-12 form-group">
+                        <b><label>Profile Picture</label></b>
+                        <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
+                        </div> 
+                  
                         
 						<div class="col-md-12 form-group">
                         <b><label>User Name</label></b>
@@ -131,22 +138,20 @@
                         </div>
                         <div class="col-md-12 form-group">
                         <b><label>Phone Number</label></b>
-                        <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?php echo $phone ?>"required />
+                        <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}||[0-9]{3}-[0-9]{8}" value="<?php echo $phone ?>"required />
                         <medium>Format: 012-3456789</medium>
                         </div>
-                        <div class="col-md-12 form-group">
-                        <b><label>Profile Picture</label></b>
-                        <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
-                        </div>
+                         
+                        
 						
 								
-                        <input type="submit" value="comfirm" name="submit" id="submit" class="button button-login w-25" >
+                        <input type="submit" value="Comfirm" name="submit" id="submit" class="btn btn-primary" style="width:20em; margin:0;">
 
     
                                                 
                     </form>
                     <br>
-                    <a href="profile.php"><input type="submit" value="Cancel" name="Edit" class="button button-login w-100" style="background-color:red"></a><br><br>
+                    <a href="profile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary" style="width:20em; margin:0;background-color:red" ></a><br><br>
                 </div>
                 
             </div>
@@ -228,6 +233,39 @@
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
 </body>
+
+<?php
+      if(isset($_POST['submit'])){
+        
+        $email = $_POST['email'];
+        $gender = $_POST['gender'];
+        $phone = $_POST['phone'];
+        $fileInfo = PATHINFO($_FILES["image"]["name"]);
+
+        //the path to store the uploaded image
+        if (empty($_FILES["image"]["name"])){
+		      $location=$image;
+	      }
+	      else{
+		    if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
+			      $newFilename = $fileInfo['filename'] . $fileInfo['extension'];
+			      move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
+			      $location = "img/" . $newFilename;
+            }
+        }
+
+      $query = "UPDATE register SET
+                      email = '$email', image='$location', gender='$gender', phone='$phone'
+                      WHERE username = '$name'";
+                    $result = mysqli_query($con, $query);
+      ?>
+        
+        <script type="text/javascript">
+            alert("Update Successfull.");
+            window.location = "profile.php";
+        </script>
+        <?php }     ?>
+
 <script>
 load_cart_data();
 function load_cart_data()
@@ -247,32 +285,3 @@ function load_cart_data()
  </script>
 </html>
 
-<?php
-      if(isset($_POST['submit'])){
-        
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $phone = $_POST['phone'];
-        
-
-        //the path to store the uploaded image
-        $target = "img/".basename($_FILES['image']['name']);
-        
-        $image="img/".$_FILES['image']['name'];
-
-
-      $query = "UPDATE register SET
-                      email = '$email', image='$image', gender='$gender', phone='$phone'
-                      WHERE username = '$name'";
-                    $result = mysqli_query($con, $query);
-      //move uploaded img into folder : img              
-      if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){?>
-        
-        <script type="text/javascript">
-            alert("Update Successfull.");
-            window.location = "profile.php";
-        </script>
-        <?php
-             } 
-            }             
-?> 

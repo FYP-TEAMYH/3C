@@ -41,7 +41,7 @@
   if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
     header('location:adminlogin.php');
     }
-  $name=$_SESSION['adminusername'];
+  $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
   ?>
     <body>

@@ -140,7 +140,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="https://localhost/3C/adminorder.php">
+                                <a href="adminorder.php">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Details</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -169,14 +169,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="#">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">View Details</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
+                                
                             </div>
                         </div>
                         
@@ -199,7 +192,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="https://localhost/3C/adminvoucher.php">
+                                <a href="admintables.php">
                                     <div class="panel-footer">
                                         <span class="pull-left">View Details</span>
                                         <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
@@ -232,14 +225,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                <a href="https://localhost/3C/adminprofile.php">
-                                    <div class="panel-footer">
-                                        <span class="pull-left">View Details</span>
-                                        <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-
-                                        <div class="clearfix"></div>
-                                    </div>
-                                </a>
+                                
                             </div>
                         </div>
                         
@@ -410,7 +396,7 @@
                                             <ul class="dropdown-menu pull-right" role="menu">
                                                 <li class="divider"></li>
                                                 <p style = "display:none" id="p1">Jalan Ayer Keroh Lama, 75450 Bukit Beruang, Melaka</p>
-                                                <button type="button" onclick="copyToClipboard('#p1')" class="btn btn-default" >Copy Address</button>
+                                                <center><button type="button" onclick="copyToClipboard('#p1')" class="btn btn-default" >Copy Address</button></center>
                                                 <script>
                                                 function copyToClipboard(element) {
                                                 var $temp = $("<input>");

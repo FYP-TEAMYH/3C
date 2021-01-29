@@ -32,9 +32,6 @@
     <?php
   include 'db_connect.php';
   session_start();
-  if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
-    header('location:adminlogin.php');
-    }
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
   $row=mysqli_fetch_array($query);
@@ -140,7 +137,7 @@
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Phone Number</label>
-                                                    <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}" value="<?php echo $phone ?>"required />
+                                                    <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}||[0-9]{3}-[0-9]{8}" value="<?php echo $phone ?>"required />
                                                     <medium>Format: 012-3456789</medium>
                                                 </div>
                                                 

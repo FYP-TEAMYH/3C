@@ -157,7 +157,7 @@
 
                                                             echo "<span class='badge badge-danger' style='color:black;text-align: center;background-color:#FF8C00;'>
                                                             
-                                                            <h4><a href='?type=status&operation=active&id=".$row['order_id']."'>Delivered</a></h4></span>";
+                                                            <h4><a href='?type=status&operation=active&id=".$row['order_id']."'>Delivering</a></h4></span>";
                                                         }
                                                     ?></td>
                                                 </tr>

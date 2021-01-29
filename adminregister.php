@@ -75,7 +75,7 @@
 						<h3>Create an account</h3>
 						<form class="row login_form" action="" method="post"  id="register_form" >
 							<div class="col-md-12 form-group">
-								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required pattern="(?=.*[a-z])" title="Username only contains letter." />
+								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'"   required/>
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />

@@ -62,6 +62,7 @@
                  <li class="nav-item "><a class="nav-link" href="profile.php">User Profile</a></li>
                  
                   <?php } ?>
+                  <li class="nav-item"><a class="nav-link" href="track_order.php">Track Order</a></li>
                   <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
                   </ul>
                   <?php }else if(!isset($_SESSION["username"]))
@@ -126,7 +127,7 @@
                         <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contains one Upperletter and Lowerletters, minimum length is 8">
                         </div>
 						<div class="col-md-12 form-group">
-                        <b><label for="password2">Password</label></b>
+                        <b><label for="password2">Re-enter Password</label></b>
                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" >
                         </div>
                         <script>
@@ -153,10 +154,12 @@
                    
                 
             </div>
+            <a href="profile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary" style="width:17.5em; margin:0;background-color:red" ></a><br><br>
+            
         </div>
         
     </div>
-
+        
    
            
   </section>
