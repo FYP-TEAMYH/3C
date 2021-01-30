@@ -149,63 +149,7 @@
                                 
   
 
-   <!--================ Start footer Area  =================-->	
-   <footer class="footer">
-		<div class="footer-area">
-			<div class="container">
-				<div class="row section_gap">
-					<div class="col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title large_title">Our Mission</h4>
-							<p>
-								Our online shop has provided the best interface platform for customer to purchase and compare about each Multimedia Accessories.
-							</p>
-							<p>
-								Quality Assurance | Efficient 
-								
-							</p>
-						</div>
-					</div>
-					<div class="offset-lg-2 col-lg-2 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Quick Links</h4>
-							<ul class="list">
-								<ul class="list">
-								<li><a href="index.php">Home</a></li>
-								<li><a href="category.php">Shop</a></li>		
-								<li><a href="compare.php">compare</a></li>				
-							</ul>
-							</ul>
-						</div>
-					</div>
-					<div class="col-lg-2 col-md-6 col-sm-6">
-						
-					</div>
-					<div class="offset-lg-0 col-lg-3 col-md-6 col-sm-6">
-						<div class="single-footer-widget tp_widgets">
-							<h4 class="footer_title">Contact Us</h4>
-							<div class="ml-40">
-								
-	
-								<p class="sm-head">
-									<span class="fa fa-envelope"></span>
-									Email
-								</p>
-								<p>
-                threeC_onlinestore@hotmail.com
-								</p>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-
-		<div class="footer-bottom">
-			
-		</div>
-	</footer>
-	<!--================ End footer Area  =================-->
+   
 
 
 
