@@ -107,8 +107,6 @@
 	</section>
 	<!-- ================ end banner area ================= -->
 	
-  <!--================Login Box Area =================-->
-	<section class="login_box_area section-margin">
 	<!-- ================ same name validation ================= -->
 	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
 <script type="text/javascript">
@@ -134,6 +132,10 @@
     }
 </script>
 <!-- ================ same name validation ================= -->
+
+  <!--================Login Box Area =================-->
+	<section class="login_box_area section-margin">
+	
 		<div class="container">
 			<div class="row">
 				<div class="col-lg-6">

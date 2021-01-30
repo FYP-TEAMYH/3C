@@ -66,6 +66,36 @@
     </div>
   </header>
 	<!--================ End Header Menu Area =================-->
+
+
+	<!-- ================ same name validation ================= -->
+	<script type="text/javascript" src="http://code.jquery.com/jquery-1.8.2.js"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+        $('#username').keyup(function()
+        {
+            $.post("adminRegister.validation.php",
+            {username:$('#username').val()
+            },function(response)
+            {
+                $('#adminUsernameResult').fadeOut();
+                setTimeout("Userresult('adminUsernameResult','"+escape(response)+"')",350);
+            });
+            return false;
+
+        });
+    });
+    function Userresult(id,response)
+    {
+        $('#adminUsernameLoading').hide();
+        $('#'+id).html(unescape(response));
+        $('#'+id).fadeIn();
+    }
+</script>
+<!-- ================ same name validation ================= -->
+
+
+
 	<section class="login_box_area section-margin">
 		<div class="container">
 			<div class="row">
@@ -76,6 +106,8 @@
 						<form class="row login_form" action="" method="post"  id="register_form" >
 							<div class="col-md-12 form-group">
 								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'"   required/>
+								<span id="adminUsernameLoading"></span>
+        						<span id="adminUsernameResult"></span>
 							</div>
 							<div class="col-md-12 form-group">
 								<input type="email" class="form-control" id="email" name="email" placeholder="Email Address" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Email Address'" required />
