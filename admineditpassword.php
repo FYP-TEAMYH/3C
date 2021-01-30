@@ -122,11 +122,37 @@
                                                 <div class="form-group">
                                                     <label for="password">Password</label>
                                                     <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contains one Upperletter and Lowerletters, minimum length is 8">
+                                                    
+                                                    
                                                 </div>
+                                                
+               
                                                 <div class="form-group">
                                                     <label for="password2">Comfirm Password</label>
                                                     <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" >
                                                 </div>
+
+                                                <div class="col-md-12 form-group" style="margin-top:-5px">
+			  	<div class="creat_account" style="margin-left:-16px">
+				  <input type="checkbox" onclick="showpassword()">
+					<label for="f-option2">Show Password</label>
+				</div>
+			</div>				
+							<script>
+                    function showpassword()
+                    {
+                        var x=document.getElementById("password");
+						var y=document.getElementById("confirmPassword");
+                        if(x.type=="password" || y.type=="confirmPassword")
+                        {
+                            x.type="text";
+							y.type="text";
+                        }else{
+                            x.type="password";
+							y.type="password";
+                        }
+                    }
+                    </script>
                                                 <script>
 				                    var password=document.getElementById("password"),confirmPassword=document.getElementById("confirmPassword");
 				                    function validatePassword()

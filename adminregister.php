@@ -82,11 +82,33 @@
               </div>
               <div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contains one Upperletter and Lowerletters, minimum length is 8.">
+							
 			  </div>
 			  
               <div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" required />
 							</div>
+							<div class="col-md-12 form-group" style="margin-top:-5px">
+			  	<div class="creat_account">
+				  &nbsp &nbsp<input type="checkbox" onclick="showpassword()">
+					<label for="f-option2">Show Password</label>
+				</div>
+			</div>				
+							<script>
+                    function showpassword()
+                    {
+                        var x=document.getElementById("password");
+						var y=document.getElementById("confirmPassword");
+                        if(x.type=="password" || y.type=="confirmPassword")
+                        {
+                            x.type="text";
+							y.type="text";
+                        }else{
+                            x.type="password";
+							y.type="password";
+                        }
+                    }
+                    </script>
 							<script>
 				                    var password=document.getElementById("password"),confirmPassword=document.getElementById("confirmPassword");
 				                    function validatePassword()
@@ -104,7 +126,7 @@
 	
 							
 							
-								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100 " style="margin:50px 0px 50px 0px"></button>
+								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100 " style="margin:0px 0px 50px 0px"></button>
 							
 						</form>
 					</div>

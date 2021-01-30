@@ -126,10 +126,36 @@
                         <b><label for="password">Password</label></b>
                         <input type="password" class="form-control" id="password" name="password" placeholder="Enter Password" required pattern="(?=.*[a-z])(?=.*[A-Z]).{8,}" title="Password should contains one Upperletter and Lowerletters, minimum length is 8">
                         </div>
+            
+            
+                        
+
 						<div class="col-md-12 form-group">
                         <b><label for="password2">Re-enter Password</label></b>
                         <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Confirm Password'" >
                         </div>
+
+                        <div class="col-md-12 form-group" style="margin-top:-5px">
+			  	<div class="creat_account">
+				  &nbsp &nbsp<input type="checkbox" onclick="showpassword()">
+					<label for="f-option2">Show Password</label>
+				</div>
+			</div>				
+							<script>
+                    function showpassword()
+                    {
+                        var x=document.getElementById("password");
+						var y=document.getElementById("confirmPassword");
+                        if(x.type=="password" || y.type=="confirmPassword")
+                        {
+                            x.type="text";
+							y.type="text";
+                        }else{
+                            x.type="password";
+							y.type="password";
+                        }
+                    }
+                    </script>
                         <script>
 				                    var password=document.getElementById("password"),confirmPassword=document.getElementById("confirmPassword");
 				                    function validatePassword()
@@ -154,7 +180,7 @@
                    
                 
             </div>
-            <a href="profile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary" style="width:17.5em; margin:0;background-color:red" ></a><br><br>
+            <a href="profile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary" style="width:17.5em; margin-top:-25px;background-color:red" ></a><br><br>
             
         </div>
         

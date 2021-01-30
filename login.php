@@ -127,6 +127,24 @@ if (isset($_POST['username'])){
 							<div class="col-md-12 form-group">
 								<input type="password" class="form-control" id="password" name="password" placeholder="Password" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Password'">
 							</div>
+							<div class="col-md-12 form-group" style="margin-top:-15px">
+			  					<div class="creat_account">
+				  				&nbsp &nbsp<input type="checkbox" onclick="showpassword()">
+								<label for="f-option2">Show Password</label>
+				</div>
+			</div>
+			<script>
+			function showpassword()
+                    {
+                        var x=document.getElementById("password");
+                        if(x.type=="password")
+                        {
+                            x.type="text";
+                        }else{
+                            x.type="password";
+                        }
+                    }	
+					</script>
 							
 							<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" >
 							<div class="col-md-12 form-group">
