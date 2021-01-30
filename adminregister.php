@@ -26,10 +26,16 @@
 		$password = mysqli_real_escape_string($con,$password);
 		$img = "img/user2.jpg" ;
 
+		$sql = "SELECT * FROM `admin` WHERE username='$username'";
+		$res = mysqli_query($con, $sql);
+		if (mysqli_num_rows($res) > 0) {?>
+			<script>
+			alert("Sorry... username already taken"); 
+            window.location = "adminregister.php";
+			</script>
+		<?php }
+			else{
 
-
-		 
-		
 				$query = "INSERT into `admin` (username, email, password,image)
 				VALUES ('$username', '$email' , '".md5($password)."','$img')";
 				$result = mysqli_query($con,$query);
@@ -41,7 +47,7 @@
 					<h3>You are registered successfully.</h3>
 					<br/>Click here to <a href='adminlogin.php'>Login</a>
 					<br><br><br><br></div></div></div>";
-				}
+				}}
 		
 			}else{
 		
@@ -53,7 +59,7 @@
     <div class="main_menu">
       <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container">
-          <a class="navbar-brand logo_h" href="#"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store  [ Admin ]</b></a>
+          <a class="navbar-brand logo_h" href="adminlogin.php"><img src="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" alt="3C" height="50px" width="50px">&nbsp <b>3C Online Store  [ Admin ]</b></a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="icon-bar"></span>
@@ -156,10 +162,12 @@
 				                    confirmPassword.onkeyup=validatePassword;
 			</script>
 	
+	
 							
-							
-								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100 " style="margin:0px 0px 50px 0px"></button>
-							
+								<input type="submit" value="Register" name="loginbtn" class="button button-register w-100 " >
+								<div class="col-md-12 form-group">
+								<a href="adminlogin.php">Already have an account?</a>
+								</div>
 						</form>
 					</div>
 				</div>
@@ -168,7 +176,13 @@
 	</section>
 	<!--================End Login Box Area =================-->
 
+<!--================ Start footer Area  =================-->	
+<footer class="footer">
 
+
+		
+	</footer>
+	<!--================ End footer Area  =================-->
 
   
 

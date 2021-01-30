@@ -113,8 +113,9 @@
                     }
                     </script>
 							
-							<div class="col-md-12 form-group">
+							
 								<input type="submit" value="Login" name="loginbtn" class="button button-login w-100" ></input>
+								<div class="col-md-12 form-group">
 								<a href="adminregister.php">Create an Account?</a>
 
 								
@@ -133,16 +134,7 @@
 	<footer class="footer">
 		
 
-		<div class="footer-bottom">
-			<div class="container">
-				<div class="row d-flex">
-					<p class="col-lg-12 footer-text text-center">
-						
-Copyright &copy;<script>document.write(new Date().getFullYear());</script> All rights reserved | 3C Online Store
-</p><br><br><br><br>
-				</div>
-			</div>
-		</div>
+		
 	</footer>
 	<!--================ End footer Area  =================-->
 

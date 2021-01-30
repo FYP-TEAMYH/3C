@@ -28,8 +28,16 @@
 		$password = mysqli_real_escape_string($con,$password);
 		$img = "img/user2.jpg";
 		
-		 
-		
+		$sql = "SELECT * FROM register WHERE username='$username'";
+		$res = mysqli_query($con, $sql);
+		if (mysqli_num_rows($res) > 0) {?>
+			<script>
+			alert("Sorry... username already taken"); 
+            window.location = "register.php";
+			</script>
+		<?php }
+			else{
+
 				$query = "INSERT into `register` (username, email, password, image)
 				VALUES ('$username', '$email' , '".md5($password)."','$img')";
 				$result = mysqli_query($con,$query);
@@ -41,7 +49,7 @@
 					<h3>You are registered successfully.</h3>
 					<br/>Click here to <a href='login.php'>Login</a>
 					<br><br><br><br></div></div></div>";
-				}
+				}}
 		
 			}else{
 		
@@ -152,7 +160,9 @@
 						<h3>Create an account</h3>
 						<form class="row login_form" action="" method="post"  id="register_form" >
 							<div class="col-md-12 form-group">
+							
 								<input type="text" class="form-control" id="username" name="username" placeholder="Username" onfocus="this.placeholder = ''" onblur="this.placeholder = 'Username'" required />
+								
 								<span id="usernameLoading"></span>
         						<span id="usernameResult"></span>
 							</div>
