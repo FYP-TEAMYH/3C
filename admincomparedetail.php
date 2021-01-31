@@ -16,12 +16,6 @@
         <!-- MetisMenu CSS -->
         <link href="admincss/metisMenu.min.css" rel="stylesheet">
 
-        <!-- DataTables CSS -->
-        <link href="admincss/dataTables/dataTables.bootstrap.css" rel="stylesheet">
-
-        <!-- DataTables Responsive CSS -->
-        <link href="admincss/dataTables/dataTables.responsive.css" rel="stylesheet">
-
         <!-- Custom CSS -->
         <link href="admincss/startmin.css" rel="stylesheet">
 
@@ -34,17 +28,39 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
-        
     </head>
     <?php
-  require('db_connect.php');
+  include 'db_connect.php';
   session_start();
   if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
     header('location:adminlogin.php');
     }
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
+  $row=mysqli_fetch_array($query);
+  $image = $row["image"];
+  $email = $row["email"];
+  $gender = $row["gender"];
+  $phone = $row["phone"];
+
+  $id=$_GET['id'];
+					 
+					$sql = "SELECT * FROM compare where id='$id'";
+					$result = mysqli_query($con,$sql);
+					$count = mysqli_num_rows($result);
+					if($row = mysqli_fetch_assoc($result))
+					{
+							$id = $row["id"];
+							$prodname = $row["name"];
+							$compphoto = $row["image"];
+							$performance = $row["performance"];
+							$storage = $row["storage"];
+							$camera = $row["camera"];
+							$battery = $row["battery"];
+							$display= $row["display"];
+                            $ram = $row["ram"];
+                            $brand = $row["brand"];
+					}
   ?>
     <body>
 
@@ -87,17 +103,17 @@
                         <ul class="nav" id="side-menu">
                             
                             <li>
-                                <a href="adminindex.php" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
+                                <a href="adminindex.php"><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
                             
                             <li>
-                                <a href="adminorder.php" class="active"><i class="fa fa-cube fa-fw"></i> Order</a>
+                                <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
                             <li>
-                                <a href="admintables.php" ><i class="fa fa-table fa-fw"></i> Product</a>
+                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
-                                <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
+                                <a href="admincompare.php" class="active"><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
@@ -112,7 +128,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Order</h1>
+                            <h1 class="page-header">Compare</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -121,61 +137,63 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Order Details
+                                    Compare Details
                                 </div>
-                                <!-- /.panel-heading -->
-                                <div class="panel-body" style="text-align:center;">
-                                        <table class="table table-striped table-bordered table-hover" id="">
-                                            <thead>
-                                                <tr >
-                                                    <th style="text-align:center;">Status</th>
-                                                    <th style="text-align:center;">Number</th>
-                                                    <th style="text-align:center;">Customer Name</th>
-                                                    <th style="text-align:center;">Transaction ID</th>
-                                                    <th style="text-align:center;">Total Amount</th>
-                                                    <th style="text-align:center;">View</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                            <?php 
-                                            $query=mysqli_query($con,"select * from order_table ORDER BY order_id ASC ");
-                                            while($row=mysqli_fetch_array($query)){
-                                                
-                                                ?>
-                                                <tr><td>
-                                                
-                                                    <?php
-                                                        if($row['status']==1){
-                                                            ?><p><i class="fa fa-circle" style="color:green;font-size:13px">&nbspArrived</i></p>
-                                                           <?php 
-                                                        }else{
-                                                            ?><p><i class="fa fa-circle" style="color:red;font-size:13px">&nbspDelivering</i></p>
-                                                           <?php 
-                                                            
-                                                        }
-                                                    ?>
-                                                    </td>
-                                                    
-                                                    <td><?php echo $row['order_number']; ?></td>
-                                                    <td><?php echo $row['customer_name']; ?></td>
-                                                    <td><?php echo $row['transaction_id']; ?></td>
-                                                    <td><?php echo "RM ".$row['order_total_amount']; ?></td>
-                                                    
-                                                    <td>
-                                                    <a href="adminorderdetail.php?id=<?php echo $row["order_id"]; ?>">
-                                                    <input type="submit" value="view" id="submit" class="btn btn-primary" value="1"></a></td>
-                                                    
-                                                    
-                                                </tr>
+                                <div class="panel-body">
+                                    <div class="row">
+                                        <div class="col-lg-6">
+                                        <form method="post" action="admineditcompare.php?id=<?php echo $id ?>" >
+                                                <div class="form-group">
+                                                    <label>Image</label>
+                                                    <img src="<?php echo $compphoto; ?>" width="100%" class="thumbnail">
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Name</label>
+                                                    <p class="form-control-static"><?php echo $prodname; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Performance</label>
+                                                    <p class="form-control-static"><?php echo $performance; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Storage</label>
+                                                    <p class="form-control-static"><?php echo $storage; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Camera</label>
+                                                    <p class="form-control-static"><?php echo $camera; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Display</label>
+                                                    <p class="form-control-static"><?php echo $display; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Ram</label>
+                                                    <p class="form-control-static"><?php echo $ram; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Brand Name</label>
+                                                    <p class="form-control-static"><?php echo $brand; ?></p>
+                                                </div>
 
-                                               
 
-                                                <?php  }?>  
-                                            </tbody>
-                                        </table>
+                                                
+                                                
+                                                <input type="submit" value="Edit" name="back" class="btn btn-primary" style=":red;width:20em; margin:0;"></a><br><br>
+                                        
+                                            </form>
+                                            <a href="admincompare.php" ><input type="submit" value="Back" name="back" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a><br><br>
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
+                                        <div class="col-lg-6">
+                                            
+                                            
+                                            
+                                            
+                                        </div>
+                                        <!-- /.col-lg-6 (nested) -->
                                     </div>
-                                    <!-- /.table-responsive -->
-                                    
+                                    <!-- /.row (nested) -->
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
@@ -184,10 +202,13 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
-                
-                    
-                    
-                                        
+                </div>
+                <!-- /.container-fluid -->
+            </div>
+            <!-- /#page-wrapper -->
+
+        </div>
+        <!-- /#wrapper -->
 
         <!-- jQuery -->
         <script src="adminjs/jquery.min.js"></script>
@@ -198,15 +219,8 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="adminjs/metisMenu.min.js"></script>
 
-        <!-- DataTables JavaScript -->
-        <script src="adminjs/dataTables/jquery.dataTables.min.js"></script>
-        <script src="adminjs/dataTables/dataTables.bootstrap.min.js"></script>
-
         <!-- Custom Theme JavaScript -->
         <script src="adminjs/startmin.js"></script>
-
-        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
-
 
     </body>
 </html>

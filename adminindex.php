@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>3C Dashboard</title>
+        <title>3C Online Store[Admin]</title>
 	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
 
         <!-- Bootstrap Core CSS -->
@@ -99,6 +99,9 @@
                             
                             <li>
                                 <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
+                            </li>
+                            <li>
+                                <a href="admincompare.php" ><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>

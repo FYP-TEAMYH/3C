@@ -29,17 +29,58 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
     </head>
-    <?php
-  include 'db_connect.php';
-  session_start();
-  $name=$_SESSION['username'];
-  $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
-  $row=mysqli_fetch_array($query);
-  $image = $row["image"];
-  $email = $row["email"];
-  $gender = $row["gender"];
-  $phone = $row["phone"];
-  ?>
+    <?php 
+        require('db_connect.php');
+        session_start();
+        if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+            header('location:adminlogin.php');
+            }
+            $username=$_SESSION["username"];
+		$errors = array();
+		if (isset($_REQUEST['name'])){
+				// removes backslashes
+                $name = stripslashes($_REQUEST['name']);
+				//escapes special characters in a string
+		        $name = mysqli_real_escape_string($con,$name); 
+		        $performance = stripslashes($_REQUEST['performance']);
+		        $performance = mysqli_real_escape_string($con,$performance);
+		        $storage = stripslashes($_REQUEST['storage']);
+                $storage = mysqli_real_escape_string($con,$storage);
+                $camera = stripslashes($_REQUEST['camera']);
+                $camera = mysqli_real_escape_string($con,$camera);
+                $display = stripslashes($_REQUEST['display']);
+                $display = mysqli_real_escape_string($con,$display);
+                $ram = stripslashes($_REQUEST['ram']);
+                $ram = mysqli_real_escape_string($con,$ram);
+                $brand = stripslashes($_REQUEST['brand']);
+                $brand = mysqli_real_escape_string($con,$brand);
+                $fileInfo = PATHINFO($_FILES["image"]["name"]);
+                if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
+                $target = "img/".basename($_FILES['image']['name']);
+        
+                $image="img/".$_FILES['image']['name'];
+                }
+		 
+				$query = "INSERT into `compare` (name, performance, image, storage, camera, display, ram, brand)
+				VALUES ('$name', '$performance' , '$image','$storage', '$camera', '$display','$ram', '$brand')";
+				$result = mysqli_query($con,$query);
+				if($result){
+                    if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){
+                    
+                    echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
+					<div class='confirmation-card' style='text-align: center'>
+					<div class='container'>
+					<br><br><br>
+					<h3>Product added successfully.</h3>
+					<br/>Click here to <a href='admincompare.php'>Back</a>
+					<br><br><br><br></div></div></div>";
+				}
+            }
+			}else{
+		
+
+				
+?>
     <body>
 
         <div id="wrapper">
@@ -63,8 +104,8 @@
                     
                     </li>
                     <li class="dropdown">
-                        <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                            <i class="fa fa-user fa-fw"></i><?php echo $name; ?><b class="caret"></b>
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                            <i class="fa fa-user fa-fw"></i><?php echo $username; ?><b class="caret"></b>
                         </a>
                         <ul class="dropdown-menu dropdown-user">
                             <li><a href="adminprofile.php"><i class="fa fa-user fa-fw"></i> User Profile</a>
@@ -83,7 +124,7 @@
                             <li>
                                 <a href="adminindex.php" ><i class="fa fa-dashboard fa-fw"></i> Dashboard</a>
                             </li>
-                            
+                           
                             <li>
                                 <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
@@ -91,10 +132,10 @@
                                 <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
-                                <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
+                                <a href="admincompare.php" class="active"><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
-                                <a href="adminprofile.php" class="active"><i class="fa fa-edit fa-fw"></i> Profile</a>
+                                <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
                             
                         </ul>
@@ -106,7 +147,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Profile</h1>
+                            <h1 class="page-header">Product</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -115,40 +156,56 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    User Information
+                                    Edit Product Details
                                 </div>
                                 <div class="panel-body">
                                     <div class="row">
                                         <div class="col-lg-6">
-                                       
                                         <form method="post" action="#" enctype="multipart/form-data">
                                                 <div class="form-group">
-                                                    <label>Profile Picture</label>
-                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
+                                                    <label>Image</label>
+                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" required />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>User Name</label>
-                                                    <p class="form-control-static"><?php echo $name; ?></p>
+                                                    <label>Name</label>
+                                                    <input type="text" class="form-control" id="name" name="name" placeholder="Your compare product name" required />
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Gender</label>
-                                                    <input type="text" class="form-control" id="gender" name="gender" value="<?php echo $gender ?>" required />
+                                                    <label>Performance</label>
+                                                    <input type="text" class="form-control" id="performance" name="performance" placeholder="Your compare product performance" required />
+                                                
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Your Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" required />
+                                                    <label>Storage</label>
+                                                    <input type="text" class="form-control" id="storage" name="storage" placeholder="Your compare product storage" required />
+                                                    
                                                 </div>
                                                 <div class="form-group">
-                                                    <label>Phone Number</label>
-                                                    <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}||[0-9]{3}-[0-9]{8}" value="<?php echo $phone ?>"required />
-                                                    <medium>Format: 012-3456789</medium>
+                                                    <label>Camera</label>
+                                                    <input type="text" class="form-control" id="camera" name="camera" placeholder="Your compare product camera" required />
                                                 </div>
+                                                <div class="form-group">
+                                                    <label>display</label>
+                                                    <input type="text" class="form-control" id="display" name="display" placeholder="Your compare product display" required />
+                                                    
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Ram</label>
+                                                    <input type="text" class="form-control" id="ram" name="ram" placeholder="Your compare product ram" required />
+                                                
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Brand</label>
+                                                    <input type="text" class="form-control" id="brand" name="brand" placeholder="Your compare product brand" required />
+                                                    
+                                                </div>
+
                                                 
                                                 
-                                                <input type="submit" value="Comfirm" name="submit" class="btn btn-primary"style="width:20em; margin:0;"><br><br>
+                                                <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
                                                 
                                             </form>
-                                            <a href="adminprofile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary"style="background-color:#B22222 ;width:20em; margin:0;"></a><br><br>
+                                            <a href="admincompare.php"><input type="submit" value="Cancel" name="submit" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a>
                                         </div>
                                         <!-- /.col-lg-6 (nested) -->
                                         <div class="col-lg-6">
@@ -187,43 +244,6 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="adminjs/startmin.js"></script>
-
+        <?php } ?>
     </body>
 </html>
-
-<?php
-      if(isset($_POST['submit'])){
-        
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $phone = $_POST['phone'];
-        $fileInfo = PATHINFO($_FILES["image"]["name"]);
-
-        //the path to store the uploaded image
-        if (empty($_FILES["image"]["name"])){
-		$location=$row['image'];
-		
-
-	}
-	else{
-		if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
-			$newFilename = $fileInfo['filename'] . $fileInfo['extension'];
-			move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
-			$location = "img/" . $newFilename;
-        }
-    }
-
-      $query = "UPDATE admin SET
-                      email = '$email', image='$location', gender='$gender', phone='$phone'
-                      WHERE username = '$name'";
-                    $result = mysqli_query($con, $query);
-      ?>
-        
-        <script type="text/javascript">
-            alert("Update Successfull.");
-            window.location = "adminprofile.php";
-        </script>
-        <?php
-             
-            }             
-?>

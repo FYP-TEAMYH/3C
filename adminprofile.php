@@ -94,6 +94,9 @@
                                 <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
+                                <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
+                            </li>
+                            <li>
                                 <a href="adminprofile.php" class="active"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
                             

@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>3C Online Store[Admin]</title>
+        <title>3C Online Store [Admin]</title>
 	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
 
         <!-- Bootstrap Core CSS -->
@@ -34,8 +34,6 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.min.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/respond.js/1.4.2/respond.min.js"></script>
         <![endif]-->
-
-        
     </head>
     <?php
   require('db_connect.php');
@@ -91,13 +89,13 @@
                             </li>
                             
                             <li>
-                                <a href="adminorder.php" class="active"><i class="fa fa-cube fa-fw"></i> Order</a>
+                                <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
                             <li>
                                 <a href="admintables.php" ><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
-                                <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
+                                <a href="admincompare.php" class="active"><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
                                 <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
@@ -112,7 +110,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Order</h1>
+                            <h1 class="page-header">Compare</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -121,54 +119,47 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    Order Details
+                                    Compare [Product]
                                 </div>
                                 <!-- /.panel-heading -->
-                                <div class="panel-body" style="text-align:center;">
+                                <div class="panel-body">
+                                    <div class="table-responsive"> <a href="adminaddcompare.php"><input type="submit" value="Add Product" name="add" class="btn btn-primary" style="background-color:#DAA520 ;width:20em; margin:0;"></a><br><br>
                                         <table class="table table-striped table-bordered table-hover" id="">
                                             <thead>
-                                                <tr >
-                                                    <th style="text-align:center;">Status</th>
-                                                    <th style="text-align:center;">Number</th>
-                                                    <th style="text-align:center;">Customer Name</th>
-                                                    <th style="text-align:center;">Transaction ID</th>
-                                                    <th style="text-align:center;">Total Amount</th>
-                                                    <th style="text-align:center;">View</th>
+                                                <tr>
+                                                    <th>Name</th>
+                                                    <th>Performance</th>
+                                                    <th>Storage</th>
+                                                    <th>Camera</th>
+                                                    <th>Display</th>
+                                                    <th>Ram</th>
+                                                    <th>Brand</th>
+                                                    <th>View</th>
+                                                    <th>Delete</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <?php 
-                                            $query=mysqli_query($con,"select * from order_table ORDER BY order_id ASC ");
-                                            while($row=mysqli_fetch_array($query)){
-                                                
-                                                ?>
-                                                <tr><td>
-                                                
-                                                    <?php
-                                                        if($row['status']==1){
-                                                            ?><p><i class="fa fa-circle" style="color:green;font-size:13px">&nbspArrived</i></p>
-                                                           <?php 
-                                                        }else{
-                                                            ?><p><i class="fa fa-circle" style="color:red;font-size:13px">&nbspDelivering</i></p>
-                                                           <?php 
-                                                            
-                                                        }
-                                                    ?>
-                                                    </td>
-                                                    
-                                                    <td><?php echo $row['order_number']; ?></td>
-                                                    <td><?php echo $row['customer_name']; ?></td>
-                                                    <td><?php echo $row['transaction_id']; ?></td>
-                                                    <td><?php echo "RM ".$row['order_total_amount']; ?></td>
-                                                    
+                                            $query=mysqli_query($con,"select * from compare ORDER BY id ASC ");
+                                            while($row=mysqli_fetch_array($query)){?>
+                                                <tr>
+                                                    <td><?php echo $row['name']; ?></td>
+                                                    <td><?php echo $row['performance']; ?></td>
+                                                    <td><?php echo $row['storage']; ?></td>
+                                                    <td><?php echo $row['camera']; ?></td>
+                                                    <td><?php echo $row['display']; ?></td>
+                                                    <td><?php echo $row['ram']; ?></td>
+                                                    <td><?php echo $row['brand']; ?></td>
                                                     <td>
-                                                    <a href="adminorderdetail.php?id=<?php echo $row["order_id"]; ?>">
-                                                    <input type="submit" value="view" id="submit" class="btn btn-primary" value="1"></a></td>
-                                                    
+                                                    <a href="admincomparedetail.php?id=<?php echo $row["id"]; ?>">
+                                                    <input type="submit" value="view" id="submit"<?php echo "id='".$row['id']."' "?> class="btn btn-primary" value="1"></a></td>
+                                                    <td>
+                                                    <a href="admindeletecompare.php?del=<?php echo $row["id"]; ?>">
+                                                    <input type="submit" value="delete" id="delete"<?php echo "id='".$row['id']."' "?> class="btn btn-primary" style="background-color:red" value="1"></a></td>
                                                     
                                                 </tr>
 
-                                               
+                                                
 
                                                 <?php  }?>  
                                             </tbody>
