@@ -100,9 +100,9 @@ session_start();
    $query = "
    INSERT INTO order_item 
    (order_id, order_item_name, order_item_quantity, order_item_price,user_id, date) 
-   VALUES (:order_id, :order_item_name, :order_item_quantity, :order_item_price, $id, '$date')
+   VALUES (:order_id, :order_item_name, :order_item_quantity, :order_item_price, '$id', '$date')
    ";
-
+  
    $statement = $connect->prepare($query);
 
    $statement->execute($order_item_data);
@@ -110,10 +110,11 @@ session_start();
 
   
    
-  $_SESSION["success_message"] = "Payment is completed successfully. The TXN ID is " . $response["balance_transaction"] . "";
+  
   
  }
-header('location:confirmation.php?id= ' . $response["balance_transaction"] . '');
+ unset($_SESSION["shopping_cart"]);
+header('location:confirmation.php?id=  '. $order_id .'');
 
 
 ?>
