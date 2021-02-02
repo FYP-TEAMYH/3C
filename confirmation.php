@@ -1,54 +1,3 @@
-<?php
-
-
-session_start();
-if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
-    header('location:login.php');
-}
-
-
-$total_price = 0;
-
-$item_details = '';
-
-$order_details = '
-<div class="table-responsive" id="order_table">
- <table class="table table-bordered table-striped">
-  <tr>  
-            <th>Product Name</th>  
-            <th>Quantity</th>  
-              
-            <th>Total</th>  
-        </tr>
-';
-
-if(!empty($_SESSION["shopping_cart"]))
-{
- foreach($_SESSION["shopping_cart"] as $keys => $values)
- {
-  $order_details .= '
-  <tr>
-   <td>'.$values["product_name"].'</td>
-   <td>'.$values["product_quantity"].'</td>
-   
-   <td align="right">RM '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>
-  </tr>
-  ';
-  $total_price = $total_price + ($values["product_quantity"] * $values["product_price"]);
-
-  $item_details .= $values["product_name"] . ', ';
- }
- $item_details = substr($item_details, 0, -2);
- $order_details .= '
- <tr>  
-        <td colspan="2" align="right">Total</td>  
-        <td align="right">RM '.number_format($total_price, 2).'</td>
-    </tr>
- ';
-}
-$order_details .= '</table>';
-
-?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -80,40 +29,40 @@ $order_details .= '</table>';
               <li class="nav-item"><a class="nav-link" href="index.php">Home</a></li>
               <li class="nav-item"><a class="nav-link" href="category.php">Category</a></li>
               <li class="nav-item"><a class="nav-link" href="compare.php">Compare</a></li>
-			  <li class="nav-item submenu dropdown">
-        <?php
-                  require('db_connect.php');
-                 
-                  if(isset($_SESSION["username"])){?>
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Account</a>
-                <ul class="dropdown-menu">
-                 <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
-                 <?php 
-                 $query=mysqli_query($con,"select * from register ");
-                 if($row=mysqli_fetch_array($query)){  
-                   $username=$_SESSION["username"];
-                   ?>
-                 
-                  
-                 <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
-                 
-                  <?php } ?>
-                  <li class="nav-item"><a class="nav-link" href="track_order.php">Track Order</a></li>
-                  <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
-                  </ul>
-                  <?php }else if(!isset($_SESSION["username"]))
-                  {?>
-                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
-                  aria-expanded="false">Login/Register</a>
-                <ul class="dropdown-menu">
-                  <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
-                  <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
-                </ul>
-                <?php }?>
-              </li>
-            </ul>
-
+              <li class="nav-item submenu dropdown">
+               
+               <?php
+               require('db_connect.php');
+               session_start();
+               if(isset($_SESSION["username"])){?>
+               <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Account</a>
+             <ul class="dropdown-menu">
+              <li class="nav-item"><a class="nav-link"><?php echo $_SESSION['username']; ?> </a></li>
+              <?php 
+              $query=mysqli_query($con,"select * from register ");
+              if($row=mysqli_fetch_array($query)){  
+                $username=$_SESSION["username"];
+                ?>
+              
+               
+              <li class="nav-item"><a class="nav-link" href="profile.php">User Profile</a></li>
+              
+               <?php } ?>
+               <li class="nav-item"><a class="nav-link" href="track_order.php">Track Order</a></li>
+               <li class="nav-item"><a class="nav-link" href="logout.php">Log Out</a></li>
+               </ul>
+               <?php }else if(!isset($_SESSION["username"]))
+               {?>
+             <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+               aria-expanded="false">Login/Register</a>
+             <ul class="dropdown-menu">
+               <li class="nav-item"><a class="nav-link" id="login" href="login.php">Login</a></li>
+               <li class="nav-item"><a class="nav-link" href="register.php">Register</a></li>
+             </ul>
+             <?php }?>
+           </li>
+         </ul>
             <ul class="nav-shop">
               <li class="nav-item"><a href="cart.php" id="cart-popover" class="btn" data-placement="bottom" title="Shopping Cart"><button><i class="ti-shopping-cart"></i>
               <span class="glyphicon glyphicon-shopping-cart"></span>
@@ -128,9 +77,22 @@ $order_details .= '</table>';
   </header>
 	<!--================ End Header Menu Area =================-->
   <?php $id=$_GET['id'];
+        
+          $sql = "SELECT * FROM order_table where order_id='$id'";
+          $result = mysqli_query($con,$sql);
+          while($row = mysqli_fetch_assoc($result))
+					{
+            $tran_id= $row["transaction_id"];
+            $order_num = $row["order_number"];
+            $total= $row["order_total_amount"];
+            $status= $row["order_status"];
+            $street= $row["customer_address"];
+            $city= $row["customer_city"];
+            $state= $row["customer_state"];
+            $country= $row["customer_country"];
+            $postcode= $row["customer_pin"];
+          }
           
-           
-				
           ?>
 
   
@@ -139,27 +101,112 @@ $order_details .= '</table>';
     <div class="container">
       <p class="text-center billing-alert">Thank you. Your order has been received.</p>
       <div class="row mb-5">
-        <div class="col-md-8 col-xl-12 mb-6 mb-xl-0">
+      <div class="col-md-8 col-xl-6 mb-6 mb-xl-0">
           <div class="confirmation-card">
             <h3 class="billing-title">Order Info</h3>
             <table class="order-rable">
               <tr>
-                <td>Transaction ID</td>
-                <td><?php echo $id ?></td>
+                <td>Order number</td>
+                <td>: <?php echo $order_num ?></td>
               </tr>
-              
+              <tr>
+                <td>Transaction ID</td>
+                <td>: <?php echo $tran_id ?></td>
+              </tr>
+              <tr>
+                <td>Total</td>
+                <td>: MYR <?php echo $total ?></td>
+              </tr>
+              <tr>
+                <td>Order Status</td>
+                <td>: <?php echo $status ?></td>
+              </tr>
+              <br>
             </table>
           </div>
         </div>
+        <div class="col-md-8 col-xl-6 mb-6 mb-xl-0">
+          <div class="confirmation-card">
+            <h3 class="billing-title">Billing Address</h3>
+            <table class="order-rable">
+              <tr>
+                <td>Street</td>
+                <td>: <?php echo $street ?></td>
+              </tr>
+              <tr>
+                <td>City</td>
+                <td>: <?php echo $city ?></td>
+              </tr>
+              <tr>
+                <td>State</td>
+                <td>: <?php echo $state ?></td>
+              </tr>
+              <tr>
+                <td>Country</td>
+                <td>: <?php echo $country?></td>
+              </tr>
+              <tr>
+                <td>Postcode</td>
+                <td>: <?php echo $postcode ?></td>
+              </tr>
+            </table>
+          </div>
+        </div>
+        
         
       </div>
       <div class="order_details_table">
         <h2>Order Details</h2>
         <div class="table-responsive">
-        <?php echo $order_details; ?>
-          
+          <table class="table">
+            <thead>
+              <tr>
+                <th scope="col">Product</th>
+                <th scope="col">Quantity</th>
+                <th scope="col">Total</th>
+              </tr>
+            </thead>
+            <tbody>
+           <?php $sql2 = "SELECT * FROM order_item where order_id='$id'";
+          $result2 = mysqli_query($con,$sql2);
+          while($row = mysqli_fetch_assoc($result2))
+          {
+            $product= $row["order_item_name"];
+            $quantity= $row["order_item_quantity"];
+            $price= $row["order_item_price"];
+           ?>
+              <tr>
+                <td>
+                  <p><?php echo $product ?></p>
+                </td>
+                <td>
+                  <h5> <?php echo $quantity ?></h5>
+                </td>
+                <td>
+                  <p>RM <?php echo $price ?></p>
+                </td>
+              </tr>
+             <?php } ?>
+              
+              
+              <tr>
+                <td>
+                  <h4>Total</h4>
+                </td>
+                <td>
+                  <h5></h5>
+                </td>
+                <td>
+                  <h4>RM<?php echo $total ?></h4>
+                </td>
+              </tr>
+            </tbody>
+          </table>
+          </div>
         </div>
+        
       </div>
+      
     </div>
   </section>
   <!--================End Order Details Area =================-->
@@ -235,7 +282,7 @@ $order_details .= '</table>';
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
-  <?php unset($_SESSION["shopping_cart"]); ?>
+  
 </body>
 <script>
 load_cart_data();
