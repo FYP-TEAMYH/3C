@@ -33,16 +33,12 @@ if (isset($_POST['username'])){
 					// Redirect user to index.php
 			header("Location: index.php");
 				}else{
-		echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
-		<div class='confirmation-card' style='text-align: center'>
-		<div class='container'>
-		<br><br><br>
-		<h3>Username/password is incorrect.</h3></div>
-
-		<br><br><br>Click here to <a href='login.php'>Login</a>
-		<br><br><br></div></div>";
-		}
-    }else{
+					echo "<script>
+					alert('Username/Password is incorrect'); 
+					window.location = 'login.php';
+					</script>";
+					}
+    }
 ?>
 	<!--================ Start Header Menu Area =================-->
 	<header class="header_area">
@@ -229,7 +225,7 @@ if (isset($_POST['username'])){
   <script src="vendors/jquery.ajaxchimp.min.js"></script>
   <script src="vendors/mail-script.js"></script>
   <script src="js/main.js"></script>
-<?php } ?>
+
 </body>
 <script>
 load_cart_data();
