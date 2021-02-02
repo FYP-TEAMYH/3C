@@ -135,7 +135,7 @@
                                             <tbody>
                                             <?php 
                                             
-                                            $query=mysqli_query($con,"select * from order_table where user_id='$id' ");
+                                            $query=mysqli_query($con,"select * from order_table where user_id='$id' ORDER BY status ASC");
                                             while($row=mysqli_fetch_array($query)){
                                                 if(!empty($query)){
                                                 ?>

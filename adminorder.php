@@ -138,7 +138,7 @@
                                             </thead>
                                             <tbody>
                                             <?php 
-                                            $query=mysqli_query($con,"select * from order_table ORDER BY order_id ASC ");
+                                            $query=mysqli_query($con,"select * from order_table ORDER BY status ASC ");
                                             while($row=mysqli_fetch_array($query)){
                                                 
                                                 ?>
