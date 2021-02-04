@@ -28,10 +28,18 @@
 
 		$sql = "SELECT * FROM `admin` WHERE username='$username'";
 		$res = mysqli_query($con, $sql);
+		$sql2 = "SELECT * FROM `admin` WHERE email='$email'";
+		$res2 = mysqli_query($con, $sql2);
 		if (mysqli_num_rows($res) > 0) {?>
 			<script>
 			alert("Sorry... username already taken"); 
             window.location = "adminregister.php";
+			</script>
+		<?php }
+		else if (mysqli_num_rows($res2) > 0) {?>
+			<script>
+			alert("Sorry... E-mail already taken"); 
+			window.location = "adminregister.php";
 			</script>
 		<?php }
 			else{
@@ -40,13 +48,11 @@
 				VALUES ('$username', '$email' , '".md5($password)."','$img')";
 				$result = mysqli_query($con,$query);
 				if($result){
-					echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
-					<div class='confirmation-card' style='text-align: center'>
-					<div class='container'>
-					<br><br><br>
-					<h3>You are registered successfully.</h3>
-					<br/>Click here to <a href='adminlogin.php'>Login</a>
-					<br><br><br><br></div></div></div>";
+					
+					echo "<script>
+					alert('You are registered successfully.'); 
+					window.location = 'adminlogin.php';
+					</script>";
 				}}
 		
 			}else{
