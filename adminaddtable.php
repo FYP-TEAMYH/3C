@@ -68,13 +68,10 @@
 				if($result){
                     if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){
                     
-                    echo "<div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
-					<div class='confirmation-card' style='text-align: center'>
-					<div class='container'>
-					<br><br><br>
-					<h3>Product added successfully.</h3>
-					<br/>Click here to <a href='admintables.php'>Back</a>
-					<br><br><br><br></div></div></div>";
+                        echo "<script>
+                        alert('Product added successfully!'); 
+                        window.location = 'admintables.php';
+                        </script>";
 				}
             }
 			}else{

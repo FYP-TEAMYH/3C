@@ -236,14 +236,34 @@ $username=$_SESSION["username"];
 
         if (empty($_FILES["image"]["name"])){
             $location=$row['image'];
-
+            ?>
+		<script>
+			window.alert('Product Details updated successfully!');
+			window.location = 'admintabledetail.php?id=<?php echo $row["id"]; ?>';
+		</script>
+	  <?php
         }
         else{
             if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
                 $newFilename = $fileInfo['filename'] . $fileInfo['extension'];
                 move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
                 $location = "img/" . $newFilename;
+                ?>
+		<script>
+			window.alert('Product Details updated successfully!');
+			window.location = 'admintabledetail.php?id=<?php echo $row["id"]; ?>';
+		</script>
+	<?php
             }
+            else{
+                $location=$row['photo'];
+                ?>
+                  <script>
+                    window.alert('Please upload JPG or PNG or JPEG photo only!');
+                    window.location = 'adminedittable.php?id=<?php echo $row["id"]; ?>';
+                  </script>
+                <?php
+              }
         }
         
 

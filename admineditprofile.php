@@ -202,7 +202,12 @@
         //the path to store the uploaded image
         if (empty($_FILES["image"]["name"])){
 		$location=$row['image'];
-		
+		?>
+		<script>
+			window.alert('Profile Details updated successfully!');
+			window.location = 'adminprofile.php';
+		</script>
+	  <?php
 
 	}
 	else{
@@ -210,7 +215,22 @@
 			$newFilename = $fileInfo['filename'] . $fileInfo['extension'];
 			move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
 			$location = "img/" . $newFilename;
+            ?>
+		<script>
+			window.alert('Profile Details updated successfully!');
+			window.location = 'adminprofile.php';
+		</script>
+	<?php
         }
+        else{
+            $location=$row['photo'];
+            ?>
+              <script>
+                window.alert('Please upload JPG or PNG or JPEG photo only!');
+                window.location = 'admineditprofile.php';
+              </script>
+            <?php
+          }
     }
 
       $query = "UPDATE admin SET

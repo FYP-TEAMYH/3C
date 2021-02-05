@@ -232,14 +232,34 @@ $username=$_SESSION["username"];
 
         if (empty($_FILES["image"]["name"])){
             $location=$row['image'];
-
+            ?>
+		<script>
+			window.alert('Compare Details updated successfully!');
+			window.location = 'admincompare.php';
+		</script>
+	  <?php
         }
         else{
             if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
                 $newFilename = $fileInfo['filename'] . $fileInfo['extension'];
                 move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
                 $location = "img/" . $newFilename;
+                ?>
+		<script>
+			window.alert('Compare Details updated successfully!');
+			window.location = 'admincompare.php';
+		</script>
+	<?php
             }
+            else{
+                $location=$row['photo'];
+                ?>
+                  <script>
+                    window.alert('Please upload JPG or PNG or JPEG photo only!');
+                    window.location = 'admineditcompare.php?id=<?php echo $row["id"]; ?>';
+                  </script>
+                <?php
+              }
         }
         
 
@@ -251,10 +271,7 @@ $username=$_SESSION["username"];
       //move uploaded img into folder : img              
       ?>
         
-        <script type="text/javascript">
-            alert("Update Successfull.");
-            window.location = "admincomparedetail.php?id=<?php echo $id ?>";
-        </script>
+        
         <?php
              
             }             

@@ -189,12 +189,33 @@
         //the path to store the uploaded image
         if (empty($_FILES["image"]["name"])){
 		      $location=$image;
+          ?>
+		<script>
+			window.alert('Profile Details updated successfully!');
+			window.location = 'profile.php';
+		</script>
+	  <?php
 	      }
 	      else{
 		    if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
 			      $newFilename = $fileInfo['filename'] . $fileInfo['extension'];
 			      move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
 			      $location = "img/" . $newFilename;
+            ?>
+		<script>
+			window.alert('Profile Details updated successfully!');
+			window.location = 'profile.php';
+		</script>
+	<?php
+            }
+            else{
+              $location=$row['photo'];
+              ?>
+                <script>
+                  window.alert('Photo not updated. Please upload JPG or PNG photo only!');
+                  window.location = 'editprofile.php';
+                </script>
+              <?php
             }
         }
 
@@ -203,12 +224,9 @@
                       WHERE username = '$name'";
                     $result = mysqli_query($con, $query);
       ?>
+      <?php }     ?>  
         
-        <script type="text/javascript">
-            alert("Update Successfull.");
-            window.location = "profile.php";
-        </script>
-        <?php }     ?>
+        
 
 <script>
 load_cart_data();
