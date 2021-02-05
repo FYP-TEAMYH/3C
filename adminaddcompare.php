@@ -75,7 +75,7 @@
                     $location=$row['image'];
                     ?>
                         <script>
-                            window.alert('Please upload JPG or PNG or JPEG photo only!');
+                            window.alert('Image not updated. Please upload JPG or PNG or JPEG photo only!');
                             window.location = 'adminaddcompare.php';
                         </script>
                     <?php
