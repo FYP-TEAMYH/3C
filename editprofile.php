@@ -213,7 +213,7 @@
               $location=$row['photo'];
               ?>
                 <script>
-                  window.alert('Photo not updated. Please upload JPG or PNG photo only!');
+                  window.alert('Image not updated. Please upload JPG or PNG or JPEG photo only!');
                   window.location = 'editprofile.php';
                 </script>
               <?php

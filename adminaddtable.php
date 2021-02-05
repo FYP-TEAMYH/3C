@@ -69,7 +69,7 @@
 
 				?>
                 <script>
-                    window.alert('Compare added successfully!');
+                    window.alert('Product added successfully!');
                     window.location = 'admintables.php';
                 </script>
                 <?php
