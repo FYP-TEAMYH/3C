@@ -164,13 +164,7 @@
 
                                                
 
-                                                <?php }else{?>
-                                                    <tr>
-                                                    <td colspan="5" align="center">
-                                                     Your Cart is Empty!
-                                                    </td>
-                                                   </tr>
-                                              <?php  } }?>  
+                                                <?php }}?>  
                                             </tbody>
                                         </table>
                                    
