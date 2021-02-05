@@ -92,9 +92,16 @@ session_start();
     ':order_item_price' => $values["product_price"],
     
    );
-  
-  
    
+   $query=mysqli_query($con,"select * from product ");
+	while($row=mysqli_fetch_array($query)){
+		
+		$newqty=$row['quantity']-$values["product_quantity"];
+		
+		mysqli_query($con,"update product set quantity='$newqty' where id='".$values["product_id"]."'");
+		
+		}
+
 
 
    $query = "
@@ -114,7 +121,7 @@ session_start();
   
  }
  unset($_SESSION["shopping_cart"]);
-header('location:confirmation.php?id=  '. $order_id .'');
+ header('location:confirmation.php?id=  '. $order_id .'');
 
 
 ?>
