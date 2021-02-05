@@ -12,6 +12,7 @@
 
 <?php
 include('db.php');
+$key=0;
 $error = "";
 if(isset($_POST["email"]) && (!empty($_POST["email"]))){
 $email = $_POST["email"];
@@ -46,6 +47,7 @@ if (!$email) {
    $addKey = substr(md5(uniqid(rand(),1)),3,10);
    $key = $key . $addKey;
 // Insert Temp Table
+
 mysqli_query($con,
 "INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`)
 VALUES ('".$email."', '".$key."', '".$expDate."');");

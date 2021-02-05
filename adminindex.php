@@ -133,7 +133,7 @@
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">
                                             <?php
-                                                $query = "SELECT COUNT(*) totalOrders FROM order_item;";
+                                                $query = "SELECT COUNT(*) totalOrders FROM order_table WHERE status = 0 ;";
                                                     $result = mysqli_query( $con, $query );
                                                     $totalAdmins = mysqli_fetch_assoc( $result );
                                                     echo $totalAdmins['totalOrders'];
@@ -351,22 +351,22 @@
  function drawChart() {
  var data = google.visualization.arrayToDataTable([
 
-['User ID','Order Amount'],
+['User Name','Order Amount'],
  <?php 
 			$query = "SELECT * from order_table";
 
 			 $exec = mysqli_query($con,$query);
 			 while($row = mysqli_fetch_array($exec)){
 
-			 echo "['".$row['user_id']."',".$row['order_total_amount']."],";
+			 echo "['".$row['customer_name']."',".$row['order_total_amount']."],";
 			 }
 			 ?> 
  
  ]);
 
  var options = {
- title: 'User ID/ Order Amount ',
-          is3D: true,
+ title: 'User Name/ Order Amount ',
+          
  };
  var chart = new google.visualization.BarChart(document.getElementById("barchart_values"));
  chart.draw(data,options);
@@ -381,7 +381,49 @@
 
 </body>
 </html>
-                                
+
+<?php //-------------------------------------------line Chart ------------------------------?>
+<html>
+  <head>
+    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+    <script type="text/javascript">
+      google.charts.load('current', {'packages':['corechart']});
+      google.charts.setOnLoadCallback(drawChart);
+
+      function drawChart() {
+        var data = google.visualization.arrayToDataTable([
+          ['Year', 'Sales', ''],
+          <?php 
+			$query = "SELECT * from order_table";
+
+			 $exec = mysqli_query($con,$query);
+			 while($row = mysqli_fetch_array($exec)){
+
+                echo "['".$row['date']."',".$row['order_total_amount'].",".$row['order_total_amount']."],";
+			 }
+			 ?> 
+         
+        ]);
+
+        var options = {
+          title: 'Company Performance',
+          curveType: 'function',
+          legend: { position: 'bottom' }
+        };
+
+        var chart = new google.visualization.LineChart(document.getElementById('curve_chart'));
+
+        chart.draw(data, options);
+      }
+    </script>
+  </head>
+  <body>
+    <div id="curve_chart" style="width: 900px; height: 500px"></div>
+  </body>
+</html>
+
+
+<?php //-------------------------------------------line Chart End ------------------------------?>
                             </div>
                              <!-- Map-panel-body -->     
                             <div class="panel panel-default" >
