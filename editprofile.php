@@ -210,7 +210,7 @@
 	<?php
             }
             else{
-              $location=$row['photo'];
+              $location=$row['image'];
               ?>
                 <script>
                   window.alert('Image not updated. Please upload JPG or PNG or JPEG photo only!');
