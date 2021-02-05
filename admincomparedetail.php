@@ -145,7 +145,7 @@
                                         <form method="post" action="admineditcompare.php?id=<?php echo $id ?>" >
                                                 <div class="form-group">
                                                     <label>Image</label>
-                                                    <img src="<?php echo $compphoto; ?>" width="100%" class="thumbnail">
+                                                    <img src="<?php echo $compphoto; ?>" width="50%" class="thumbnail">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Name</label>

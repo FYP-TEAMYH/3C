@@ -124,6 +124,7 @@
                                         <form method="post" action="#" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>Profile Picture</label>
+                                                    <img src="<?php echo $image; ?>" height="150px" width="150px" class="thumbnail">
                                                     <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
                                                 </div>
                                                 <div class="form-group">

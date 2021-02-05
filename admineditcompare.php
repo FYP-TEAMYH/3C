@@ -132,6 +132,7 @@ $username=$_SESSION["username"];
                                         <form method="post" action="#" enctype="multipart/form-data">
                                                 <div class="form-group">
                                                     <label>Image</label>
+                                                    <img src="<?php echo $image; ?>" width="50%" class="thumbnail">
                                                     <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
                                                 </div>
                                                 <div class="form-group">
@@ -235,7 +236,7 @@ $username=$_SESSION["username"];
             ?>
 		<script>
 			window.alert('Compare Details updated successfully!');
-			window.location = 'admincompare.php';
+			window.location = 'admincomparedetail.php?id=<?php echo $row["id"]; ?>';
 		</script>
 	  <?php
         }
@@ -247,7 +248,7 @@ $username=$_SESSION["username"];
                 ?>
 		<script>
 			window.alert('Compare Details updated successfully!');
-			window.location = 'admincompare.php';
+			window.location = 'admincomparedetail.php?id=<?php echo $row["id"]; ?>';
 		</script>
 	<?php
             }

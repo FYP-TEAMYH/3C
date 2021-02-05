@@ -56,29 +56,33 @@
                 $color = mysqli_real_escape_string($con,$color);
                 $check = stripslashes($_REQUEST['check']);
                 $check = mysqli_real_escape_string($con,$check);
+                $fileInfo = PATHINFO($_FILES["image"]["name"]);
 
-                $target = "img/".basename($_FILES['image']['name']);
-        
-                $image="img/".$_FILES['image']['name'];
-        
+                if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
+                    $target = "img/".basename($_FILES['image']['name']);
+            
+                    $image="img/".$_FILES['image']['name'];
 		 
 				$query = "INSERT into `product` (name, price, image, category, description, description2, brand, color, quality)
 				VALUES ('$name', '$price' , '$image','$category', '$desc', '$desc2','$brandname', '$color', '$check')";
 				$result = mysqli_query($con,$query);
-				if($result){
-                    if(move_uploaded_file($_FILES['image']['tmp_name'],$target)){
-                    
-                        echo "<script>
-                        alert('Product added successfully!'); 
-                        window.location = 'admintables.php';
-                        </script>";
-				}
-            }
-			}else{
-		
 
-				
-?>
+				?>
+                <script>
+                    window.alert('Compare added successfully!');
+                    window.location = 'admintables.php';
+                </script>
+                <?php
+                }
+                else{
+                    $location=$row['image'];
+                    ?>
+                        <script>
+                            window.alert('Please try again. Upload JPG or PNG or JPEG photo only!');
+                            window.location = 'adminaddtable.php';
+                        </script>
+                    <?php
+                } }?>
     <body>
 
         <div id="wrapper">
@@ -247,6 +251,6 @@
 
         <!-- Custom Theme JavaScript -->
         <script src="adminjs/startmin.js"></script>
-        <?php } ?>
+        
     </body>
 </html>

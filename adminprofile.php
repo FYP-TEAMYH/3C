@@ -126,7 +126,7 @@
                                         <form method="post" action="admineditprofile.php" >
                                                 <div class="form-group">
                                                     <label>Profile Picture</label>
-                                                    <img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail">
+                                                    <img src="<?php echo $image; ?>" height="150px" width="150px" class="thumbnail">
                                                 </div>
                                                 <div class="form-group">
                                                     <label>User Name</label>

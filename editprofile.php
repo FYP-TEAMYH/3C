@@ -120,8 +120,9 @@
 
                 <div class="col-md-12 form-group">
                         <b><label>Profile Picture</label></b>
-                        <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
-                        </div> 
+                        <br><img src="<?php echo $image; ?>" height="150px" width="150px" class="thumbnail">
+                        <br><br><input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="150px" class="form-control" >
+                </div> 
                   
                         
 						<div class="col-md-12 form-group">

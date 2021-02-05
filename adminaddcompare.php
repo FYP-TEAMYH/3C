@@ -54,7 +54,8 @@
                 $ram = mysqli_real_escape_string($con,$ram);
                 $brand = stripslashes($_REQUEST['brand']);
                 $brand = mysqli_real_escape_string($con,$brand);
-                
+                $fileInfo = PATHINFO($_FILES["image"]["name"]);
+
                 if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
                         $target = "img/".basename($_FILES['image']['name']);
                 
@@ -75,7 +76,7 @@
                     $location=$row['image'];
                     ?>
                         <script>
-                            window.alert('Image not updated. Please upload JPG or PNG or JPEG photo only!');
+                            window.alert('Please try again. Upload JPG or PNG or JPEG photo only!');
                             window.location = 'adminaddcompare.php';
                         </script>
                     <?php

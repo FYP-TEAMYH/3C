@@ -114,7 +114,7 @@
                                             <form method="post" action="editprofile.php" >
                                                 <div class="form-group"><br><br>
                                                     <b><label>Profile Picture</label></b><br>
-                                                    <img src="<?php echo $image; ?>" height="150px" width="140px" class="thumbnail">
+                                                    <img src="<?php echo $image; ?>" height="150px" width="150px" class="thumbnail">
                                                 </div>
                                                 <div class="form-group">
                                                 <b><label>User Name</label></b>
