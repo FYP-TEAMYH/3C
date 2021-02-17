@@ -155,7 +155,7 @@ $order_details .= '</table>';
             <div class="row">
                 <div class="col-lg-6">
                     <h3>Billing Details</h3>
-                    <form class="row contact_form" method="post" id="order_process_form" action="payment.php">
+                    <form class="row contact_form" method="post" id="order_process_form" action="payment.php"  >
                         <div class="col-md-12 form-group p_star">
                         <input type="text" name="customer_name" id="customer_name" class="form-control" value="" placeholder="Name"  />
                         <span id="error_customer_name" class="text-danger"></span>
@@ -225,7 +225,7 @@ $order_details .= '</table>';
                         <input type="hidden" name="total_amount" value="<?php echo $total_price; ?>" />
                         <input type="hidden" name="currency_code" value="USD" />
                         <input type="hidden" name="item_details" value="<?php echo $item_details; ?>" />
-                        <input type="button" name="" id="" class="btn btn-success" onclick="stripePay(event)" value="Pay Now" />
+                        <input type="button" name="" id="" class="btn btn-success" onclick="validate_form()" value="Pay Now" />
                         </div>
                         </div>
                     </form>
@@ -328,8 +328,10 @@ function load_cart_data()
  }
 
 
-function validate_form()
+function validate_form(event)
 {
+  
+
  var valid_card = 0;
  var valid = false;
  var card_cvc = $('#card_cvc').val();
@@ -368,10 +370,8 @@ function validate_form()
  });
 
  
-
- if(valid_card == 1)
+if (valid_card==1)
  {
-   
   if(!month_expression.test(card_expiry_month))
   {
    $('#card_expiry_month').addClass('require');
@@ -410,7 +410,7 @@ function validate_form()
    $('#error_card_cvc').text('');
    valid10 = true;
   }
-  
+}
   
   if(!name_expression.test(customer_name))
   {
@@ -510,12 +510,14 @@ function validate_form()
    
   }
 
- }
- if(valid1==true &&valid2==true &&valid3==true &&valid4==true &&valid5==true &&valid6==true &&valid7==true &&valid8==true &&valid9==true &&valid10==true)
+ 
+ 
+  if(valid1==true &&valid2==true &&valid3==true &&valid4==true &&valid5==true &&valid6==true &&valid7==true &&valid8==true &&valid9==true &&valid10==true)
   {
-    valid=true;
-  return valid;
-  }
+    
+      $('#order_process_form').submit();
+   }
+  
 }
 
 Stripe.setPublishableKey('pk_test_51IC43mLOApRiqgAEH2QxlQS3BeHBDRHkzx0LeDoTmqF94N3b4F332lKbvjJoKS6GGRp4YrfG5lslCLkWze2K6Iay00ZvDQYh8K');
@@ -536,9 +538,11 @@ function stripeResponseHandler(status, response)
  }
 }
 
+
+
 function stripePay(event)
 {
- event.preventDefault();
+  event.preventDefault();
  
  if(validate_form() == true)
  {

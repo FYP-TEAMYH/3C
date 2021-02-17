@@ -100,6 +100,7 @@
 							$brandname = $row["brand"];
 							$color= $row["color"];
 							$check = $row["quality"];
+							$quantity = $row["quantity"];
 					}
 					
 				?>
@@ -122,8 +123,16 @@
 						<h3><?php echo $name; ?></h3>
 						<h2>RM<?php echo  $price; ?></h2>
 						<ul class="list">
-							<li><span>category</span> &nbsp :  &nbsp<a class="active" href="#"> <?php echo  $category; ?></a></li>
-							
+							<li><span>category</span> &nbsp :  &nbsp <?php echo  $category; ?></li>
+							<li><span>Stock</span> &nbsp :  &nbsp 
+							<?php if($quantity>0)
+							{
+								echo  $quantity;
+							}
+							else
+							{
+								echo "Out of Stock";
+							} ?></li>
 						</ul>
 						<p><?php echo $desc; ?></p>
             <div>
@@ -133,9 +142,10 @@
 					while($row = mysqli_fetch_assoc($result))
 					{ 
           echo '
-          <input type="text" name="quantity" id="quantity'.$row["id"].'" class="form-control" value="1" />
+          <input type="text" name="quantity" id="quantity'.$row["id"].'" class="form-control"   />
           <input type="hidden" name="hidden_name" id="name'.$row["id"].'" value="'.$row["name"].'" />
           <input type="hidden" name="hidden_price" id="price'.$row["id"].'" value="'.$row["price"].'" />
+		  <input type="hidden" name="hidden_stock" id="stock'.$row['id'].'" value="'.$row["quantity"].'" /> 
           <input type="button" name="add_to_cart" id="'.$row["id"].'" style="margin-top:5px;" class="btn btn-success form-control add_to_cart" value="Add to Cart" />
          '; } ?>
 						</div>
@@ -307,12 +317,20 @@ $(document).ready(function(){
   var product_quantity = $('#quantity'+product_id).val();
   var product_image = $('#image'+product_id).val();
   var action = 'add';
+  var stock = $('#stock'+product_id).val();
+
+  
+
+
+  if(stock >= product_quantity)
+  {
+
   if(product_quantity > 0)
   {
    $.ajax({
     url:"action.php",
     method:"POST",
-    data:{product_id:product_id, product_name:product_name, product_price:product_price, product_quantity:product_quantity, action:action},
+    data:{product_id:product_id, product_name:product_name, product_price:product_price, product_quantity:product_quantity, action:action, stock:stock},
     success:function(data)
     {
      load_cart_data();
@@ -323,6 +341,11 @@ $(document).ready(function(){
   else
   {
    alert("Please Enter Number of Quantity");
+  }
+  }
+  else
+  {
+    alert("Out of Stock!");
   }
  });
 

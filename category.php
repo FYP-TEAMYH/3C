@@ -136,6 +136,8 @@
                     <?php 
                           echo "<input type='hidden' name='hidden_name' id='name".$row['id']."' value='".$row['name']."' />";
                           echo "<input type='hidden' name='hidden_price' id='price".$row['id']."' value='".$row['price']."' />" ;
+                          echo "<input type='hidden' name='hidden_stock' id='stock".$row['id']."' value='".$row['quantity']."' />" ;
+                          
                            ?></li>
                       <?php  ?>
                   </ul>
@@ -281,8 +283,12 @@ $(document).ready(function(){
   var product_price = $('#price'+product_id+'').val();
   var product_quantity = $('#quantity'+product_id).val();
   var product_image = $('#image'+product_id).val();
+  var stock = $('#stock'+product_id).val();
+ 
   var action = 'add';
-  if(product_quantity > 0)
+  if(stock >= product_quantity)
+  {
+  if(product_quantity > 0 )
   {
    $.ajax({
     url:"action.php",
@@ -299,6 +305,12 @@ $(document).ready(function(){
   {
    alert("Please Enter Number of Quantity");
   }
+  }
+  else
+  {
+    alert("Out of Stock!");
+  }
+ 
  });
 
  $(document).on('click', '.delete', function(){

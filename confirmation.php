@@ -1,3 +1,12 @@
+<?php 
+session_start();
+if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+    header('location:index.php');
+}
+
+
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -33,7 +42,7 @@
                
                <?php
                require('db_connect.php');
-               session_start();
+               
                if(isset($_SESSION["username"])){?>
                <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
                aria-expanded="false">Account</a>
@@ -85,7 +94,6 @@
             $tran_id= $row["transaction_id"];
             $order_num = $row["order_number"];
             $total= $row["order_total_amount"];
-            $status= $row["order_status"];
             $street= $row["customer_address"];
             $city= $row["customer_city"];
             $state= $row["customer_state"];
@@ -117,12 +125,10 @@
                 <td>Total</td>
                 <td>: MYR <?php echo $total ?></td>
               </tr>
-              <tr>
-                <td>Order Status</td>
-                <td>: <?php echo $status ?></td>
-              </tr>
               <br>
+              
             </table>
+            <br>
           </div>
         </div>
         <div class="col-md-8 col-xl-6 mb-6 mb-xl-0">
