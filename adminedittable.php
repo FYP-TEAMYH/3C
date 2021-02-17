@@ -41,6 +41,7 @@ $username=$_SESSION["username"];
   $query=mysqli_query($con,"SELECT * FROM product where id='$id'")or die(mysqli_error());
   $row=mysqli_fetch_array($query);
   $price = $row["price"];
+  $quantity = $row["quantity"];
   $name = $row["name"];
   $image = $row["image"];
   $category = $row["category"]; 
@@ -146,6 +147,11 @@ $username=$_SESSION["username"];
                                                 
                                                 </div>
                                                 <div class="form-group">
+                                                    <label>Quantity</label>
+                                                    <input type="number" class="form-control" id="quantity" name="quantity" value="<?php echo $quantity; ?>" required />
+                                                
+                                                </div>
+                                                <div class="form-group">
                                                     <label>Category</label>
                                                     <input type="text" class="form-control" id="category" name="category" value="<?php echo $category;  ?>" required />
                                                     
@@ -226,6 +232,7 @@ $username=$_SESSION["username"];
       if(isset($_POST['submit'])){
                   
                     $price = $_POST["price"];
+                    $quantity = $_POST["quantity"];
                     $name = $_POST["name"];
                     $category = $_POST["category"];
                     $desc = $_POST["desc"];
@@ -269,7 +276,7 @@ $username=$_SESSION["username"];
         
 
       $query = "UPDATE product SET
-                      price = '$price', name = '$name', image='$location', category='$category', description='$desc', description2='$desc2',
+                      quantity = '$quantity',price = '$price', name = '$name', image='$location', category='$category', description='$desc', description2='$desc2',
                       brand = '$brandname', color = '$color', quality = '$check' 
                       WHERE id = '$id'";
                     $result = mysqli_query($con, $query);

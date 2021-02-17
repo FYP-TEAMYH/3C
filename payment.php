@@ -22,7 +22,7 @@ session_start();
  $country= $_POST["customer_country"];
  $card_holder = $_POST["card_holder_number"];
  $tran=uniqid('txn_'); 
-echo $tran;
+
  $query=mysqli_query($con,"select * from register where username='$username'");
  if($row=mysqli_fetch_array($query)){  
  $id=$row["id"];
@@ -73,7 +73,7 @@ echo $tran;
 
 
    $query2=mysqli_query($con,"select * from product ");
-	while($row=mysqli_fetch_array($query)){
+	while($row=mysqli_fetch_array($query2)){
 		
 		$newqty=$row['quantity']-$values["product_quantity"];
 		

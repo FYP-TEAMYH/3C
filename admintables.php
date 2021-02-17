@@ -132,6 +132,7 @@
                                                     <th>Category</th>
                                                     <th>Brand Name</th>
                                                     <th>Color Family</th>
+                                                    <th>Quantity</th>
                                                     <th>View</th>
                                                     <th>Delete</th>
                                                 </tr>
@@ -146,6 +147,7 @@
                                                     <td><?php echo $row['category']; ?></td>
                                                     <td><?php echo $row['brand']; ?></td>
                                                     <td><?php echo $row['color']; ?></td>
+                                                    <td><?php echo $row['quantity']; ?></td>
                                                     <td>
                                                     <a href="admintabledetail.php?id=<?php echo $row["id"]; ?>">
                                                     <input type="submit" value="view" id="submit"<?php echo "id='".$row['id']."' "?> class="btn btn-primary" value="1"></a></td>

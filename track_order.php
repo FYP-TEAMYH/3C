@@ -128,7 +128,7 @@
                                                     <th>Number</th>
                                                     <th>Transaction ID</th>
                                                     <th>Total Amount</th>
-                                                    <th>View</th>
+                                                    <th style="text-align:center;">View</th>
                                                     <th style="text-align:center;">Please press the button, if you reveice</th>
                                                 </tr>
                                             </thead>
@@ -144,14 +144,14 @@
                                                     <td><?php echo $row['transaction_id']; ?></td>
                                                     <td><?php echo $row['order_total_amount']; ?></td>
                                                     
-                                                    <td>
+                                                    <td style="text-align:center;">
                                                     <a href="order_detail.php?id=<?php echo $row["order_id"]; ?>">
-                                                    <input type="submit" value="view" id="submit" class="button button-login w-10" ></a></td>
+                                                    <input type="submit" value="view"id="submit" class="button button-login w-10" ></a></td>
                                                     <td style="text-align:center;">
                                                     <?php
                                                         if($row['status']==1){
-                                                            echo "<span class='badge badge-success' style='color:black;text-align: center;background-color:#32CD32;'>
-                                                            <h4><a href='?type=status&operation=deactive&id=".$row['order_id']."'>Received</a></h4></span>";
+                                                            echo "
+                                                            <h4 style='color:green'>Received</h4>";
                                                             
                                                         }else{
 

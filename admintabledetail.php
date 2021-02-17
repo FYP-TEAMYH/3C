@@ -60,6 +60,7 @@
 							$brandname = $row["brand"];
 							$color= $row["color"];
 							$check = $row["quality"];
+                            $quantity = $row["quantity"];
 					}
   ?>
     <body>
@@ -154,6 +155,10 @@
                                                 <div class="form-group">
                                                     <label>Price</label>
                                                     <p class="form-control-static"><?php echo $price; ?></p>
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Quantity</label>
+                                                    <p class="form-control-static"><?php echo $quantity; ?></p>
                                                 </div>
                                                 <div class="form-group">
                                                     <label>Category</label>
