@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.2
+-- version 5.0.4
 -- https://www.phpmyadmin.net/
 --
--- 主机： 127.0.0.1
--- 生成日期： 2021-02-05 13:20:32
--- 服务器版本： 10.4.11-MariaDB
--- PHP 版本： 7.2.31
+-- Host: 127.0.0.1
+-- Generation Time: Feb 20, 2021 at 07:48 AM
+-- Server version: 10.4.17-MariaDB
+-- PHP Version: 8.0.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,13 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- 数据库： `fyp`
+-- Database: `fyp`
 --
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `admin`
+-- Table structure for table `admin`
 --
 
 CREATE TABLE `admin` (
@@ -38,17 +38,17 @@ CREATE TABLE `admin` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `admin`
+-- Dumping data for table `admin`
 --
 
 INSERT INTO `admin` (`id`, `username`, `email`, `password`, `image`, `gender`, `phone`) VALUES
-(14, 'YongHao', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/WeChat Image_20200817232601.jpg', 'Male', '012-7027533'),
+(14, 'YongHao', 'yonghaocha@gmail.com', '202cb962ac59075b964b07152d234b70', 'img/user2jpg', 'Male', '012-7027533'),
 (17, 'admin', '1181203426@student.mmu.edu.my', '399ab67abbac2b529f4e97e493fa569a', 'img/user2.jpg', '', '');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `compare`
+-- Table structure for table `compare`
 --
 
 CREATE TABLE `compare` (
@@ -60,27 +60,29 @@ CREATE TABLE `compare` (
   `battery` varchar(100) NOT NULL,
   `display` varchar(100) NOT NULL,
   `ram` varchar(100) NOT NULL,
-  `image` varchar(500) NOT NULL
+  `image` varchar(500) NOT NULL,
+  `brand` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- 转存表中的数据 `compare`
+-- Dumping data for table `compare`
 --
 
-INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `battery`, `display`, `ram`, `image`) VALUES
-(1, 'IPHONE 11', 'Apple A13 Bionic', '64GB', '12MP+12MP', '3110mAh', '6.1 inches', '4GB', 'img/2020FlagshipPhoneSpec/iphone11.png'),
-(2, 'Asus Zenfone 7 Pro ZS671KS', 'Qualcomm SM8250 Snapdragon 865+ (7 nm+)', '256GB', '64MP+8MP+12MP', '5000 mAh', '6.67 inches', '8GB', 'img/2020FlagshipPhoneSpec/AsusZenfone7_Pro_ZS671KS.jpg'),
-(3, 'Xiaomi Mi 10 Pro 5G', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '256GB,512GB', '108MP,12MP,8MP,20MP', '4500 mAh', '6.67 inches\r\n', '8GB,12GB', 'img/2020FlagshipPhoneSpec/XiaomiMi10Pro_5G.jpg'),
-(4, 'Huawei Mate 40 Pro', 'Kirin 9000 5G (5 nm)', '256GB,512GB', '50 MP,12 MP,20 MP', 'Li-Po 4400 mAh, non-removable', '6.76 inches', '8GB', 'img/2020FlagshipPhoneSpec/HuaweiMate40_Pro.jpg'),
-(5, 'Samsung Galaxy Note20 Ultra 5G', 'Exynos 990 (7 nm+) - Global\r\nQualcomm SM8250 Snapdragon 865+ (7 nm+) - USA', '128GB,256GB,512GB', '108MP+12MP+12MP', '4500mAh', '6.9 inches', '12GB', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_Note20Ultra_5G.jpg'),
-(6, 'Samsung Galaxy Z Fold2 5G', 'Qualcomm SM8250 Snapdragon 865+ (7 nm+)', '256GB,512GB', '12MP+ 12MP+ 12MP', '4500mAh', '7.6 inches', '12GB', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_ZFold2_5G.jpg'),
-(7, 'Oppo Find X2 Pro', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '256GB,512GB', '48MP+13MP+48MP', '4260mAh', '6.7 inches', '12', 'img/2020FlagshipPhoneSpec/OppoFindX2_Pro.jpg'),
-(8, 'One Plus 8 Pro', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '128GB,256GB', '48MP+8MP+48MP', '4510 mAh', '6.78 inches', '8GB,12GB', 'img/2020FlagshipPhoneSpec/OnePlus8_Pro.jpg');
+INSERT INTO `compare` (`id`, `name`, `performance`, `storage`, `camera`, `battery`, `display`, `ram`, `image`, `brand`) VALUES
+(1, 'IPHONE 11', 'Apple A13 Bionic', '64GB', '12MP+12MP', '3110mAh', '6.1 inches', '4GB', 'img/iphone11png', 'OnePlus'),
+(2, 'Asus Zenfone 7 Pro ZS671KS', 'Qualcomm SM8250 Snapdragon 865+ (7 nm+)', '256GB', '64MP+8MP+12MP', '5000 mAh', '6.67 inches', '8GB', 'img/2020FlagshipPhoneSpec/AsusZenfone7_Pro_ZS671KS.jpg', ''),
+(3, 'Xiaomi Mi 10 Pro 5G', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '256GB,512GB', '108MP,12MP,8MP,20MP', '4500 mAh', '6.67 inches\r\n', '8GB,12GB', 'img/2020FlagshipPhoneSpec/XiaomiMi10Pro_5G.jpg', ''),
+(4, 'Huawei Mate 40 Pro', 'Kirin 9000 5G (5 nm)', '256GB,512GB', '50 MP,12 MP,20 MP', 'Li-Po 4400 mAh, non-removable', '6.76 inches', '8GB', 'img/2020FlagshipPhoneSpec/HuaweiMate40_Pro.jpg', ''),
+(5, 'Samsung Galaxy Note20 Ultra 5G', 'Exynos 990 (7 nm+) - Global\r\nQualcomm SM8250 Snapdragon 865+ (7 nm+) - USA', '128GB,256GB,512GB', '108MP+12MP+12MP', '4500mAh', '6.9 inches', '12GB', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_Note20Ultra_5G.jpg', ''),
+(6, 'Samsung Galaxy Z Fold2 5G', 'Qualcomm SM8250 Snapdragon 865+ (7 nm+)', '256GB,512GB', '12MP+ 12MP+ 12MP', '4500mAh', '7.6 inches', '12GB', 'img/2020FlagshipPhoneSpec/SamsungGalaxy_ZFold2_5G.jpg', ''),
+(7, 'Oppo Find X2 Pro', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '256GB,512GB', '48MP+13MP+48MP', '4260mAh', '6.7 inches', '12', 'img/2020FlagshipPhoneSpec/OppoFindX2_Pro.jpg', ''),
+(8, 'One Plus 8 Pro', 'Qualcomm SM8250 Snapdragon 865 (7 nm+)', '128GB,256GB', '48MP+8MP+48MP', '4510 mAh', '6.78 inches', '8GB,12GB', 'img/2020FlagshipPhoneSpec/OnePlus8_Pro.jpg', ''),
+(14, 'asd', 'asd', 'asd', 'asd', '', 'asd', 'dsad', 'img/user2.jpg', 'sadsa');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order_item`
+-- Table structure for table `order_item`
 --
 
 CREATE TABLE `order_item` (
@@ -94,7 +96,7 @@ CREATE TABLE `order_item` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `order_item`
+-- Dumping data for table `order_item`
 --
 
 INSERT INTO `order_item` (`order_item_id`, `order_id`, `order_item_name`, `order_item_quantity`, `order_item_price`, `user_id`, `date`) VALUES
@@ -105,12 +107,27 @@ INSERT INTO `order_item` (`order_item_id`, `order_id`, `order_item_name`, `order
 (67, 51, 'ASUS ROG Strix G17 (2020) Gaming Laptop, 17.3 ', 1, 6599.00, 18, '2021-02-02 08:35:03'),
 (68, 52, 'Razer Huntsman Tournament Edition TKL Tenkeyless Gaming Keyboard', 1, 549.00, 18, '2021-02-02 08:42:20'),
 (69, 52, 'Razer Huntsman Mini 60% Gaming Keyboard', 1, 499.00, 18, '2021-02-02 08:42:20'),
-(70, 53, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 18, '2021-02-05 08:48:37');
+(70, 53, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 18, '2021-02-05 08:48:37'),
+(71, 57, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 21, '2021-02-17 13:04:45'),
+(72, 57, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 21, '2021-02-17 13:04:45'),
+(73, 58, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 21, '2021-02-19 07:01:53'),
+(74, 59, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 21, '2021-02-19 07:02:20'),
+(75, 60, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 1, 299.00, 21, '2021-02-19 07:32:49'),
+(76, 61, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 21, '2021-02-19 07:48:43'),
+(77, 61, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 21, '2021-02-19 07:48:43'),
+(78, 62, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 1, 299.00, 21, '2021-02-19 07:49:41'),
+(79, 63, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 21, '2021-02-20 07:00:56'),
+(80, 64, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 1, 399.00, 21, '2021-02-20 07:20:30'),
+(81, 64, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 21, '2021-02-20 07:20:30'),
+(82, 64, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 1, 299.00, 21, '2021-02-20 07:20:30'),
+(83, 64, 'Corsair K68 RGB Mechanical Gaming Keyboard', 3, 369.00, 21, '2021-02-20 07:20:30'),
+(84, 65, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 2, 399.00, 21, '2021-02-20 07:27:44'),
+(85, 66, 'Logitech G213 Prodigy Gaming Keyboard', 1, 199.00, 21, '2021-02-20 07:44:19');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `order_table`
+-- Table structure for table `order_table`
 --
 
 CREATE TABLE `order_table` (
@@ -121,7 +138,6 @@ CREATE TABLE `order_table` (
   `card_cvc` int(5) NOT NULL,
   `card_expiry_month` varchar(30) NOT NULL,
   `card_expiry_year` varchar(30) NOT NULL,
-  `order_status` varchar(50) NOT NULL,
   `card_holder_number` varchar(250) NOT NULL,
   `email_address` varchar(250) NOT NULL,
   `customer_name` varchar(250) NOT NULL,
@@ -132,26 +148,40 @@ CREATE TABLE `order_table` (
   `customer_country` varchar(250) NOT NULL,
   `user_id` int(11) NOT NULL,
   `date` datetime NOT NULL,
-  `status` int(11) NOT NULL
+  `order_status` int(11) NOT NULL,
+  `status` int(11) NOT NULL,
+  `discount` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `order_table`
+-- Dumping data for table `order_table`
 --
 
-INSERT INTO `order_table` (`order_id`, `order_number`, `order_total_amount`, `transaction_id`, `card_cvc`, `card_expiry_month`, `card_expiry_year`, `order_status`, `card_holder_number`, `email_address`, `customer_name`, `customer_address`, `customer_city`, `customer_pin`, `customer_state`, `customer_country`, `user_id`, `date`, `status`) VALUES
-(48, 629493, 379.00, 'txn_1IGITtLOApRiqgAE85UDNeId', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 07:35:20', 0),
-(49, 498145, 219.00, 'txn_1IGIWGLOApRiqgAEm0qsalIc', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 07:37:47', 0),
-(50, 436982, 199.00, 'txn_1IGImcLOApRiqgAED2U9aAo2', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 07:54:41', 0),
-(51, 201142, 7097.00, 'txn_1IGJPhLOApRiqgAE8m67EU5K', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 08:35:03', 0),
-(52, 112175, 1048.00, 'txn_1IGJWkLOApRiqgAEFUKmtcVa', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 08:42:20', 0),
-(53, 500625, 199.00, 'txn_1IHP3SLOApRiqgAEd53BZMHF', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-05 08:48:37', 0),
-(54, 153895, 199.00, 'txn_1IHP3VLOApRiqgAEYLMNVbBD', 123, '12', '2022', 'succeeded', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-05 08:48:40', 0);
+INSERT INTO `order_table` (`order_id`, `order_number`, `order_total_amount`, `transaction_id`, `card_cvc`, `card_expiry_month`, `card_expiry_year`, `card_holder_number`, `email_address`, `customer_name`, `customer_address`, `customer_city`, `customer_pin`, `customer_state`, `customer_country`, `user_id`, `date`, `order_status`, `status`, `discount`) VALUES
+(48, 629493, 379.00, 'txn_1IGITtLOApRiqgAE85UDNeId', 123, '12', '2022', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 07:35:20', 0, 0, ''),
+(49, 498145, 219.00, 'txn_1IGIWGLOApRiqgAEm0qsalIc', 123, '12', '2022', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 07:37:47', 0, 0, ''),
+(50, 436982, 199.00, 'txn_1IGImcLOApRiqgAED2U9aAo2', 123, '12', '2022', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', 'sjsjs,laoashdn', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 07:54:41', 0, 0, ''),
+(51, 201142, 7097.00, 'txn_1IGJPhLOApRiqgAE8m67EU5K', 123, '12', '2022', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 08:35:03', 0, 0, ''),
+(52, 112175, 1048.00, 'txn_1IGJWkLOApRiqgAEFUKmtcVa', 123, '12', '2022', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-02 08:42:20', 0, 0, ''),
+(53, 500625, 199.00, 'txn_1IHP3SLOApRiqgAEd53BZMHF', 123, '12', '2022', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-05 08:48:37', 0, 0, ''),
+(54, 153895, 199.00, 'txn_1IHP3VLOApRiqgAEYLMNVbBD', 123, '12', '2022', '4242 4242 4242 4242', 'jjj@hotmail.com', 'soh', '2000, LORONG CIKU', 'PONTIAN', '82000', 'JOHOR', 'Malaysia', 18, '2021-02-05 08:48:40', 1, 0, ''),
+(55, 479821, 199.00, 'txn_602d05168d733', 123, '12', '2022', '4242 4242 4242424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-17 12:59:18', 3, 0, ''),
+(56, 400106, 598.00, 'txn_602d05e78361c', 123, '12', '2022', '4242 4242 4242 4242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-17 13:02:47', 2, 0, ''),
+(57, 652378, 598.00, 'txn_602d065d6c015', 123, '12', '2022', '4242 4242 4242 4242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-17 13:04:45', 2, 0, ''),
+(58, 113254, 199.00, 'txn_602f545122797', 123, '12', '2022', '4242 4242 424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-19 07:01:53', 2, 0, ''),
+(59, 903612, 369.00, 'txn_602f546ce3bbe', 123, '12', '2022', '4242 4242 424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-19 07:02:20', 3, 1, ''),
+(60, 899658, 269.00, 'txn_602f5b91096c1', 123, '12', '2022', '4242 4242 424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-19 07:32:49', 2, 0, ''),
+(61, 463244, 598.00, 'txn_602f5f4ba1bac', 123, '12', '2022', '4242 4242 424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-19 07:48:43', 2, 0, ''),
+(62, 428533, 299.00, 'txn_602f5f85b79e1', 123, '12', '2022', '4242 4242 424242', 'yonghaocha@gmail.com', 'Cha Yong Hao', '....', 'jb', '81750', 'masai', 'Malaysia', 21, '2021-02-19 07:49:41', 3, 1, ''),
+(63, 754031, 379.00, 'txn_6030a5989f2be', 123, '12', '2022', '4242 4242 4242 4242', 'yonghaocha@gmail.com', 'YongHao', '....', '..', '..', '...', '...', 21, '2021-02-20 07:00:56', 3, 1, ''),
+(64, 771696, 2004.00, 'txn_6030aa2e5f5a0', 123, '12', '2022', '4242 4242 4242 4242', 'yonghaocha@gmail.com', 'YongHao', '...', '..', '..', '...', '...', 21, '2021-02-20 07:20:30', 1, 1, ''),
+(65, 271345, 758.00, 'txn_6030abe0ac453', 123, '12', '2022', '4242 4242 4242 4242', 'yonghaocha@gmail.com', '..', '/...', '...', '...', '...', '...', 21, '2021-02-20 07:27:44', 1, 1, ''),
+(66, 714140, 159.00, 'txn_6030afc388e4d', 123, '12', '2022', '4242 4242 4242 4242', 'yonghaocha@gmail.com', 'YongHao', '..', '..', '..', '..', '..', 21, '2021-02-20 07:44:19', 1, 1, '40');
 
 -- --------------------------------------------------------
 
 --
--- 表的结构 `password_reset_temp`
+-- Table structure for table `password_reset_temp`
 --
 
 CREATE TABLE `password_reset_temp` (
@@ -161,7 +191,7 @@ CREATE TABLE `password_reset_temp` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `password_reset_temp`
+-- Dumping data for table `password_reset_temp`
 --
 
 INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`) VALUES
@@ -172,7 +202,7 @@ INSERT INTO `password_reset_temp` (`email`, `key`, `expDate`) VALUES
 -- --------------------------------------------------------
 
 --
--- 表的结构 `product`
+-- Table structure for table `product`
 --
 
 CREATE TABLE `product` (
@@ -190,16 +220,16 @@ CREATE TABLE `product` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `product`
+-- Dumping data for table `product`
 --
 
 INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`, `description2`, `brand`, `color`, `quality`, `quantity`) VALUES
-(1, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 'img/keyboard1.jpg', '399.00', 'keyboard', '<br>- Tactile & Silent \r\n<br>- Chroma RGB Lighting \r\n<br>- Magnetic Wrist Rest \r\n<br>- Dedicated Media Keys & Dial \r\n<br>- USB Passthrough ', '<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- Zero-Compromise Mechanical Switch for Speed & Accuracy: Razer Orange switch technology provides tactile feedback with a quieter click, requiring 45 G of actuation force; ideal for most gaming and typing experiences\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands\r\n<br>- Ergonomic, Magnetic Wrist Rest: Made of plush leatherette to maximize comfort over extended gaming sessions\r\n<br>- Durable Construction: Supports up to 80 million clicks; made of military-grade metal top plate ', 'Razer', 'Black', 'Yes', 10),
+(1, 'Razer BlackWidow Elite Mechanical Gaming Keyboard: Orange Mechanical Switches ', 'img/keyboard1jpg', '399.00', 'keyboard', '<br>- Tactile & Silent \r\n<br>- Chroma RGB Lighting \r\n<br>- Magnetic Wrist Rest \r\n<br>- Dedicated Media Keys & Dial \r\n<br>- USB Passthrough              ', '<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- Zero-Compromise Mechanical Switch for Speed & Accuracy: Razer Orange switch technology provides tactile feedback with a quieter click, requiring 45 G of actuation force; ideal for most gaming and typing experiences\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands\r\n<br>- Ergonomic, Magnetic Wrist Rest: Made of plush leatherette to maximize comfort over extended gaming sessions\r\n<br>- Durable Construction: Supports up to 80 million clicks; made of military-grade metal top plate              ', 'Razer', 'Black', 'Yes', -2),
 (2, 'Logitech G213 Prodigy Gaming Keyboard', 'img/keyboard/keyboard5.jpg', '199.00', 'keyboard', 'Worlds NO. 1 Best Selling Gaming Gear Brand - Based on independent aggregated sales data (FEB \'19 - FEB\'20) of Gaming Keyboard, Mice, & PC Headset in units from: US, CA, CN, JP, KR, TW, TH, ID, DE, FR, RU, UK, SE, TR', 'About this item<br><br>\r\n\r\n- Brilliant color spectrum illumination - personalize five individual lighting Zones from a spectrum of over 16. 8 million colors. Change colors to match your setup, specific games, or to showcase your favorite colors. Synchronize lighting effects with other Logitech G devices using Logitech gaming software. Low light leak around each keycap means less more light comes through the lettering - and less leaks around the keycaps. This helps make the illumination of each key more brilliant, making it easier to find your keys in the dark.<br>\r\n\r\n- Comfortable and durable - G213 Prodigy is a full-sized keyboard designed for gaming and productivity. The slim body is built for gamers of all levels, with a durable construction that repels liquids, crumbs and dirt for easy cleanup. An integrated Palm rest And adjustable feet Let you set your keyboard to the ideal position, so it\'s comfortable to use even during the longest gaming sessions.<br>\r\n- Performance tuned with multi-key input - G213 brings together the best in tactile feel and performance with Keys built specifically for the way gamers play. Each key on the G213 is tuned to enhance the tactile experience, delivering ultra-quick, responsive feedback that is up to 4 times faster than standard keyboards. The anti-ghosting gaming Matrix is tuned for optimal gaming performance, keeping you in control when you press multiple gaming keys simultaneously.\r\n', 'Logitech G', 'Black', 'Yes', -1),
-(3, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 'img/keyboard/keyboard2.jpg', '299.00', 'keyboard', '61 Keys TKL Designed 5.0 Bluetooth Gaming Keyboard with Brown Switches and 16.8 Million RGB Lighting for PC, Laptop, Cell Phone', 'About this item<br><br>\r\n- First Redragon 60% Keyboard - Ultra minimalistic tenkeyless (TKL) design with 61 keys portable layout frees up table space for mouse movement, which offers the purest performance for FPS pro (11.5*3.9*1.4 in).<br>\r\n- Wireless Made Easy - Enjoy the freedom of wirelessness with a Bluetooth 5.0 connection and 3000mAh long-lasting battery capacity. Reliable and fast connects hassle-free with devices such as laptops, tablets, and even phones that support Bluetooth.<br>\r\n- Dual Mode Switch - Easily switch between wireless and wired modes with the mode switch on the side. Included USB-C cable gives you the option to go wired for competitive games.<br>\r\n- Hot-Swappable Brown Switches - Tactile brown switches provide a soft bump, but no click, unlike blue switches for quiet use. Hot-swappable with other Redragon switches. <br>\r\n- Made to last with switches rated for 50 million keypresses.<br>\r\n- RGB Illumination Builder - 13 Dynamic presets available onboard. Millions of color options and effects make you the designer of your ultimate gear with a pro driver. Software/Driver link (http://bit.ly/K530BTKeyboard)', 'Redragon', 'White', 'Yes', 0),
+(3, 'Redragon K530 Draconic 60% Compact RGB Wireless Mechanical Keyboard', 'img/keyboard/keyboard2.jpg', '299.00', 'keyboard', '61 Keys TKL Designed 5.0 Bluetooth Gaming Keyboard with Brown Switches and 16.8 Million RGB Lighting for PC, Laptop, Cell Phone ', 'About this item<br><br>\r\n- First Redragon 60% Keyboard - Ultra minimalistic tenkeyless (TKL) design with 61 keys portable layout frees up table space for mouse movement, which offers the purest performance for FPS pro (11.5*3.9*1.4 in).<br>\r\n- Wireless Made Easy - Enjoy the freedom of wirelessness with a Bluetooth 5.0 connection and 3000mAh long-lasting battery capacity. Reliable and fast connects hassle-free with devices such as laptops, tablets, and even phones that support Bluetooth.<br>\r\n- Dual Mode Switch - Easily switch between wireless and wired modes with the mode switch on the side. Included USB-C cable gives you the option to go wired for competitive games.<br>\r\n- Hot-Swappable Brown Switches - Tactile brown switches provide a soft bump, but no click, unlike blue switches for quiet use. Hot-swappable with other Redragon switches. <br>\r\n- Made to last with switches rated for 50 million keypresses.<br>\r\n- RGB Illumination Builder - 13 Dynamic presets available onboard. Millions of color options and effects make you the designer of your ultimate gear with a pro driver. Software/Driver link (http://bit.ly/K530BTKeyboard) ', 'Redragon', 'White', 'Yes', -1),
 (4, 'Razer Cynosa Chroma Gaming Keyboard', 'img/keyboard/keyboard3.jpg', '199.00', 'keyboard', '168 Individually Backlit RGB Keys - Spill-Resistant Design - Programmable Macro Functionality - Quiet & Cushioned', 'About this item<br><br>\r\n<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- All-around Gaming Performance: Able to execute up to ten commands at the same time with built-in key rollover anti-ghosting\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Spill-Resistant Design: Built to withstand most accidental liquid splashes\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands\r\n<br>- Durable Construction: Supports up to 80 million clicks with a 2 year manufacturer warranty', 'Razer', 'Black', 'Yes', 0),
 (5, 'Corsair K55 RGB Gaming Keyboard', 'img/keyboard/keyboard6.jpg', '219.00', 'keyboard', 'IP42 Dust and Water Resistance - 6 Programmable Macro Keys - Dedicated Media Keys - Detachable Palm Rest Included', 'About this item<br><br>\r\n<br>- Dynamic RGB backlighting across three zones, with full customization of colors and lighting effects\r\n<br>- Dust and spill resistant design rated up to IP42 protection guards against accidents so your gameplay never has to stop\r\n<br>- Six programmable macro keys give you the in-game advantage of powerful macros or key remaps\r\n<br>- Detachable, soft rubber palm rest reduces stress on your wrists so you can play longer in comfort\r\n<br>- Dedicated volume and media controls give you direct control over your audio without having to interrupt your game\r\n<br>- Powerful corsair iCUE software enables vivid dynamic RGB lighting control, sophisticated macro programming and full-system lighting synchronization across all iCUE-compatible Corsair devices\r\n<br>- Quiet and responsive keys for comfortable typing during both work and play', 'Corsair', 'Black', 'Yes', 0),
-(6, 'Corsair K68 RGB Mechanical Gaming Keyboard', 'img/keyboard/keyboard7.jpg', '369.00', 'keyboard', 'Backlit RGB LED, Dust and Spill Resistant - Linear & Quiet - Cherry MX Red', 'About this item<br><br>\r\n\r\n<br>- Vivid RGB backlighting offers virtually unlimited lighting customization, or use a variety of on board pre-installed effects for instant illumination\r\n<br>- Dust and spill resistant design rated up to IP32 protection, helps defend against accidents so your gameplay never has to stop\r\n<br>- 100 percentage gold contact Cherry MX mechanical gaming key switches deliver the ultimate performance and competitive advantage\r\n<br>- Corsair Utility Engine (CUE) software controls sophisticated macro programming and stunning dynamic lighting effects\r\n<br>- 100 percentage Anti ghosting with full key rollover ensures your commands and simultaneous keystrokes always register the way you intended', 'Corsair', 'Black', 'Yes', 0),
+(6, 'Corsair K68 RGB Mechanical Gaming Keyboard', 'img/keyboard/keyboard7.jpg', '369.00', 'keyboard', 'Backlit RGB LED, Dust and Spill Resistant - Linear & Quiet - Cherry MX Red', 'About this item<br><br>\r\n\r\n<br>- Vivid RGB backlighting offers virtually unlimited lighting customization, or use a variety of on board pre-installed effects for instant illumination\r\n<br>- Dust and spill resistant design rated up to IP32 protection, helps defend against accidents so your gameplay never has to stop\r\n<br>- 100 percentage gold contact Cherry MX mechanical gaming key switches deliver the ultimate performance and competitive advantage\r\n<br>- Corsair Utility Engine (CUE) software controls sophisticated macro programming and stunning dynamic lighting effects\r\n<br>- 100 percentage Anti ghosting with full key rollover ensures your commands and simultaneous keystrokes always register the way you intended', 'Corsair', 'Black', 'Yes', -3),
 (7, 'Razer Huntsman Tournament Edition TKL Tenkeyless Gaming Keyboard', 'img/keyboard/keyboard8.jpg', '549.00', 'keyboard', 'Fastest Keyboard Switches Ever - Linear Optical Switches - Chroma RGB Lighting - PBT Keycaps - Onboard Memory - Classic Black', 'About this item<br><br>\r\n\r\n<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, <br>and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n- Faster Than Traditional Mechanical Switches: Razer Linear Optical switch technology uses optical beam-based actuation, registering key presses at the speed of light (15-30% shorter actuation distance than other linear switches at 1.0 millimeter)\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Quality, Aluminum Construction: Covered with a matte, aluminum top frame for increased structural integrity\r\n<br>- Tournament-Ready Design: A tenkeyless design with a detachable USB-C cable provides a portable form-factor for on-the-go gamers\r\n<br>- Oil-Resistant Double shot PBT Keycaps: Made of textured, high-grade PBT for a more durable and textured finish less prone to long-term grime build up\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands', 'Razer', 'Black', 'Yes', 0),
 (8, 'SteelSeries Apex 5 Hybrid Mechanical Gaming Keyboard', 'img/keyboard/keyboard12.jpg', '379.00', 'keyboard', '- Per-Key RGB Illumination - Aircraft Grade Aluminum Alloy Frame - OLED Smart Display (Hybrid Blue Switch)', 'About this item<br><br>\r\n<br>- Hybrid mechanical gaming switches - The tactile click of a blue mechanical switch plus a smooth membrane\r\n<br>- OLED smart display - Customize with gifs, game info, discord messages, and more.\r\n<br>- Aircraft-grade aluminum alloy frame - Manufactured for unbreakable durability and sturdiness\r\n<br>- Dynamic per-key RGB illumination - Gorgeous color schemes and reactive effects for every key\r\n<br>- Premium magnetic wrist rest - Provides full palm support and comfort\r\n<br>- 900 x 300 x 4 millimeter / 35.43 inches x 11.81 inches\r\n<br>- SteelSeries cannot guarantee the quality or authenticity of products sold by non-authorized resellers on Amazon, and they are not eligible for warranty. Authorized retailers: Amazon.com, Adorama Inc, Encore Technology, Spacebound', 'SteelSeries', 'Black', 'Yes', 0),
 (9, 'Razer Huntsman Mini 60% Gaming Keyboard', 'img/keyboard/keyboard10.jpg', '499.00', 'keyboard', 'Fastest Keyboard Switches Ever - Clicky Optical Switches - Chroma RGB Lighting - PBT Keycaps - Onboard Memory - Classic Black', 'About this item<br><br>\r\n<br>- The No.1 Best-Selling Gaming Peripherals Manufacturer in the US: Source - The NPD Group, Inc., U.S. Retail Tracking Service, Gaming Designed: Keyboards, Mice, PC Headsets, and PC Microphones, Based on dollar sales, Jan. 2017- June 2020 combined\r\n<br>- Faster Than Legacy Mechanical Switches: Razer Optical switches use light-based actuation, registering key presses at the speed of light (30% shorter actuation distance than other clicky switches at 1.5 millimeter) with satisfying, clicky feedback\r\n<br>- Ultimate Personalization & Gaming Immersion with Razer Chroma: Fully syncs with popular games, Razer hardware, Philips Hue, and gear from 30+ partners; supports 16.8 million colors on individually backlit keys\r\n<br>- Quality, Aluminum Construction: Covered with a matte, aluminum top frame for increased structural integrity\r\n<br>- Oil-Resistant Double shot PBT Keycaps: Made of textured, high-grade PBT for a more durable and textured finish less prone to long-term grime build up\r\n<br>- Fully Programmable Macros: Razer Hypershift allows for all keys and keypress combinations be remapped to execute complex commands', 'Razer', 'Black', 'Yes', 0),
@@ -234,7 +264,7 @@ INSERT INTO `product` (`id`, `name`, `image`, `price`, `category`, `description`
 -- --------------------------------------------------------
 
 --
--- 表的结构 `register`
+-- Table structure for table `register`
 --
 
 CREATE TABLE `register` (
@@ -248,91 +278,125 @@ CREATE TABLE `register` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
--- 转存表中的数据 `register`
+-- Dumping data for table `register`
 --
 
 INSERT INTO `register` (`id`, `username`, `email`, `password`, `image`, `gender`, `phone`) VALUES
-(18, 'admin', 'jjj@hotmail.com', '399ab67abbac2b529f4e97e493fa569a', 'img/user2.jpg', '', '');
+(18, 'admin', 'jjj@hotmail.com', '399ab67abbac2b529f4e97e493fa569a', 'img/user2.jpg', '', ''),
+(21, 'Hao', 'yonghaocha@gmail.com', 'f3fd5adbdc2bcb04dd4fb7bd4304d784', 'img/user_1611772559jpg', 'Male', '012-7027533'),
+(22, 'Haoo', 'yonghaocha111@gmail.com', 'f3fd5adbdc2bcb04dd4fb7bd4304d784', 'img/user2.jpg', '', '');
+
+-- --------------------------------------------------------
 
 --
--- 转储表的索引
+-- Table structure for table `voucher`
+--
+
+CREATE TABLE `voucher` (
+  `id` int(11) NOT NULL,
+  `code` varchar(255) NOT NULL,
+  `status` int(11) NOT NULL,
+  `discount` varchar(30) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `voucher`
+--
+
+INSERT INTO `voucher` (`id`, `code`, `status`, `discount`) VALUES
+(2, '12345', 1, '40');
+
+--
+-- Indexes for dumped tables
 --
 
 --
--- 表的索引 `admin`
+-- Indexes for table `admin`
 --
 ALTER TABLE `admin`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `compare`
+-- Indexes for table `compare`
 --
 ALTER TABLE `compare`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `order_item`
+-- Indexes for table `order_item`
 --
 ALTER TABLE `order_item`
   ADD PRIMARY KEY (`order_item_id`);
 
 --
--- 表的索引 `order_table`
+-- Indexes for table `order_table`
 --
 ALTER TABLE `order_table`
   ADD PRIMARY KEY (`order_id`);
 
 --
--- 表的索引 `product`
+-- Indexes for table `product`
 --
 ALTER TABLE `product`
   ADD PRIMARY KEY (`id`);
 
 --
--- 表的索引 `register`
+-- Indexes for table `register`
 --
 ALTER TABLE `register`
   ADD PRIMARY KEY (`id`);
 
 --
--- 在导出的表使用AUTO_INCREMENT
+-- Indexes for table `voucher`
+--
+ALTER TABLE `voucher`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- 使用表AUTO_INCREMENT `admin`
+-- AUTO_INCREMENT for table `admin`
 --
 ALTER TABLE `admin`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
--- 使用表AUTO_INCREMENT `compare`
+-- AUTO_INCREMENT for table `compare`
 --
 ALTER TABLE `compare`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- 使用表AUTO_INCREMENT `order_item`
+-- AUTO_INCREMENT for table `order_item`
 --
 ALTER TABLE `order_item`
-  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
+  MODIFY `order_item_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
 
 --
--- 使用表AUTO_INCREMENT `order_table`
+-- AUTO_INCREMENT for table `order_table`
 --
 ALTER TABLE `order_table`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=55;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=67;
 
 --
--- 使用表AUTO_INCREMENT `product`
+-- AUTO_INCREMENT for table `product`
 --
 ALTER TABLE `product`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
--- 使用表AUTO_INCREMENT `register`
+-- AUTO_INCREMENT for table `register`
 --
 ALTER TABLE `register`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT for table `voucher`
+--
+ALTER TABLE `voucher`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

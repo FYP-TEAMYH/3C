@@ -99,6 +99,7 @@ if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
             $state= $row["customer_state"];
             $country= $row["customer_country"];
             $postcode= $row["customer_pin"];
+            $discount= $row["discount"];
           }
           
           ?>
@@ -194,7 +195,17 @@ if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
               </tr>
              <?php } ?>
               
-              
+              <tr>
+              <td>
+                  <h4>Discount</h4>
+                </td>
+                <td>
+                  <h5></h5>
+                </td>
+                <td>
+                  <p>RM <?php echo $discount ?>.00</p>
+                </td>
+              </tr>
               <tr>
                 <td>
                   <h4>Total</h4>

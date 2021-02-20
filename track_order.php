@@ -124,22 +124,39 @@
                                         <table class="table table-striped table-bordered table-hover" id="">
                                             <thead>
                                                 <tr>
-                                                    
+                                                    <th style="text-align:center;">Status</th>
                                                     <th>Number</th>
+                                                    
                                                     <th>Transaction ID</th>
                                                     <th>Total Amount</th>
                                                     <th style="text-align:center;">View</th>
-                                                    <th style="text-align:center;">Please press the button, if you reveice</th>
+                                                    <th style="text-align:center;">Order Status</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
                                             <?php 
                                             
-                                            $query=mysqli_query($con,"select * from order_table where user_id='$id' ORDER BY status ASC");
+                                            $query=mysqli_query($con,"select * from order_table where user_id='$id' ORDER BY order_status DESC");
                                             while($row=mysqli_fetch_array($query)){
                                                 if(!empty($query)){
                                                 ?>
                                                 <tr>
+                                                    <td><?php 
+
+                                                            if($row['order_status']==1){
+                                                              echo "
+                                                              <h4 style='color:#DAA520;text-align:center;'><i class='fa fa-circle' style='color:#DAA520;font-size:13px'>Pending</i></h4>";
+                                                            }
+                                                            else if($row['order_status']==2){
+                                                              echo "
+                                                                    <h4 style='color:red;text-align:center;'><i class='fa fa-circle' style='color:red;font-size:13px'>Decline</i></h4>";
+                                                            }
+                                                            else if($row['order_status']==3){
+                                                              echo "
+                                                                    <h4 style='color:green;text-align:center;'><i class='fa fa-circle' style='color:green;font-size:13px'>&nbspApprove</i></h4>";
+                                                            }
+                                                    
+                                                    ?></td>
                                                     <td><?php echo $row['order_number']; ?></td>
                                                     <td><?php echo $row['transaction_id']; ?></td>
                                                     <td><?php echo $row['order_total_amount']; ?></td>
@@ -149,6 +166,15 @@
                                                     <input type="submit" value="view"id="submit" class="button button-login w-10" ></a></td>
                                                     <td style="text-align:center;">
                                                     <?php
+                                                    if($row['order_status']==1){
+                                                      echo "
+                                                      <h4 style='color:#DAA520'>-</h4>";
+                                                    }
+                                                    else if($row['order_status']==2){
+                                                      echo "
+                                                            <h4 style='color:red'>-</h4>";
+                                                    }
+                                                    else if($row['order_status']==3){
                                                         if($row['status']==1){
                                                             echo "
                                                             <h4 style='color:green'>Received</h4>";
@@ -159,6 +185,8 @@
                                                             
                                                             <h4><a href='?type=status&operation=active&id=".$row['order_id']."'>Delivering</a></h4></span>";
                                                         }
+                                                    }
+                                                      
                                                     ?></td>
                                                 </tr>
 

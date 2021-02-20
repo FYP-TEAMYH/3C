@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>3C Online Store[Admin]</title>
+        <title>3C Online Store [Admin]</title>
 	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
 
         <!-- Bootstrap Core CSS -->
@@ -15,6 +15,12 @@
 
         <!-- MetisMenu CSS -->
         <link href="admincss/metisMenu.min.css" rel="stylesheet">
+
+        <!-- DataTables CSS -->
+        <link href="admincss/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="admincss/dataTables/dataTables.responsive.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="admincss/startmin.css" rel="stylesheet">
@@ -30,15 +36,13 @@
         <![endif]-->
     </head>
     <?php
-  include 'db_connect.php';
+  require('db_connect.php');
   session_start();
+  if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+    header('location:adminlogin.php');
+    }
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
-  $row=mysqli_fetch_array($query);
-  $image = $row["image"];
-  $email = $row["email"];
-  $gender = $row["gender"];
-  $phone = $row["phone"];
   ?>
     <body>
 
@@ -85,10 +89,10 @@
                             </li>
                             
                             <li>
-                                <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
+                                <a href="adminorder.php" class="active"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
                             <li>
-                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
+                                <a href="admintables.php" ><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
                                 <a href="adminvoucher.php" ><i class="fa fa-edit fa-fw"></i> Voucher</a>
@@ -97,7 +101,7 @@
                                 <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
-                                <a href="adminprofile.php" class="active"><i class="fa fa-edit fa-fw"></i> Profile</a>
+                                <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
                             
                         </ul>
@@ -109,7 +113,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Profile</h1>
+                            <h1 class="page-header">Order</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -118,52 +122,61 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    User Information
+                                    Order Details
                                 </div>
+                                <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                       
-                                        <form method="post" action="#" enctype="multipart/form-data">
-                                                <div class="form-group">
-                                                    <label>Profile Picture</label>
-                                                    <img src="<?php echo $image; ?>" height="150px" width="150px" class="thumbnail">
-                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>User Name</label>
-                                                    <p class="form-control-static"><?php echo $name; ?></p>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Gender</label>
-                                                    <input type="text" class="form-control" id="gender" name="gender" value="<?php echo $gender ?>" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Your Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Phone Number</label>
-                                                    <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}||[0-9]{3}-[0-9]{8}" value="<?php echo $phone ?>"required />
-                                                    <medium>Format: 012-3456789</medium>
-                                                </div>
+                                        <table class="table table-striped table-bordered table-hover" id="">
+                                            <thead>
+                                                <tr>
+                                                    
+                                                    <th>Product Name</th>
+                                                    <th>Product Quantity</th>
+                                                    <th>Product Name</th>
+                                                    
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php 
+                                            $id=$_GET['id'];
+                                            $query=mysqli_query($con,"select * from order_item where order_id=$id");
+                                            while($row=mysqli_fetch_array($query)){
                                                 
+                                                ?>
+                                                <tr>
+                                                    <td><?php echo $row['order_item_name']; ?></td>
+                                                    <td><?php echo $row['order_item_quantity']; ?></td>
+                                                    <td><?php echo "RM ".$row['order_item_price']; ?></td>
                                                 
-                                                <input type="submit" value="Comfirm" name="submit" class="btn btn-primary"style="width:20em; margin:0;"><br><br>
+                                                </tr>
+                                            
+                                                <?php 
+                                            $query=mysqli_query($con,"select * from order_table ORDER BY status ASC ");
+                                            while($row=mysqli_fetch_array($query)){
                                                 
-                                            </form>
-                                            <a href="adminprofile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary"style="background-color:#B22222 ;width:20em; margin:0;"></a><br><br>
-                                        </div>
-                                        <!-- /.col-lg-6 (nested) -->
-                                        <div class="col-lg-6">
+                                                ?>
+                                                <?php
+                                                        if($row['order_status']==1){
+                                                            ?><p><i class="fa fa-circle" style="color:#DAA520;font-size:13px">&nbspPending</i></p>
+                                                           <?php 
+                                                        }else if($row['order_status']==2){
+                                                            ?><p><i class="fa fa-circle" style="color:red;font-size:13px">&nbspDecline</i></p>
+                                                           <?php  
+                                                        }else if($row['order_status']==3){
+                                                            ?><p><i class="fa fa-circle" style="color:green;font-size:18px">&nbspApporve</i></p>
+                                                           <?php
+                                                        }
+                                                    ?>
+                                                
+                                                <?php  }}?> 
+
+                                            </tbody>
                                             
-                                            
-                                            
-                                            
-                                        </div>
-                                        <!-- /.col-lg-6 (nested) -->
+                                        </table>
+                                        <a href="adminorder.php" ><input type="submit" value="Back" name="back" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a><br><br>
                                     </div>
-                                    <!-- /.row (nested) -->
+                                    <!-- /.table-responsive -->
+                                    
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
@@ -172,13 +185,10 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /#page-wrapper -->
-
-        </div>
-        <!-- /#wrapper -->
+                
+                    
+                    
+                                        
 
         <!-- jQuery -->
         <script src="adminjs/jquery.min.js"></script>
@@ -189,65 +199,15 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="adminjs/metisMenu.min.js"></script>
 
+        <!-- DataTables JavaScript -->
+        <script src="adminjs/dataTables/jquery.dataTables.min.js"></script>
+        <script src="adminjs/dataTables/dataTables.bootstrap.min.js"></script>
+
         <!-- Custom Theme JavaScript -->
         <script src="adminjs/startmin.js"></script>
 
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+
     </body>
 </html>
-
-<?php
-      if(isset($_POST['submit'])){
-        
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $phone = $_POST['phone'];
-        $fileInfo = PATHINFO($_FILES["image"]["name"]);
-
-        //the path to store the uploaded image
-        if (empty($_FILES["image"]["name"])){
-		$location=$row['image'];
-		?>
-		<script>
-			window.alert('Profile Details updated successfully!');
-			window.location = 'adminprofile.php';
-		</script>
-	  <?php
-
-	}
-	else{
-		if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
-			$newFilename = $fileInfo['filename'] . $fileInfo['extension'];
-			move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
-			$location = "img/" . $newFilename;
-            ?>
-		<script>
-			window.alert('Profile Details updated successfully!');
-			window.location = 'adminprofile.php';
-		</script>
-	<?php
-        }
-        else{
-            $location=$row['image'];
-            ?>
-              <script>
-                window.alert('Image not updated. Please upload JPG or PNG or JPEG photo only!');
-                window.location = 'admineditprofile.php';
-              </script>
-            <?php
-          }
-    }
-
-      $query = "UPDATE admin SET
-                      email = '$email', image='$location', gender='$gender', phone='$phone'
-                      WHERE username = '$name'";
-                    $result = mysqli_query($con, $query);
-      ?>
-        
-        <script type="text/javascript">
-            alert("Update Successfull.");
-            window.location = "adminprofile.php";
-        </script>
-        <?php
-             
-            }             
-?>

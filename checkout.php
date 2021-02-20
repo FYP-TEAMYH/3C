@@ -1,6 +1,7 @@
 <?php
 
 session_start();
+include('db_connect.php');
 if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
     header('location:login.php');
 }
@@ -22,6 +23,26 @@ $order_details = '
             <th>Total</th>  
         </tr>
 ';
+$discount=0.00;
+$message="";
+if(isset($_POST['discount']))
+{
+            $vouchercode=$_POST['discountCode'];
+            $query="SELECT * from voucher where code='$vouchercode' AND status='1'";
+            $result=mysqli_query($con,$query);
+            
+            if($row=mysqli_fetch_assoc($result)){
+                
+                $discount=$row["discount"];
+                $message="Voucher code is available";
+            }
+            else
+            {
+                $message="Voucher code is not available";
+            }
+            
+            
+}
 
 if(!empty($_SESSION["shopping_cart"]))
 {
@@ -32,17 +53,23 @@ if(!empty($_SESSION["shopping_cart"]))
    <td>'.$values["product_name"].'</td>
    <td>'.$values["product_quantity"].'</td>
    <td align="right">RM '.$values["product_price"].'</td>
+   
    <td align="right">RM '.number_format($values["product_quantity"] * $values["product_price"], 2).'</td>
   </tr>
+  
   ';
-  $total_price = $total_price + ($values["product_quantity"] * $values["product_price"]);
+  $total_price = ($total_price + ($values["product_quantity"] * $values["product_price"])) - $discount;
 
   $item_details .= $values["product_name"] . ', ';
  }
  $item_details = substr($item_details, 0, -2);
  $order_details .= '
+ <tr>
+  <td colspan="3" align="right">Discount</td>
+  <td colspan="4" align="right">RM '.$discount.'</td>
+  </tr>
  <tr>  
-        <td colspan="3" align="right">Total</td>  
+        <td colspan="3" align="right">Total</td>   
         <td align="right">RM '.number_format($total_price, 2).'</td>
     </tr>
  ';
@@ -97,7 +124,7 @@ $order_details .= '</table>';
 			  <li class="nav-item submenu dropdown">
                
                   <?php
-                  require('db_connect.php');
+                  
                   
                   if(isset($_SESSION["username"])){?>
                   <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
@@ -150,10 +177,25 @@ $order_details .= '</table>';
   <section class="checkout_area section-margin--small">
     <div class="container">
         
+      
         
         <div class="billing_details">
+
             <div class="row">
                 <div class="col-lg-6">
+                <div class="col-md-12 form-group">
+                <div class="cupon_area">
+      <form action="" method="post">
+            <div class="check_title">
+                <h2><b>Have a voucher ?</b></h2>
+            </div>
+            
+            <input type="text" id="discountCode" name="discountCode" size="15" style="margin-left:0px"placeholder="Enter voucher code">
+            <button class="button button-login w-5" name="discount" id="btnDiscountAction">Apply Voucher</button>
+            </div>
+      </form>
+      <p style="color:red"><?php echo $message ?></p>
+        </div>
                     <h3>Billing Details</h3>
                     <form class="row contact_form" method="post" id="order_process_form" action="payment.php"  >
                         <div class="col-md-12 form-group p_star">
@@ -223,9 +265,9 @@ $order_details .= '</table>';
                         <div class="col-md-5 form-group">
                         <div align="center">
                         <input type="hidden" name="total_amount" value="<?php echo $total_price; ?>" />
-                        <input type="hidden" name="currency_code" value="USD" />
+                        <input type="hidden" name="discount" value="<?php echo $discount; ?>" />
                         <input type="hidden" name="item_details" value="<?php echo $item_details; ?>" />
-                        <input type="button" name="" id="" class="btn btn-success" onclick="validate_form()" value="Pay Now" />
+                        <input type="button" name="" id="" class="button button-login w-15" onclick="validate_form()" value="Pay Now" />
                         </div>
                         </div>
                     </form>
@@ -520,42 +562,8 @@ if (valid_card==1)
   
 }
 
-Stripe.setPublishableKey('pk_test_51IC43mLOApRiqgAEH2QxlQS3BeHBDRHkzx0LeDoTmqF94N3b4F332lKbvjJoKS6GGRp4YrfG5lslCLkWze2K6Iay00ZvDQYh8K');
-
-function stripeResponseHandler(status, response)
-{
- if(response.error)
- {
-  $('#button_action').attr('disabled', false);
-  $('#message').html(response.error.message).show();
- }
- else
- {
-  var token = response['id'];
-  $('#order_process_form').append("<input type='hidden' name='token' value='" + token + "' />");
-
-  $('#order_process_form').submit();
- }
-}
 
 
-
-function stripePay(event)
-{
-  event.preventDefault();
- 
- if(validate_form() == true)
- {
-  
-  Stripe.createToken({
-   number:$('#card_holder_number').val(),
-   cvc:$('#card_cvc').val(),
-   exp_month : $('#card_expiry_month').val(),
-   exp_year : $('#card_expiry_year').val()
-  }, stripeResponseHandler);
-  return false;
- }
-}
 
 
 function only_number(event)

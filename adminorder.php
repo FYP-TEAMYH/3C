@@ -97,6 +97,9 @@
                                 <a href="admintables.php" ><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
+                                <a href="adminvoucher.php" ><i class="fa fa-edit fa-fw"></i> Voucher</a>
+                            </li>
+                            <li>
                                 <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
@@ -145,13 +148,15 @@
                                                 <tr><td>
                                                 
                                                     <?php
-                                                        if($row['status']==1){
-                                                            ?><p><i class="fa fa-circle" style="color:green;font-size:13px">&nbspArrived</i></p>
+                                                        if($row['order_status']==1){
+                                                            ?><p><i class="fa fa-circle" style="color:#DAA520;font-size:13px">&nbspPending</i></p>
                                                            <?php 
-                                                        }else{
-                                                            ?><p><i class="fa fa-circle" style="color:red;font-size:13px">&nbspDelivering</i></p>
-                                                           <?php 
-                                                            
+                                                        }else if($row['order_status']==2){
+                                                            ?><p><i class="fa fa-circle" style="color:red;font-size:13px">&nbspDecline</i></p>
+                                                           <?php  
+                                                        }else if($row['order_status']==3){
+                                                            ?><p><i class="fa fa-circle" style="color:green;font-size:13px">&nbspApporve</i></p>
+                                                           <?php
                                                         }
                                                     ?>
                                                     </td>

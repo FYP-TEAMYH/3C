@@ -7,7 +7,7 @@
         <meta name="description" content="">
         <meta name="author" content="">
 
-        <title>3C Online Store[Admin]</title>
+        <title>3C Online Store [Admin]</title>
 	<link rel="icon" href="https://img.icons8.com/ios-filled/50/000000/reliance-digital-tv.png" type="image/png">
 
         <!-- Bootstrap Core CSS -->
@@ -15,6 +15,12 @@
 
         <!-- MetisMenu CSS -->
         <link href="admincss/metisMenu.min.css" rel="stylesheet">
+
+        <!-- DataTables CSS -->
+        <link href="admincss/dataTables/dataTables.bootstrap.css" rel="stylesheet">
+
+        <!-- DataTables Responsive CSS -->
+        <link href="admincss/dataTables/dataTables.responsive.css" rel="stylesheet">
 
         <!-- Custom CSS -->
         <link href="admincss/startmin.css" rel="stylesheet">
@@ -30,15 +36,29 @@
         <![endif]-->
     </head>
     <?php
-  include 'db_connect.php';
+  require('db_connect.php');
   session_start();
+  if((!isset($_SESSION["username"])) && empty($_SESSION["username"])){
+    header('location:adminlogin.php');
+    }
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
-  $row=mysqli_fetch_array($query);
-  $image = $row["image"];
-  $email = $row["email"];
-  $gender = $row["gender"];
-  $phone = $row["phone"];
+
+  if(isset($_GET['type']) && $_GET['type']!=''){
+    $type=$_GET['type'];
+    if($type=='status'){
+      $operation=$_GET['operation'];
+      $id=$_GET['id'];
+      if($operation=='active'){
+        $status='1';
+      }else if ($operation=='inactive'){
+        $status='0';
+      }
+      $update_status_sql="update voucher set status='$status' where id='$id'";
+      mysqli_query($con,$update_status_sql);
+    }
+    }
+
   ?>
     <body>
 
@@ -88,16 +108,16 @@
                                 <a href="adminorder.php"><i class="fa fa-cube fa-fw"></i> Order</a>
                             </li>
                             <li>
-                                <a href="admintables.php"><i class="fa fa-table fa-fw"></i> Product</a>
+                                <a href="admintables.php" ><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
-                                <a href="adminvoucher.php" ><i class="fa fa-edit fa-fw"></i> Voucher</a>
+                                <a href="adminvoucher.php" class="active"><i class="fa fa-edit fa-fw"></i> Voucher</a>
                             </li>
                             <li>
                                 <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
-                                <a href="adminprofile.php" class="active"><i class="fa fa-edit fa-fw"></i> Profile</a>
+                                <a href="adminprofile.php"><i class="fa fa-edit fa-fw"></i> Profile</a>
                             </li>
                             
                         </ul>
@@ -109,7 +129,7 @@
                 <div class="container-fluid">
                     <div class="row">
                         <div class="col-lg-12">
-                            <h1 class="page-header">Profile</h1>
+                            <h1 class="page-header">Voucher</h1>
                         </div>
                         <!-- /.col-lg-12 -->
                     </div>
@@ -118,52 +138,64 @@
                         <div class="col-lg-12">
                             <div class="panel panel-default">
                                 <div class="panel-heading">
-                                    User Information
+                                    Voucher Details
                                 </div>
+                                <!-- /.panel-heading -->
                                 <div class="panel-body">
-                                    <div class="row">
-                                        <div class="col-lg-6">
-                                       
-                                        <form method="post" action="#" enctype="multipart/form-data">
-                                                <div class="form-group">
-                                                    <label>Profile Picture</label>
-                                                    <img src="<?php echo $image; ?>" height="150px" width="150px" class="thumbnail">
-                                                    <input type="file" name="image" id="image" value="<?php echo $image; ?>" width="150px" height="100px" class="form-control" >
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>User Name</label>
-                                                    <p class="form-control-static"><?php echo $name; ?></p>
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Gender</label>
-                                                    <input type="text" class="form-control" id="gender" name="gender" value="<?php echo $gender ?>" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Your Email</label>
-                                                    <input type="email" class="form-control" id="email" name="email" value="<?php echo $email ?>" required />
-                                                </div>
-                                                <div class="form-group">
-                                                    <label>Phone Number</label>
-                                                    <input type="tel"  class="form-control" id="phone" name="phone" pattern="[0-9]{3}-[0-9]{7}||[0-9]{3}-[0-9]{8}" value="<?php echo $phone ?>"required />
-                                                    <medium>Format: 012-3456789</medium>
-                                                </div>
-                                                
-                                                
-                                                <input type="submit" value="Comfirm" name="submit" class="btn btn-primary"style="width:20em; margin:0;"><br><br>
-                                                
-                                            </form>
-                                            <a href="adminprofile.php"><input type="submit" value="Cancel" name="Edit" class="btn btn-primary"style="background-color:#B22222 ;width:20em; margin:0;"></a><br><br>
-                                        </div>
-                                        <!-- /.col-lg-6 (nested) -->
-                                        <div class="col-lg-6">
+                                    <div class="table-responsive"> <a href="adminaddvoucher.php"><input type="submit" value="Add Voucher" name="add" class="btn btn-primary" style="background-color:#DAA520 ;width:20em; margin:0;"></a><br><br>
+                                        <table class="table table-striped table-bordered table-hover" id="">
+                                            <thead>
+                                                <tr>
+                                                    <th>ID</th>
+                                                    <th>Status</th>
+                                                    <th>Voucher Code</th>
+                                                    <th>Discount</th>
+                                                    <th>Delete</th>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                            <?php 
+                                            $query=mysqli_query($con,"select * from voucher ORDER BY id ASC ");
+                                            while($row=mysqli_fetch_array($query)){?>
+                                                <tr>
+                                                    <td><?php echo $row['id']; ?></td>
+                                                    <td><?php 
+                                                    
+                                                    if($row['status']==1){
+                                                        echo "<span class='badge badge-success w-10' style='color:black;text-align: center;background-color:#32CD32;'>
+                                                        <h4><a href='?type=status&operation=deactive&id=".$row['id']."'>Active</a></h4></span>";
+                                                        
+                                                    }else{
+
+                                                        echo "<span class='badge badge-danger' style='color:black;text-align: center;background-color:#FF8C00;'>
+                                                        
+                                                        <h4><a href='?type=status&operation=active&id=".$row['id']."'>Unactive</a></h4></span>";
+                                                    }
+
+                                                    //else{
+
+                                                        //echo "<span class='badge badge-danger' style='color:black;text-align: center;background-color:#FF8C00;'>
+                                                        
+                                                        //<h4><a href='?type=status&operation=inactive&id=".$row['id']."'>Inactive</a></h4></span>";
+                                                    //}
+                                                    ?></td>
+                                                    <td><?php echo $row['code']; ?></td>
+                                                    <td><?php echo $row['discount']; ?></td>
+                                                    <td>
+                                                    <a href="admindeletevoucher.php?del=<?php echo $row["id"]; ?>">
+                                                    <input type="submit" value="delete" id="delete"<?php echo "id='".$row['id']."' "?> class="btn btn-primary" style="background-color:red" value="1"></a></td>
+                                                    </td>
+                                                </tr>
+
+                                               
                                             
-                                            
-                                            
-                                            
-                                        </div>
-                                        <!-- /.col-lg-6 (nested) -->
+
+                                                <?php  }?>  
+                                            </tbody>
+                                        </table>
                                     </div>
-                                    <!-- /.row (nested) -->
+                                    <!-- /.table-responsive -->
+                                    
                                 </div>
                                 <!-- /.panel-body -->
                             </div>
@@ -172,13 +204,10 @@
                         <!-- /.col-lg-12 -->
                     </div>
                     <!-- /.row -->
-                </div>
-                <!-- /.container-fluid -->
-            </div>
-            <!-- /#page-wrapper -->
-
-        </div>
-        <!-- /#wrapper -->
+                
+                    
+                    
+                                        
 
         <!-- jQuery -->
         <script src="adminjs/jquery.min.js"></script>
@@ -189,65 +218,15 @@
         <!-- Metis Menu Plugin JavaScript -->
         <script src="adminjs/metisMenu.min.js"></script>
 
+        <!-- DataTables JavaScript -->
+        <script src="adminjs/dataTables/jquery.dataTables.min.js"></script>
+        <script src="adminjs/dataTables/dataTables.bootstrap.min.js"></script>
+
         <!-- Custom Theme JavaScript -->
         <script src="adminjs/startmin.js"></script>
 
+        <!-- Page-Level Demo Scripts - Tables - Use for reference -->
+
+
     </body>
 </html>
-
-<?php
-      if(isset($_POST['submit'])){
-        
-        $email = $_POST['email'];
-        $gender = $_POST['gender'];
-        $phone = $_POST['phone'];
-        $fileInfo = PATHINFO($_FILES["image"]["name"]);
-
-        //the path to store the uploaded image
-        if (empty($_FILES["image"]["name"])){
-		$location=$row['image'];
-		?>
-		<script>
-			window.alert('Profile Details updated successfully!');
-			window.location = 'adminprofile.php';
-		</script>
-	  <?php
-
-	}
-	else{
-		if ($fileInfo['extension'] == "jpg" OR $fileInfo['extension'] == "png" OR $fileInfo['extension'] == "PNG" OR $fileInfo['extension'] == "JPG" OR $fileInfo['extension'] == "jpeg" OR $fileInfo['extension'] == "JPEG") {
-			$newFilename = $fileInfo['filename'] . $fileInfo['extension'];
-			move_uploaded_file($_FILES["image"]["tmp_name"], "img/" . $newFilename);
-			$location = "img/" . $newFilename;
-            ?>
-		<script>
-			window.alert('Profile Details updated successfully!');
-			window.location = 'adminprofile.php';
-		</script>
-	<?php
-        }
-        else{
-            $location=$row['image'];
-            ?>
-              <script>
-                window.alert('Image not updated. Please upload JPG or PNG or JPEG photo only!');
-                window.location = 'admineditprofile.php';
-              </script>
-            <?php
-          }
-    }
-
-      $query = "UPDATE admin SET
-                      email = '$email', image='$location', gender='$gender', phone='$phone'
-                      WHERE username = '$name'";
-                    $result = mysqli_query($con, $query);
-      ?>
-        
-        <script type="text/javascript">
-            alert("Update Successfull.");
-            window.location = "adminprofile.php";
-        </script>
-        <?php
-             
-            }             
-?>

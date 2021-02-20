@@ -43,6 +43,22 @@
     }
   $name=$_SESSION['username'];
   $query=mysqli_query($con,"SELECT * FROM admin where username='$name'")or die(mysqli_error());
+
+  if(isset($_GET['type']) && $_GET['type']!=''){
+    $type=$_GET['type'];
+    if($type=='status'){
+      $operation=$_GET['operation'];
+      $id=$_GET['id'];
+      if($operation=='approve'){
+        $status='3';
+      }else if ($operation=='decline'){
+        $status='2';
+      }
+      $update_status_sql="update order_table set order_status='$status' where order_id='$id'";
+      mysqli_query($con,$update_status_sql);
+    }
+    }
+
   ?>
     <body>
 
@@ -95,6 +111,9 @@
                                 <a href="admintables.php" ><i class="fa fa-table fa-fw"></i> Product</a>
                             </li>
                             <li>
+                                <a href="adminvoucher.php" ><i class="fa fa-edit fa-fw"></i> Voucher</a>
+                            </li>
+                            <li>
                                 <a href="admincompare.php"><i class="fa fa-compress fa-fw"></i> Compare</a>
                             </li>
                             <li>
@@ -141,19 +160,53 @@
                                                 
                                                 ?>
                                                 <tr>
+                                                    
                                                     <td><?php echo $row['order_item_name']; ?></td>
                                                     <td><?php echo $row['order_item_quantity']; ?></td>
                                                     <td><?php echo "RM ".$row['order_item_price']; ?></td>
-                                        
+                                                
                                                 </tr>
                                             
+                                                <?php 
+                                            $query=mysqli_query($con,"select * from order_table where order_id=$id ");
+                                            while($row=mysqli_fetch_array($query)){
                                                 
+                                                ?>
+                                                <?php if($row['order_status']==1){?>
+                                                            <p><i class="fa fa-circle" style="color:#DAA520;font-size:13px">&nbspPending</i>
+                                                            </p>
 
-                                                <?php  }?> 
+                                                            <?php if($row['order_status']==1){
+
+                                                                echo "<h4><a style='color:white;margin-bottom:10px;' href='?type=status&operation=approve&id=".$row['order_id']."'><button class='badge badge-success w-10' style='color:green;height:3em;width:15em;text-align: center;background-color:#32CD32;margin:0px 0px 10px 0px'>
+                                                                Approve</a></h4></span>";
+                                                                
+                                                            
+
+                                                                echo "<h4><a style='color:white;margin-bottom:10px;' href='?type=status&operation=decline&id=".$row['order_id']."'><button class='badge badge-danger' style='color:red;height:3em;width:15em;text-align:center;background-color:red;margin:0px 0px 10px 0px'>
+                                                                Decline</a></h4></span>";
+                                                            }?>
+
+                                                           <?php 
+                                                            }else if($row['order_status']==2){
+                                                            ?><p><i class="fa fa-circle" style="color:red;font-size:15px">&nbspDecline</i></p>
+                                                           <?php  
+                                                        }else if($row['order_status']==3){
+                                                            ?><p><i class="fa fa-circle" style="color:green;font-size:15px">&nbspApporve</i></p>
+                                                           <?php
+                                                        }
+                                                     }
+                                                    }
+                                            
+                                        
+                                                    ?>
+                                                
+                                                
 
                                             </tbody>
                                             
                                         </table>
+                                        
                                         <a href="adminorder.php" ><input type="submit" value="Back" name="back" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a><br><br>
                                     </div>
                                     <!-- /.table-responsive -->

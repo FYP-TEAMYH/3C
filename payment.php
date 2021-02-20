@@ -7,7 +7,7 @@ require('db_connect.php');
 session_start();
 
 
- 
+ $discount=$_POST["discount"];
  $name=$_POST["customer_name"];
  $email= $_POST["email_address"];
  $address= $_POST["customer_address"];
@@ -23,10 +23,12 @@ session_start();
  $card_holder = $_POST["card_holder_number"];
  $tran=uniqid('txn_'); 
 
+
  $query=mysqli_query($con,"select * from register where username='$username'");
  if($row=mysqli_fetch_array($query)){  
  $id=$row["id"];
- $status=0;
+ $status=1;
+ $order_status=1;
  } 
    
  $order_number = rand(100000,999999);
@@ -52,8 +54,8 @@ session_start();
 
 
   $query = "INSERT INTO `order_table`
-     (order_number, order_total_amount,transaction_id, card_cvc, card_expiry_month, card_expiry_year, card_holder_number, email_address, customer_name, customer_address, customer_city, customer_pin, customer_state, customer_country, user_id, date,status) 
-     VALUES (:order_number, :order_total_amount,:transaction_id, :card_cvc, :card_expiry_month, :card_expiry_year, :card_holder_number, :email_address, :customer_name, :customer_address, :customer_city, :customer_pin, :customer_state, :customer_country, '$id', '$date', '$status')
+     (order_number, order_total_amount,transaction_id, card_cvc, card_expiry_month, card_expiry_year, card_holder_number, email_address, customer_name, customer_address, customer_city, customer_pin, customer_state, customer_country, user_id, date,order_status,status,discount) 
+     VALUES (:order_number, :order_total_amount,:transaction_id, :card_cvc, :card_expiry_month, :card_expiry_year, :card_holder_number, :email_address, :customer_name, :customer_address, :customer_city, :customer_pin, :customer_state, :customer_country, '$id', '$date', '$order_status','$status','$discount')
   ";
   $statement = $connect->prepare($query);
 
