@@ -142,7 +142,7 @@
 					while($row = mysqli_fetch_assoc($result))
 					{ 
           echo '
-          <input type="text" name="quantity" id="quantity'.$row["id"].'" class="form-control"   />
+          <input type="number" name="quantity" id="quantity'.$row["id"].'" class="form-control" value ="1"   />
           <input type="hidden" name="hidden_name" id="name'.$row["id"].'" value="'.$row["name"].'" />
           <input type="hidden" name="hidden_price" id="price'.$row["id"].'" value="'.$row["price"].'" />
 		  <input type="hidden" name="hidden_stock" id="stock'.$row['id'].'" value="'.$row["quantity"].'" /> 
