@@ -74,7 +74,7 @@ session_start();
    );
 
 
-   $query2=mysqli_query($con,"select * from product ");
+   $query2=mysqli_query($con,"select * from product where id='".$values["product_id"]."'");
 	while($row=mysqli_fetch_array($query2)){
 		
 		$newqty=$row['quantity']-$values["product_quantity"];
