@@ -49,7 +49,7 @@
                     <div class='col-md-14 col-xl-12 mb-12 mb-xl-0'>
                     <div class='confirmation-card' style='text-align: center'>
 					<div class='container'>
-                    <a href="admintables.php"><input type="submit" value="Cancel" name="cancel" class="btn btn-primary" style="width:20em; margin:0;">
+                    <a href="adminvoucher.php"><input type="submit" value="Cancel" name="cancel" class="btn btn-primary" style="width:20em; margin:0;">
                     </a></div></div></div>
 </body>
 </html>

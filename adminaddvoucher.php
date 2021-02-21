@@ -160,7 +160,7 @@
                                                 <input type="submit" value="Submit" name="submit" class="btn btn-primary" style="width:20em; margin:0;"><br><br>
                                                 
                                             </form>
-                                            <a href="admintables.php"><input type="submit" value="Cancel" name="submit" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a>
+                                            <a href="adminvoucher.php"><input type="submit" value="Cancel" name="submit" class="btn btn-primary" style="background-color:red;width:20em; margin:0;"></a>
                                         </div>
                                         <!-- /.col-lg-6 (nested) -->
                                         <div class="col-lg-6">

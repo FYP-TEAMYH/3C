@@ -162,14 +162,14 @@
                                                     <td><?php 
                                                     
                                                     if($row['status']==1){
-                                                        echo "<span class='badge badge-success w-10' style='color:black;text-align: center;background-color:#32CD32;'>
-                                                        <h4><a href='?type=status&operation=deactive&id=".$row['id']."'>Active</a></h4></span>";
+                                                        echo "<a href='?type=status&operation=inactive&id=".$row['id']."'><span class='btn btn-info' style='padding: 0px 40px;background-color: #4CAF50;'>
+                                                        <h4>Active</h4></span></a>";
                                                         
                                                     }else{
 
-                                                        echo "<span class='badge badge-danger' style='color:black;text-align: center;background-color:#FF8C00;'>
+                                                        echo "<a href='?type=status&operation=active&id=".$row['id']."'><span class='btn btn-info' style='padding: 0px 40px;background-color: red;'>
                                                         
-                                                        <h4><a href='?type=status&operation=active&id=".$row['id']."'>Unactive</a></h4></span>";
+                                                        <h4>Inactive</h4></span></a>";
                                                     }
 
                                                     //else{
