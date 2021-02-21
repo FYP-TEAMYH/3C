@@ -179,12 +179,12 @@
                                                             <?php if($row['order_status']==1){
 
                                                                 echo "<h4><a style='color:white;margin-bottom:10px;' href='?type=status&operation=approve&id=".$row['order_id']."'><button class='badge badge-success w-10' style='color:green;height:3em;width:15em;text-align: center;background-color:#32CD32;margin:0px 0px 10px 0px'>
-                                                                Approve</a></h4></span>";
+                                                                Approve</a></h4>";
                                                                 
                                                             
 
                                                                 echo "<h4><a style='color:white;margin-bottom:10px;' href='?type=status&operation=decline&id=".$row['order_id']."'><button class='badge badge-danger' style='color:red;height:3em;width:15em;text-align:center;background-color:red;margin:0px 0px 10px 0px'>
-                                                                Decline</a></h4></span>";
+                                                                Decline</a></h4>";
                                                             }?>
 
                                                            <?php 
