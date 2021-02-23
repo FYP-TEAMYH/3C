@@ -27,7 +27,7 @@ session_start();
  $query=mysqli_query($con,"select * from register where username='$username'");
  if($row=mysqli_fetch_array($query)){  
  $id=$row["id"];
- $status=1;
+ $status=0;
  $order_status=1;
  } 
    

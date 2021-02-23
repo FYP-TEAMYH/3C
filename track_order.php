@@ -145,11 +145,11 @@
 
                                                             if($row['order_status']==1){
                                                               echo "
-                                                              <h4 style='color:#DAA520;text-align:center;'><i class='fa fa-circle' style='color:#DAA520;font-size:13px'>Pending</i></h4>";
+                                                              <h4 style='color:#DAA520;text-align:center;'><i class='fa fa-circle' style='color:#DAA520;font-size:13px'>&nbspPending</i></h4>";
                                                             }
                                                             else if($row['order_status']==2){
                                                               echo "
-                                                                    <h4 style='color:red;text-align:center;'><i class='fa fa-circle' style='color:red;font-size:13px'>Decline</i></h4>";
+                                                                    <h4 style='color:red;text-align:center;'><i class='fa fa-circle' style='color:red;font-size:13px'>&nbspDecline</i></h4>";
                                                             }
                                                             else if($row['order_status']==3){
                                                               echo "

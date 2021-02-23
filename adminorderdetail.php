@@ -156,6 +156,7 @@
                                             <?php 
                                             $id=$_GET['id'];
                                             $query=mysqli_query($con,"select * from order_item where order_id=$id");
+                                            $query2=mysqli_query($con,"select * from order_table where order_id=$id ");
                                             while($row=mysqli_fetch_array($query)){
                                                 
                                                 ?>
@@ -164,12 +165,13 @@
                                                     <td><?php echo $row['order_item_name']; ?></td>
                                                     <td><?php echo $row['order_item_quantity']; ?></td>
                                                     <td><?php echo "RM ".$row['order_item_price']; ?></td>
+
                                                 
                                                 </tr>
                                             
                                                 <?php 
-                                            $query=mysqli_query($con,"select * from order_table where order_id=$id ");
-                                            while($row=mysqli_fetch_array($query)){
+                                           
+                                            while($row=mysqli_fetch_array($query2)){
                                                 
                                                 ?>
                                                 <?php if($row['order_status']==1){?>

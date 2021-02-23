@@ -166,6 +166,13 @@
 							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
 								while($row = mysqli_fetch_assoc($result)){ echo $row["ram"]; }?></td>
 						</tr>
+						<tr>
+							<th class="align-center">Brand</th>
+							<td><?php require('db_connect.php'); $P=$_POST["select1"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){  echo $row["brand"]; }?></td>
+							<td><?php require('db_connect.php'); $P=$_POST["select2"]; $result = mysqli_query($con,"SELECT * FROM compare where id='$P'"); $count = mysqli_num_rows($result);
+								while($row = mysqli_fetch_assoc($result)){ echo $row["brand"]; }?></td>
+						</tr>
 							
 							
 						</table>

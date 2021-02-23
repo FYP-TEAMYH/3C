@@ -136,7 +136,7 @@
                                         <div class="col-xs-9 text-right">
                                             <div class="huge">
                                             <?php
-                                                $query = "SELECT COUNT(*) totalOrders FROM order_table WHERE status = 0 ;";
+                                                $query = "SELECT COUNT(*) totalOrders FROM order_table WHERE order_status = 1 ;";
                                                     $result = mysqli_query( $con, $query );
                                                     $totalAdmins = mysqli_fetch_assoc( $result );
                                                     echo $totalAdmins['totalOrders'];
