@@ -175,7 +175,7 @@
                                                 
                                                 ?>
                                                 <?php if($row['order_status']==1){?>
-                                                            <p><i class="fa fa-circle" style="color:#DAA520;font-size:13px">&nbspPending</i>
+                                                            <p><b>Order Status: </b><i class="fa fa-circle" style="color:#DAA520;font-size:15px">&nbspPending</i>
                                                             </p>
 
                                                             <?php if($row['order_status']==1){
@@ -191,11 +191,16 @@
 
                                                            <?php 
                                                             }else if($row['order_status']==2){
-                                                            ?><p><i class="fa fa-circle" style="color:red;font-size:15px">&nbspDecline</i></p>
+                                                            ?><p><b>Order Status: </b><i class="fa fa-circle" style="color:red;font-size:15px">&nbspDecline</i></p>
                                                            <?php  
                                                         }else if($row['order_status']==3){
-                                                            ?><p><i class="fa fa-circle" style="color:green;font-size:15px">&nbspApporve</i></p>
-                                                           <?php
+                                                            ?><p><b>Order Status: &nbsp&nbsp&nbsp&nbsp</b><i class="fa fa-circle" style="color:green;font-size:15px">&nbspApporve</i></p>
+                                                            
+                                                           <?php if($row['status']==1){
+                                                               echo "<p><b>Product Status: </b> <i class='fa fa-circle' style='color:green;font-size:15px'>&nbspReceived</i></p>";
+                                                           }else if($row['status']==0){
+                                                            echo "<p><b>Product Status: </b><i class='fa fa-circle' style='color:orange;font-size:15px'>&nbspDelivering</i></p>";
+                                                        }
                                                         }
                                                      }
                                                     }
