@@ -34,11 +34,11 @@ if(isset($_POST['discount']))
             if($row=mysqli_fetch_assoc($result)){
                 
                 $discount=$row["discount"];
-                $message="Voucher code is available";
+                $message="<p style='color:green'>Voucher code is available<p>";
             }
             else
             {
-                $message="Voucher code is not available";
+                $message="<p style='color:red'>Voucher code is not available<p>";
             }
             
             
@@ -194,7 +194,7 @@ $order_details .= '</table>';
             <button class="button button-login w-5" name="discount" id="btnDiscountAction">Apply Voucher</button>
             </div>
       </form>
-      <p style="color:red"><?php echo $message ?></p>
+      <?php echo $message ?>
         </div>
                     <h3>Billing Details</h3>
                     <form class="row contact_form" method="post" id="order_process_form" action="payment.php"  >
