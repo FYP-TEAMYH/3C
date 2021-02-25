@@ -322,7 +322,7 @@ $(document).ready(function(){
   
 
 
-  if(stock >= product_quantity)
+  if((stock - product_quantity)>-1)
   {
 
   if(product_quantity > 0)
