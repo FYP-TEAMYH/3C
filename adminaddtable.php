@@ -44,6 +44,8 @@
 		        $name = mysqli_real_escape_string($con,$name); 
 		        $price = stripslashes($_REQUEST['price']);
 		        $price = mysqli_real_escape_string($con,$price);
+                $quantity = stripslashes($_REQUEST['quantity']);
+		        $quantity = mysqli_real_escape_string($con,$quantity);
 		        $category = stripslashes($_REQUEST['category']);
                 $category = mysqli_real_escape_string($con,$category);
                 $desc = stripslashes($_REQUEST['desc']);
@@ -63,8 +65,8 @@
             
                     $image="img/".$_FILES['image']['name'];
 		 
-				$query = "INSERT into `product` (name, price, image, category, description, description2, brand, color, quality)
-				VALUES ('$name', '$price' , '$image','$category', '$desc', '$desc2','$brandname', '$color', '$check')";
+				$query = "INSERT into `product` (name, price, quantity, image, category, description, description2, brand, color, quality)
+				VALUES ('$name', '$price' , '$quantity','$image','$category', '$desc', '$desc2','$brandname', '$color', '$check')";
 				$result = mysqli_query($con,$query);
 
 				?>
@@ -180,6 +182,12 @@
                                                     <input type="number" class="form-control" id="price" name="price" placeholder="Your product price" required />
                                                 
                                                 </div>
+                                                <div class="form-group">
+                                                    <label>Quantity</label>
+                                                    <input type="number" class="form-control" id="quantity" name="quantity" placeholder="Your product quantity" required />
+                                                
+                                                </div>
+                                                
                                                 <div class="form-group">
                                                     <label>Category</label>
                                                     <input type="text" class="form-control" id="category" name="category" placeholder="Your product category" required />

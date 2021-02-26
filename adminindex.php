@@ -254,7 +254,7 @@
                                             <ul class="dropdown-menu pull-right" role="menu">
                                                 <li><a href="#">Other</a>
                                                 <li class="divider"></li>
-                                                <li><a href="https://localhost/3C/adminorder.php">Order</a>
+                                                <li><a href="adminorder.php">Order</a>
                                                 </li>
                                             </ul>
                                         </div>
