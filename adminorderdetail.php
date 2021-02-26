@@ -148,7 +148,7 @@
                                                     
                                                     <th>Product Name</th>
                                                     <th>Product Quantity</th>
-                                                    <th>Product Name</th>
+                                                    <th>Product Price</th>
                                                     
                                                 </tr>
                                             </thead>
