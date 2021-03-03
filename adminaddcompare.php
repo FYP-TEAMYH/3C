@@ -52,6 +52,8 @@
                 $display = mysqli_real_escape_string($con,$display);
                 $ram = stripslashes($_REQUEST['ram']);
                 $ram = mysqli_real_escape_string($con,$ram);
+                $bat = stripslashes($_REQUEST['battery']);
+                $bat = mysqli_real_escape_string($con,$bat);
                 $brand = stripslashes($_REQUEST['brand']);
                 $brand = mysqli_real_escape_string($con,$brand);
                 $fileInfo = PATHINFO($_FILES["image"]["name"]);
@@ -61,8 +63,8 @@
                 
                         $image="img/".$_FILES['image']['name'];
 
-                        $query = "INSERT into `compare` (name, performance, image, storage, camera, display, ram, brand)
-                        VALUES ('$name', '$performance' , '$image','$storage', '$camera', '$display','$ram', '$brand')";
+                        $query = "INSERT into `compare` (name, performance, image,battery, storage, camera, display, ram, brand)
+                        VALUES ('$name', '$performance' , '$image','$bat','$storage', '$camera', '$display','$ram', '$brand')";
                         $result = mysqli_query($con,$query);
                         
                         ?>
@@ -186,6 +188,10 @@
                                                 <div class="form-group">
                                                     <label>Camera</label>
                                                     <input type="text" class="form-control" id="camera" name="camera" placeholder="Your compare product camera" required />
+                                                </div>
+                                                <div class="form-group">
+                                                    <label>Battery</label>
+                                                    <input type="text" class="form-control" id="battery" name="battery" placeholder="Your compare product battery" required />
                                                 </div>
                                                 <div class="form-group">
                                                     <label>display</label>
